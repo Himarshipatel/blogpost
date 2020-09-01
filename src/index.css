@@ -1,13 +1,62 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+/* ------------Login.js start-------------------- */
+.text-danger {
+  color: #e45848;
+  text-align: left;
+  font-size: small;
+}
+.home {
+  position: absolute;
+
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #1d4f6e;
+}
+
+.form {
+  margin: 0 auto;
+
+  background-color: white;
+  border: 1px solid lightgrey;
+  padding: 30px;
+  border-radius: 3px;
+}
+.signbutton {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  color: white;
+  font-weight: bold;
+  border: 0px;
+  border-radius: 5px;
+  background-color: #0000ff;
+  height: 10%;
+  width: 40%;
+}
+.head {
+  padding-bottom: 20px;
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #0000ff;
+  border-bottom: 1px solid lightgray;
+}
+.avtar {
+  color: #0000ff;
+}
+/* ------------Login.js end-------------------- */
