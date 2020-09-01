@@ -2,11 +2,30 @@ import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Approuter from "./components/Approuter";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Provider } from "react-redux";
+import store from "./redux/store/Store.js";
+
 function App() {
   return (
-    <div className="App">
-      <Approuter />
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Approuter />
+        <ToastContainer
+          position="top-center"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </div>
+    </Provider>
   );
 }
 
