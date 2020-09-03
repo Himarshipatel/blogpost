@@ -25,13 +25,13 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background-color: #1d4f6e;
+  background-image: url("http://www.allwhitebackground.com/images/6/Gradient-Background-Photos.jpg");
+  /* background-color: #1d4f6e; */
 }
 
 .form {
   margin: 0 auto;
-
+  /* background-color: #1d4f6e; */
   background-color: white;
   border: 1px solid lightgrey;
   padding: 30px;
@@ -53,10 +53,29 @@ code {
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 20px;
+  /* color: white; */
   color: #0000ff;
   border-bottom: 1px solid lightgray;
 }
-.avtar {
-  color: #0000ff;
-}
+
 /* ------------Login.js end-------------------- */
+
+/* ------------Home.js start-------------------- */
+.logo {
+  width: 50px;
+  height: 50px;
+}
+.nav {
+  background-color: teal;
+}
+.signinbut {
+  margin-right: 10px;
+  width: 120px;
+}
+.usericon {
+  margin-right: 3px;
+}
+.adminname {
+  margin-right: 10px;
+}
+/* ------------Home.js end-------------------- */

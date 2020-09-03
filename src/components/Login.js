@@ -4,7 +4,10 @@ import { Form, FormGroup, Input, Col, Container } from "reactstrap";
 import { Button } from "reactstrap";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signinUser } from "../redux/allactions/authaction/Loginaction.js";
+
 const schema = Yup.object().shape({
   identifier: Yup.string().required("*Username is a required field"),
   password: Yup.string().required("*Password is a required field"),
@@ -14,19 +17,21 @@ const Login = () => {
   const { register, control, errors, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
+  const history = useHistory();
+  const dispatch = useDispatch();
   const onSubmit = ({ identifier, password }) => {
-    console.log(identifier, password);
+    dispatch(signinUser({ identifier, password, history }));
   };
+
   return (
     <>
       <Col className="home">
-        <Col className="form" sm="5">
+        <Col className="form" sm="4">
           <img
-            src="https://icons-for-free.com/iconfiles/png/512/avatar+human+male+man+people+person+profile+user+users+icon-1320190727966457290.png"
+            src="https://www.lifewire.com/thmb/VPHk1hVtwFOti3iQPueGU9LgHsQ=/768x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Blogger.svg-57f268d63df78c690fe5d003.png"
             alt=""
             width="50px"
             height="50px"
-            className="avtar"
           />
           <Col className="head">Login</Col>
           <Container>
@@ -60,8 +65,9 @@ const Login = () => {
               </FormGroup>
 
               <Button color="primary" className="signbutton">
-                Login
+                Sign In
               </Button>
+
               <Col>
                 Don't have an account?
                 <Link to="/register"> SignUp</Link>

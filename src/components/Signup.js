@@ -3,8 +3,11 @@ import { useForm, Controller } from "react-hook-form";
 import { Form, FormGroup, Input, Container, Button, Col } from "reactstrap";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
+import { signupUser } from "../redux/allactions/authaction/Registeraction.js";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 const schema = Yup.object().shape({
-  identifier: Yup.string().required("Name is a required field"),
+  username: Yup.string().required("Name is a required field"),
   password: Yup.string().required("Password is a required field"),
   email: Yup.string().email().required("email is a required field"),
 });
@@ -13,9 +16,12 @@ const Signup = () => {
   const { register, control, errors, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
-  const onSubmit = ({ identifier, password, email }) => {
-    console.log(identifier, password, email);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const onSubmit = ({ username, password, email }) => {
+    dispatch(signupUser({ username, password, email, history }));
   };
+
   return (
     <>
       <Col className="home">
@@ -31,10 +37,10 @@ const Signup = () => {
                   type="text"
                   ref={register}
                   control={control}
-                  name="identifier"
+                  name="username"
                 />
-                {errors.identifier && (
-                  <p className="text-danger">* {errors.identifier.message}</p>
+                {errors.username && (
+                  <p className="text-danger">* {errors.username.message}</p>
                 )}
               </FormGroup>
 
