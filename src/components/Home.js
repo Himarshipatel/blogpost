@@ -31,8 +31,6 @@ const Home = () => {
     allpost: state.Allpostreducer.allpost,
   }));
 
-  console.log(allpost);
-
   const logout = () => {};
   return (
     <>
@@ -106,6 +104,9 @@ const Home = () => {
                     <br />
                     {item.slug}
                     <Link to={`post/${item.id}`}>Read more...</Link>
+                    {item.categories.map((catagory, index) => (
+                      <ul key={index}>{catagory.id}</ul>
+                    ))}
                   </ul>
                 ))}
               </Col>
