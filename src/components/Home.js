@@ -10,10 +10,19 @@ import {
   NavbarText,
   Button,
 } from "reactstrap";
+import {
+  Card,
+  CardImg,
+  CardText,
+  CardBody,
+  CardTitle,
+  CardSubtitle,
+} from "reactstrap";
+import Moment from "react-moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
-import { Col } from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Allpost } from "../redux/allactions/postactions/Allpostaction.js";
 const Home = () => {
@@ -98,15 +107,35 @@ const Home = () => {
           <>
             {allpost !== null && (
               <Col>
-                {allpost.slice(0).map((item, index) => (
+                {allpost.map((item, index) => (
                   <ul key={index}>
-                    {item.title}
-                    <br />
-                    {item.slug}
-                    <Link to={`post/${item.id}`}>Read more...</Link>
-                    {item.categories.map((catagory, index) => (
-                      <ul key={index}>{catagory.id}</ul>
-                    ))}
+                    <Col>
+                      <Card>
+                        <CardImg
+                          top
+                          width="100%"
+                          height="300px"
+                          src="https://3xeqv237cwc86flf14kmen8d-wpengine.netdna-ssl.com/wp-content/uploads/2020/07/connected-technology.jpg"
+                          alt=""
+                        />
+
+                        <CardBody>
+                          {item.categories.map((catagory, index) => (
+                            <ul key={index}>{catagory.title}</ul>
+                          ))}
+                          {item.tags.map((tags, index) => (
+                            <ul key={index}>{tags.title}</ul>
+                          ))}
+                          <CardTitle>{username}</CardTitle>
+                          <Moment format="Do MMM YYYY">
+                            {item.created_at}
+                          </Moment>
+                          <CardSubtitle>{item.title}</CardSubtitle>
+                          <CardText>{item.content}</CardText>
+                          <Link to={`post/${item.id}`}>Read more...</Link>
+                        </CardBody>
+                      </Card>
+                    </Col>
                   </ul>
                 ))}
               </Col>

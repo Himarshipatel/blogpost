@@ -16,7 +16,10 @@ export const Allpost = () => {
 
       .then((res) => {
         console.log(res);
-        dispatch({ type: "ALL_POST_SUCCESS", allpost: res.data });
+        dispatch({
+          type: "ALL_POST_SUCCESS",
+          allpost: res.data,
+        });
         console.log(res.data);
       })
       .catch((error) => {
