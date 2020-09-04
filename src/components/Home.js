@@ -60,7 +60,7 @@ const Home = () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/" className="text-white">
+              <NavLink href="/tag" className="text-white">
                 Tags
               </NavLink>
             </NavItem>
@@ -121,10 +121,10 @@ const Home = () => {
 
                         <CardBody>
                           {item.categories.map((catagory, index) => (
-                            <ul key={index}>{catagory.title}</ul>
+                            <ul key={index}>catagory:{catagory.title}</ul>
                           ))}
                           {item.tags.map((tags, index) => (
-                            <ul key={index}>{tags.title}</ul>
+                            <ul key={index}>Tag:{tags.title}</ul>
                           ))}
                           <CardTitle>{username}</CardTitle>
                           <Moment format="Do MMM YYYY">
