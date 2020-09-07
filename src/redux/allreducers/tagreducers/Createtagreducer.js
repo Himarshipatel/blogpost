@@ -5,13 +5,13 @@ const initialState = {
 
 const Createtagreducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ALL_TAG_PENDING":
+    case "ADD_TAG_PENDING":
       return {
         ...state,
         addtag: null,
         loading: true,
       };
-    case "ALL_TAG_SUCCESS":
+    case "ADD_TAG_SUCCESS":
       return {
         ...state,
         loading: false,

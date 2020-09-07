@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
 import { Alltag } from "../redux/allactions/tagsactions/Alltagsaction.js";
-import { Addtag } from "../redux/allactions/tagsactions/Createtagaction.js";
+import { Singletag } from "../redux/allactions/tagsactions/Singletagaction.js";
 import { Deletetag } from "../redux/allactions/tagsactions/Deletetagaction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
@@ -31,8 +31,11 @@ import {
   faPaperPlane,
   faSignOutAlt,
   faUserCircle,
+  faPencilAlt,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
+import Tagmodal from "./Tagmodal.js";
+import SweetAlert from "react-bootstrap-sweetalert";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import { Redirect, useHistory } from "react-router-dom";
@@ -47,6 +50,7 @@ const Tags = (props) => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+  const [action, setAction] = useState();
 
   const { loading, alltag } = useSelector((state) => ({
     loading: state.Alltagreducer.loading,
@@ -57,19 +61,19 @@ const Tags = (props) => {
   useEffect(() => {
     dispatch(Alltag());
   }, [dispatch]);
-  const { register, control, errors, handleSubmit } = useForm({
-    resolver: yupResolver(formSchema),
-  });
-  const onSubmit = ({ title, slug, description }) => {
-    console.log(title, slug, description);
-    dispatch(Addtag({ title, slug, description, setModal }));
-  };
+  // const { register, control, errors, handleSubmit } = useForm({
+  //   resolver: yupResolver(formSchema),
+  // });
+  // const onSubmit = ({ title, slug, description }) => {
+  //   console.log(title, slug, description);
+  //   dispatch(Addtag({ title, slug, description, setModal }));
+  // };
   const removehandle = (id) => {
     dispatch(Deletetag(id));
   };
   return (
     <>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      {/* <Modal isOpen={modal} toggle={toggle} className={className}>
         <ModalHeader toggle={toggle}>Create Tag</ModalHeader>
         <ModalBody>
           <Form onSubmit={handleSubmit(onSubmit)}>
@@ -129,10 +133,16 @@ const Tags = (props) => {
             </Button>
           </Form>
         </ModalBody>
-      </Modal>
+      </Modal> */}
 
       <Col className="dashboard">
-        <Button color="primary" onClick={toggle} className="addpaste">
+        <Button
+          color="primary"
+          onClick={() => {
+            toggle();
+            setAction("create");
+          }}
+        >
           Add Tag
         </Button>
 
@@ -178,16 +188,18 @@ const Tags = (props) => {
                           </td>
                           <td>
                             <FontAwesomeIcon
+                              icon={faPencilAlt}
+                              onClick={() => {
+                                toggle();
+                                setAction("edit");
+                                dispatch(Singletag(item.id));
+                              }}
+                            />
+                            <FontAwesomeIcon
                               icon={faTrashAlt}
                               className="carticon"
                               onClick={() => {
-                                if (
-                                  window.confirm(
-                                    "Are you sure to delete this record?"
-                                  )
-                                ) {
-                                  removehandle(item.id);
-                                }
+                                removehandle(item.id);
                               }}
                             />
                           </td>
@@ -197,6 +209,14 @@ const Tags = (props) => {
                 </Table>
               )}
             </>
+          )}
+          {modal && (
+            <Tagmodal
+              modal={modal}
+              action={action}
+              setModal={setModal}
+              toggle={toggle}
+            />
           )}
         </>
       </Col>

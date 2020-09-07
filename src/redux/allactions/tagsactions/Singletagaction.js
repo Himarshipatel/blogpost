@@ -1,39 +1,31 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Alltag } from "./Alltagsaction.js";
-export const Addtag = (title, slug, description, setModal) => {
-  console.log(title, slug, description);
+
+export const Singletag = (id) => {
+  console.log(id);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
       Authorization: `Bearer ${tokenn}`,
     },
   };
-  console.log(authtoken);
   return (dispatch) => {
-    dispatch({ type: "ADD_TAG_PENDING" });
+    dispatch({ type: "SINGLE_TAG_PENDING" });
 
     axios
-      .post(
-        "https://infblogdemo.herokuapp.com/tags",
-        { title: title, slug: slug, description: description },
-        authtoken
-      )
+      .get(`https://infblogdemo.herokuapp.com/tags/${id}`, authtoken)
 
       .then((res) => {
         console.log(res);
-        dispatch(Alltag());
         dispatch({
-          type: "ADD_TAG_SUCCESS",
-          addtag: res.data,
+          type: "SINGLE_TAG_SUCCESS",
+          singletag: res.data,
         });
         console.log(res.data);
-        setModal(false);
       })
       .catch((error) => {
-        setModal(true);
         console.log(error);
-        toast.error(error.response.data.error, {
+        toast.error("singletag error", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
