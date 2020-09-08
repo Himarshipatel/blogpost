@@ -5,12 +5,14 @@ import Signup from "./Signup.js";
 import Home from "./Home.js";
 import Post from "./Singlepost.js";
 import Tags from "./Tags.js";
+import Category from "./Category.js";
 const Approuter = () => {
   return (
     <BrowserRouter>
       <div>
         <Switch>
-          <Route path="/tag" component={Tags}/>
+          <Route path="/category" component={Category} />
+          <Route path="/tag" component={Tags} />
           <Route path="/post/:id" component={Post} />
 
           <Route path="/register" component={Signup} />

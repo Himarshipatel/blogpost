@@ -9,6 +9,11 @@ import Createtagreducer from "../allreducers/tagreducers/Createtagreducer.js";
 import Deletetagreducer from "../allreducers/tagreducers/Deletetagreducer.js";
 import edittagreducer from "../allreducers/tagreducers/Edittagreducer.js";
 import singletagreducer from "../allreducers/tagreducers/Singletagreducer.js";
+import Allcategoryreducer from "../allreducers/categoryreducers/Allcategoryreducer.js";
+import Deletecategory from "../allreducers/categoryreducers/Deletecategory.js";
+import editcategory from "../allreducers/categoryreducers/Editcategory.js";
+import Createcategory from "../allreducers/categoryreducers/Createcategory.js";
+import Singlecategory from "../allreducers/categoryreducers/Singlecategory.js";
 
 const rootReducer = combineReducers({
   Loginreducer,
@@ -20,6 +25,11 @@ const rootReducer = combineReducers({
   Deletetagreducer,
   edittagreducer,
   singletagreducer,
+  Allcategoryreducer,
+  Deletecategory,
+  editcategory,
+  Createcategory,
+  Singlecategory,
 });
 const store = createStore(rootReducer, applyMiddleware(thunk));
 

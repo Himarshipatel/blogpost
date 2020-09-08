@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
+import { Allcategory } from "../redux/allactions/categoriesactions/Allcategories.js";
+import { Deletecategory } from "../redux/allactions/categoriesactions/Deletecategory.js";
+import { Singlecategory } from "../redux/allactions/categoriesactions/Singlecategory.js";
 
-import { Alltag } from "../redux/allactions/tagsactions/Alltagsaction.js";
-import { Singletag } from "../redux/allactions/tagsactions/Singletagaction.js";
-import { Deletetag } from "../redux/allactions/tagsactions/Deletetagaction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
 import {
@@ -34,36 +34,29 @@ import {
   faPencilAlt,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Tagmodal from "./Tagmodal.js";
+import Categorymodal from "./Categorymodal.js";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import { Redirect, useHistory } from "react-router-dom";
-const formSchema = Yup.object().shape({
-  title: Yup.string().required("title is a required field"),
-  slug: Yup.string().required("slug is a required field"),
-  description: Yup.string().required("description is a required field"),
-});
-const Tags = (props) => {
-  const { className } = props;
-
+const Category = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
   const [action, setAction] = useState();
 
-  const { loading, alltag } = useSelector((state) => ({
-    loading: state.Alltagreducer.loading,
-    alltag: state.Alltagreducer.alltag,
+  const { loading, allcategory } = useSelector((state) => ({
+    loading: state.Allcategoryreducer.loading,
+    allcategory: state.Allcategoryreducer.allcategory,
   }));
-  console.log(alltag);
+  console.log(allcategory);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Alltag());
+    dispatch(Allcategory());
   }, [dispatch]);
 
   const removehandle = (id) => {
-    dispatch(Deletetag(id));
+    dispatch(Deletecategory(id));
   };
   return (
     <>
@@ -75,7 +68,7 @@ const Tags = (props) => {
             setAction("create");
           }}
         >
-          Add Tag
+          Add Category
         </Button>
 
         <>
@@ -83,7 +76,7 @@ const Tags = (props) => {
             <Col className="load"> loading...</Col>
           ) : (
             <>
-              {alltag !== null && (
+              {allcategory !== null && (
                 <Table bordered responsive className="tabell">
                   <thead className="tablehead">
                     <tr>
@@ -96,7 +89,7 @@ const Tags = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {alltag
+                    {allcategory
                       .slice(0)
                       .sort(
                         (item, index) =>
@@ -124,15 +117,15 @@ const Tags = (props) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(Singletag(item.id));
+                                dispatch(Singlecategory(item.id));
                               }}
                             />
                             <FontAwesomeIcon
                               icon={faTrashAlt}
-                              className="carticon"
                               onClick={() => {
                                 removehandle(item.id);
                               }}
+                              className="carticon"
                             />
                           </td>
                         </tr>
@@ -143,7 +136,7 @@ const Tags = (props) => {
             </>
           )}
           {modal && (
-            <Tagmodal
+            <Categorymodal
               modal={modal}
               action={action}
               setModal={setModal}
@@ -156,4 +149,4 @@ const Tags = (props) => {
   );
 };
 
-export default Tags;
+export default Category;

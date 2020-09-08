@@ -70,7 +70,7 @@ const Home = () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/" className="text-white">
+              <NavLink href="/category" className="text-white">
                 catagories
               </NavLink>
             </NavItem>
