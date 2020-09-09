@@ -16,45 +16,33 @@ import {
   Col,
   FormGroup,
 } from "reactstrap";
-import { Addcategory } from "../redux/allactions/categoriesactions/Createcategory.js";
-import { Editcategory } from "../redux/allactions/categoriesactions/Editcategory.js";
+import { Addpost } from "../redux/allactions/postactions/Createpostaction.js";
+import { Editpost } from "../redux/allactions/postactions/Editpostaction.js";
+
 const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
-  description: yup.string().required("*Description is Required"),
+  content: yup.string().required("*Content is Required"),
 });
 
-const Categorymodal = ({ modal, setModal, action, toggle }) => {
+const Postmodal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
     resolver: yupResolver(formSchema),
   });
 
   const dispatch = useDispatch();
 
-  const { loading, singlecategory } = useSelector((state) => ({
-    loading: state.Singlecategory.loading,
-    singlecategory: state.Singlecategory.singlecategory,
+  const { loading, singlepost } = useSelector((state) => ({
+    loading: state.Singlepostreducer.loading,
+    singlepost: state.Singlepostreducer.singlepost,
   }));
-  console.log(singlecategory);
-  const onSubmit = (category) => {
-    console.log(category);
+  console.log(singlepost);
+  const onSubmit = (post) => {
+    console.log(post);
     action === "create"
-      ? dispatch(
-          Addcategory(
-            category.title,
-            category.slug,
-            category.description,
-            setModal
-          )
-        )
+      ? dispatch(Addpost(post.title, post.slug, post.content, setModal))
       : dispatch(
-          Editcategory(
-            category.title,
-            category.slug,
-            category.description,
-            singlecategory.id,
-            setModal
-          )
+          Editpost(post.title, post.slug, post.content, singlepost.id, setModal)
         );
   };
 
@@ -62,7 +50,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
     <>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>
-          {action === "create" ? "Category" : "Edit Category"}
+          {action === "create" ? "Create Post" : "Edit Post"}
         </ModalHeader>
         {loading ? (
           <div>Loading...</div>
@@ -75,20 +63,19 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
                     <Controller
                       as={Input}
                       type="text"
-                      name="description"
+                      name="content"
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null &&
-                            singlecategory.description
+                          : singlepost !== null && singlepost.content
                       }
                       control={control}
                       ref={register}
-                      placeholder="Description...."
+                      placeholder="Content...."
                     />
-                    {errors && errors.description && (
+                    {errors && errors.content && (
                       <span className="text-danger">
-                        {errors.description.message}
+                        {errors.content.message}
                       </span>
                     )}
                   </FormGroup>
@@ -97,7 +84,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label>Tag Slug</Label>
+                  <Label>Post Slug</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -110,7 +97,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null && singlecategory.slug
+                          : singlepost !== null && singlepost.slug
                       }
                     />
 
@@ -123,7 +110,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label> Tag Title</Label>
+                  <Label> Post Title</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -138,7 +125,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null && singlecategory.title
+                          : singlepost !== null && singlepost.title
                       }
                     />
                     {errors && errors.title && (
@@ -152,7 +139,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
             </ModalBody>
             <ModalFooter>
               <Button color="primary">
-                {action === "create" ? "Save" : "Update Category"}
+                {action === "create" ? "Save" : "Update Post"}
               </Button>
             </ModalFooter>
           </Form>
@@ -162,4 +149,4 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
   );
 };
 
-export default Categorymodal;
+export default Postmodal;

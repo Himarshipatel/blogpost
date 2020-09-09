@@ -4,6 +4,7 @@ import Login from "./Login.js";
 import Signup from "./Signup.js";
 import Home from "./Home.js";
 import Post from "./Singlepost.js";
+import Posts from "./Post.js";
 import Tags from "./Tags.js";
 import Category from "./Category.js";
 const Approuter = () => {
@@ -13,6 +14,8 @@ const Approuter = () => {
         <Switch>
           <Route path="/category" component={Category} />
           <Route path="/tag" component={Tags} />
+          <Route path="/posts" component={Posts} />
+
           <Route path="/post/:id" component={Post} />
 
           <Route path="/register" component={Signup} />

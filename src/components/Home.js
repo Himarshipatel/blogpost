@@ -65,7 +65,7 @@ const Home = () => {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/" className="text-white">
+              <NavLink href="/posts" className="text-white">
                 posts
               </NavLink>
             </NavItem>

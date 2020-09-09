@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 
-import { Alltag } from "../redux/allactions/tagsactions/Alltagsaction.js";
-import { Singletag } from "../redux/allactions/tagsactions/Singletagaction.js";
-import { Deletetag } from "../redux/allactions/tagsactions/Deletetagaction.js";
+import { Allpost } from "../redux/allactions/postactions/Allpostaction.js";
+import { Singlepost } from "../redux/allactions/postactions/Singlepostaction.js";
+import { Deletepost } from "../redux/allactions/postactions/Deletepostaction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
 import {
@@ -34,13 +34,13 @@ import {
   faPencilAlt,
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
-import Tagmodal from "./Tagmodal.js";
+import Postmodal from "./Postmodal.js";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import { Redirect, useHistory } from "react-router-dom";
 
-const Tags = (props) => {
+const Posts = (props) => {
   const { className } = props;
 
   const [modal, setModal] = useState(false);
@@ -48,18 +48,18 @@ const Tags = (props) => {
   const toggle = () => setModal(!modal);
   const [action, setAction] = useState();
 
-  const { loading, alltag } = useSelector((state) => ({
-    loading: state.Alltagreducer.loading,
-    alltag: state.Alltagreducer.alltag,
+  const { loading, allpost } = useSelector((state) => ({
+    loading: state.Allpostreducer.loading,
+    allpost: state.Allpostreducer.allpost,
   }));
-  console.log(alltag);
+  console.log(allpost);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Alltag());
+    dispatch(Allpost());
   }, [dispatch]);
 
   const removehandle = (id) => {
-    dispatch(Deletetag(id));
+    dispatch(Deletepost(id));
   };
   return (
     <>
@@ -71,7 +71,7 @@ const Tags = (props) => {
             setAction("create");
           }}
         >
-          Add Tag
+          Add Post
         </Button>
 
         <>
@@ -79,20 +79,23 @@ const Tags = (props) => {
             <Col className="load"> loading...</Col>
           ) : (
             <>
-              {alltag !== null && (
+              {allpost !== null && (
                 <Table bordered responsive className="tabell">
                   <thead className="tablehead">
                     <tr>
                       <th>Title</th>
                       <th>Slug</th>
-                      <th>Description</th>
+                      <th>Content</th>
+
+                      <th>Categories</th>
+                      <th>Tags</th>
                       <th>Created_At</th>
                       <th>Updated_At</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {alltag
+                    {allpost
                       .slice(0)
                       .sort(
                         (item, index) =>
@@ -102,8 +105,17 @@ const Tags = (props) => {
                         <tr key={index}>
                           <td>{item.title}</td>
                           <td>{item.slug}</td>
-                          <td>{item.description}</td>
-
+                          <td>{item.content}</td>
+                          <td>
+                            {item.categories.map((catagory) => (
+                              <li>{catagory.title}</li>
+                            ))}
+                          </td>
+                          <td>
+                            {item.tags.map((tag) => (
+                              <li>{tag.title}</li>
+                            ))}
+                          </td>
                           <td>
                             <Moment format="Do MMM YY">
                               {item.created_at}
@@ -120,7 +132,7 @@ const Tags = (props) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(Singletag(item.id));
+                                dispatch(Singlepost(item.id));
                               }}
                             />
                             <FontAwesomeIcon
@@ -139,7 +151,7 @@ const Tags = (props) => {
             </>
           )}
           {modal && (
-            <Tagmodal
+            <Postmodal
               modal={modal}
               action={action}
               setModal={setModal}
@@ -152,4 +164,4 @@ const Tags = (props) => {
   );
 };
 
-export default Tags;
+export default Posts;

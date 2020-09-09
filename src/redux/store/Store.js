@@ -14,7 +14,8 @@ import Deletecategory from "../allreducers/categoryreducers/Deletecategory.js";
 import editcategory from "../allreducers/categoryreducers/Editcategory.js";
 import Createcategory from "../allreducers/categoryreducers/Createcategory.js";
 import Singlecategory from "../allreducers/categoryreducers/Singlecategory.js";
-
+import Deletepostreducer from "../allreducers/postreducers/Deletepostreducer.js";
+import Createpost from "../allreducers/postreducers/Createpost.js";
 const rootReducer = combineReducers({
   Loginreducer,
   Registerreducer,
@@ -30,6 +31,8 @@ const rootReducer = combineReducers({
   editcategory,
   Createcategory,
   Singlecategory,
+  Deletepostreducer,
+  Createpost,
 });
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
