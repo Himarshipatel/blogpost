@@ -107,37 +107,44 @@ const Home = () => {
           <>
             {allpost !== null && (
               <Col>
-                {allpost.map((item, index) => (
-                  <ul key={index}>
-                    <Col>
-                      <Card>
-                        <CardImg
-                          top
-                          width="100%"
-                          height="300px"
-                          src="https://3xeqv237cwc86flf14kmen8d-wpengine.netdna-ssl.com/wp-content/uploads/2020/07/connected-technology.jpg"
-                          alt=""
-                        />
+                {allpost
+                  .slice(0)
+                  .sort(
+                    (item, index) =>
+                      new Date(index.created_at) - new Date(item.created_at)
+                  )
+                  .map((item, index) => (
+                    <ul key={index}>
+                      <Col>
+                        <Card>
+                          <CardImg
+                            top
+                            width="100%"
+                            height="300px"
+                            src="https://3xeqv237cwc86flf14kmen8d-wpengine.netdna-ssl.com/wp-content/uploads/2020/07/connected-technology.jpg"
+                            alt=""
+                          />
 
-                        <CardBody>
-                          {item.categories.map((catagory, index) => (
-                            <ul key={index}>catagory:{catagory.title}</ul>
-                          ))}
-                          {item.tags.map((tags, index) => (
-                            <ul key={index}>Tag:{tags.title}</ul>
-                          ))}
-                          <CardTitle>{username}</CardTitle>
-                          <Moment format="Do MMM YYYY">
-                            {item.created_at}
-                          </Moment>
-                          <CardSubtitle>{item.title}</CardSubtitle>
-                          <CardText>{item.content}</CardText>
-                          <Link to={`post/${item.id}`}>Read more...</Link>
-                        </CardBody>
-                      </Card>
-                    </Col>
-                  </ul>
-                ))}
+                          <CardBody>
+                            {/* {item.categories.map((catagory, index) => (
+                              <ul key={index}>catagory:{catagory.title}</ul>
+                            ))}
+                            {item.tags.map((tags, index) => (
+                              <ul key={index}>Tag:{tags.title}</ul>
+                            ))} */}
+                            <CardTitle>{username}</CardTitle>
+                            <Moment format="Do MMM YYYY">
+                              {item.created_at}
+                            </Moment>
+                            <CardSubtitle>{item.title}</CardSubtitle>
+                            <CardText>{item.slug}</CardText>
+                            <CardText>{item.content}</CardText>
+                            <Link to={`post/${item.id}`}>Read more...</Link>
+                          </CardBody>
+                        </Card>
+                      </Col>
+                    </ul>
+                  ))}
               </Col>
             )}
           </>
