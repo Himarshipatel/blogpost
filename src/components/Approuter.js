@@ -11,8 +11,6 @@ import Categoriestag from "./Categoriestag.js";
 import Tagtags from "./Tagtags.js";
 
 const Approuter = () => {
-  const tokenn = localStorage.getItem("token");
-  console.log(tokenn);
   return (
     <BrowserRouter>
       <div>
@@ -23,17 +21,14 @@ const Approuter = () => {
           <Route path="/register" component={Signup} />
 
           <Route path="/login" component={Login} />
-          {tokenn ? (
-            <>
-              <Route path="/category" component={Category} />
-              <Route path="/tag" component={Tags} />
-              <Route path="/posts" component={Posts} />
 
-              <Route path="/:slug/:id" component={Post} />
-            </>
-          ) : (
-            <Route path="/" component={Home} />
-          )}
+          <Route path="/category" component={Category} />
+          <Route path="/tag" component={Tags} />
+          <Route path="/posts" component={Posts} />
+
+          <Route path="/:slug/:id" component={Post} />
+
+          <Route path="/" component={Home} />
         </Switch>
       </div>
     </BrowserRouter>

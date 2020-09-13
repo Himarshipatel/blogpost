@@ -31,6 +31,8 @@ export const signinUser = ({ identifier, password, history }) => {
         console.log(res.data.jwt);
 
         localStorage.setItem("username", res.data.user.username);
+        localStorage.setItem("email", res.data.user.email);
+        console.log(res.data.user.email);
         history.push("/");
       })
 

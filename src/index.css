@@ -195,9 +195,30 @@ code {
 }
 .usericon {
 }
-.logout {
-  margin-left: 25%;
+.menubar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #5d89e9;
+  padding: 10px;
+
+  font-size: 15px;
 }
+.drop_menu {
+  border-top: 1px solid lightgray;
+}
+.dropdown {
+  width: 250px;
+}
+.logout {
+  height: 40px;
+  margin-left: 10px;
+  text-align: center;
+}
+.logout_dis {
+  border-top: 1px solid lightgrey;
+}
+
 .add_tag {
   margin-top: 10px;
   margin-bottom: 10px;

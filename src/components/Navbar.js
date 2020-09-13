@@ -13,7 +13,12 @@ import {
   Col,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSignOutAlt,
+  faUserCircle,
+  faTag,
+} from "@fortawesome/free-solid-svg-icons";
+
 import { Link } from "react-router-dom";
 import { Redirect, useHistory } from "react-router-dom";
 import {
@@ -27,6 +32,7 @@ const Header = () => {
 
   const toggle = () => setIsOpen(!isOpen);
   const username = localStorage.getItem("username");
+  const email = localStorage.getItem("email");
   const tokenn = localStorage.getItem("token");
   console.log(tokenn);
   let history = useHistory();
@@ -91,23 +97,39 @@ const Header = () => {
 
                   {/* <Col className="username"> {username}</Col> */}
 
-                  <DropdownMenu>
-                    <DropdownItem href="/tag">Tags</DropdownItem>
-                    <DropdownItem href="/category">Category</DropdownItem>
-                    <DropdownItem href="/posts">Post</DropdownItem>
+                  <DropdownMenu className="dropdown">
+                    <Row className="menubar">
+                      <FontAwesomeIcon
+                        icon={faUserCircle}
+                        className="usericon"
+                      />
+
+                      {email}
+                    </Row>
+
+                    <Col className="drop_menu">
+                      <DropdownItem href="/tag">Tags</DropdownItem>
+                      <DropdownItem href="/category">Category</DropdownItem>
+                      <DropdownItem href="/posts">Post</DropdownItem>
+                    </Col>
+
                     {tokenn ? (
-                      <Button
-                        onClick={logout}
-                        title="logout"
-                        className="logout"
-                      >
-                        {/* <FontAwesomeIcon
+                      <Col className="logout_dis">
+                        <Button
+                          outline
+                          color="link"
+                          onClick={logout}
+                          title="logout"
+                          className="logout"
+                        >
+                          {/* <FontAwesomeIcon
                           icon={faSignOutAlt}
                           color="white"
                           className="logouticon"
                         /> */}
-                        logout
-                      </Button>
+                          Logout
+                        </Button>
+                      </Col>
                     ) : (
                       ""
                     )}

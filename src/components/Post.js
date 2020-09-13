@@ -63,111 +63,123 @@ const Posts = (props) => {
   const removehandle = (id) => {
     dispatch(Deletepost(id));
   };
+  const tokenn = localStorage.getItem("token");
+  console.log(tokenn);
   return (
     <>
-      <Header />
-      <Col className="dashboard">
-        <Row className="add_tag">
-          <Col>
-            <Button
-              color="primary"
-              onClick={() => {
-                toggle();
-                setAction("create");
-              }}
-            >
-              Add Post
-            </Button>
-          </Col>
-        </Row>
-
+      {tokenn ? (
         <>
-          {loading ? (
-            <Col className="load"> loading...</Col>
-          ) : (
+          <Header />
+          <Col className="dashboard">
+            <Row className="add_tag">
+              <Col>
+                <Button
+                  color="primary"
+                  onClick={() => {
+                    toggle();
+                    setAction("create");
+                  }}
+                >
+                  Add Post
+                </Button>
+              </Col>
+            </Row>
+
             <>
-              {allpost !== null && (
-                <Table bordered responsive className="post_tabel">
-                  <thead className="tablehead">
-                    <tr>
-                      <th>Title</th>
-                      <th>Slug</th>
-                      <th>Content</th>
-                      <th>username</th>
-                      <th>Categories</th>
-                      <th>Tags</th>
-                      <th>Created_At</th>
-                      <th>Updated_At</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {allpost
-                      .slice(0)
-                      .sort(
-                        (item, index) =>
-                          new Date(index.created_at) - new Date(item.created_at)
-                      )
-                      .map((item, index) => (
-                        <tr key={index}>
-                          <td>{item.title}</td>
-                          <td>{item.slug}</td>
-                          <td>{item.content}</td>
-                          <td> {item.user !== null && item.user.username}</td>
-                          <td>
-                            {item.categories.map((catagory) => (
-                              <li>{catagory.title}</li>
-                            ))}
-                          </td>
-                          <td>
-                            {item.tags.map((tag) => (
-                              <li>{tag.title}</li>
-                            ))}
-                          </td>
-                          <td>
-                            <Moment format="Do MMM YY">
-                              {item.created_at}
-                            </Moment>
-                          </td>
-                          <td>
-                            <Moment format="Do MMM YY">
-                              {item.updated_at}
-                            </Moment>
-                          </td>
-                          <td>
-                            <FontAwesomeIcon
-                              icon={faPencilAlt}
-                              onClick={() => {
-                                toggle();
-                                setAction("edit");
-                                dispatch(Singlepost(item.id));
-                              }}
-                            />
-                            <FontAwesomeIcon
-                              icon={faTrashAlt}
-                              className="carticon"
-                              onClick={() => {
-                                removehandle(item.id);
-                              }}
-                            />
-                          </td>
+              {loading ? (
+                <Col className="load"> loading...</Col>
+              ) : (
+                <>
+                  {allpost !== null && (
+                    <Table bordered responsive className="post_tabel">
+                      <thead className="tablehead">
+                        <tr>
+                          <th>Title</th>
+                          <th>Slug</th>
+                          <th>Content</th>
+                          <th>username</th>
+                          <th>Categories</th>
+                          <th>Tags</th>
+                          <th>Created_At</th>
+                          <th>Updated_At</th>
+                          <th>Actions</th>
                         </tr>
-                      ))}
-                  </tbody>
-                </Table>
+                      </thead>
+                      <tbody>
+                        {allpost
+                          .slice(0)
+                          .sort(
+                            (item, index) =>
+                              new Date(index.created_at) -
+                              new Date(item.created_at)
+                          )
+                          .map((item, index) => (
+                            <tr key={index}>
+                              <td>{item.title}</td>
+                              <td>{item.slug}</td>
+                              <td>{item.content}</td>
+                              <td>
+                                {" "}
+                                {item.user !== null && item.user.username}
+                              </td>
+                              <td>
+                                {item.categories.map((catagory) => (
+                                  <li>{catagory.title}</li>
+                                ))}
+                              </td>
+                              <td>
+                                {item.tags.map((tag) => (
+                                  <li>{tag.title}</li>
+                                ))}
+                              </td>
+                              <td>
+                                <Moment format="Do MMM YY">
+                                  {item.created_at}
+                                </Moment>
+                              </td>
+                              <td>
+                                <Moment format="Do MMM YY">
+                                  {item.updated_at}
+                                </Moment>
+                              </td>
+                              <td>
+                                <FontAwesomeIcon
+                                  icon={faPencilAlt}
+                                  onClick={() => {
+                                    toggle();
+                                    setAction("edit");
+                                    dispatch(Singlepost(item.id));
+                                  }}
+                                />
+                                <FontAwesomeIcon
+                                  icon={faTrashAlt}
+                                  className="carticon"
+                                  onClick={() => {
+                                    removehandle(item.id);
+                                  }}
+                                />
+                              </td>
+                            </tr>
+                          ))}
+                      </tbody>
+                    </Table>
+                  )}
+                </>
+              )}
+              {modal && (
+                <Postmodal
+                  modal={modal}
+                  action={action}
+                  setModal={setModal}
+                  toggle={toggle}
+                />
               )}
             </>
-          )}
-          {modal && (
-            <Postmodal
-              modal={modal}
-              action={action}
-              setModal={setModal}
-              toggle={toggle}
-            />
-          )}
+          </Col>
         </>
-      </Col>
+      ) : (
+        <Redirect to="/" />
+      )}
     </>
   );
 };
