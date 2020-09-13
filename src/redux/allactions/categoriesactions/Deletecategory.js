@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import { Allcategory } from "./Allcategories.js";
 
 export const Deletecategory = (id) => {
-  console.log(id);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {

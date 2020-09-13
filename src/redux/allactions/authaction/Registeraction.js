@@ -2,7 +2,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export const signupUser = ({ username, password, email, history }) => {
-  console.log(username, password, email);
   return (dispatch) => {
     dispatch({ type: "SIGN_UP_PENDING" });
 
@@ -14,7 +13,6 @@ export const signupUser = ({ username, password, email, history }) => {
       })
 
       .then((res) => {
-        console.log(res);
         dispatch({ type: "SIGN_UP_SUCCESS", register: res.data.user });
 
         toast.success("SignUp Success", {
@@ -30,15 +28,6 @@ export const signupUser = ({ username, password, email, history }) => {
       })
 
       .catch((error) => {
-        // toast.error("signup error", {
-        //   position: "top-center",
-        //   autoClose: 5000,
-        //   hideProgressBar: false,
-        //   closeOnClick: true,
-        //   pauseOnHover: true,
-        //   draggable: true,
-        //   progress: undefined,
-        // });
         error.response.data.message.map((error) =>
           error.messages.map((item) =>
             toast.error(item.message, {

@@ -15,15 +15,12 @@ export const Alltag = () => {
       .get("https://infblogdemo.herokuapp.com/tags", authtoken)
 
       .then((res) => {
-        console.log(res);
         dispatch({
           type: "ALL_TAG_SUCCESS",
           alltag: res.data,
         });
-        console.log(res.data);
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.response.data.error, {
           position: "top-center",
           autoClose: 5000,

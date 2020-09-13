@@ -1,49 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
 
 import { Alltag } from "../redux/allactions/tagsactions/Alltagsaction.js";
 import { Singletag } from "../redux/allactions/tagsactions/Singletagaction.js";
 import { Deletetag } from "../redux/allactions/tagsactions/Deletetagaction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
-import {
-  Table,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Col,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText,
-  Row,
-} from "reactstrap";
+import { Table, Button, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPaperPlane,
-  faSignOutAlt,
-  faUserCircle,
-  faPencilAlt,
-  faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Tagmodal from "./Tagmodal.js";
-import SweetAlert from "react-bootstrap-sweetalert";
-import { yupResolver } from "@hookform/resolvers";
-import * as Yup from "yup";
-import { Redirect, useHistory } from "react-router-dom";
-import Header from "./Navbar";
-const Tags = (props) => {
-  const { className } = props;
 
+import { Redirect } from "react-router-dom";
+import Header from "./Navbar";
+const Tags = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -53,7 +22,7 @@ const Tags = (props) => {
     loading: state.Alltagreducer.loading,
     alltag: state.Alltagreducer.alltag,
   }));
-  console.log(alltag);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Alltag());
@@ -63,7 +32,7 @@ const Tags = (props) => {
     dispatch(Deletetag(id));
   };
   const tokenn = localStorage.getItem("token");
-  console.log(tokenn);
+
   return (
     <>
       {tokenn ? (

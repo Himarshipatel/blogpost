@@ -15,16 +15,12 @@ export const Allcategory = () => {
       .get("https://infblogdemo.herokuapp.com/categories", authtoken)
 
       .then((res) => {
-        console.log(res);
         dispatch({
           type: "ALL_CATEGORY_SUCCESS",
           allcategory: res.data,
         });
-        console.log(res.data);
       })
       .catch((error) => {
-        console.log(error);
-
         toast.error(error.response.data.message, {
           position: toast.POSITION.TOP_CENTER,
         });

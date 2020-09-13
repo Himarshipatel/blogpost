@@ -6,9 +6,7 @@ import { useParams } from "react-router-dom";
 import Moment from "react-moment";
 import {
   Card,
-  CardImg,
   CardText,
-  CardBody,
   CardTitle,
   CardSubtitle,
   Row,
@@ -29,8 +27,6 @@ const Post = () => {
     loading: state.Singlepostreducer.loading,
     singlepost: state.Singlepostreducer.singlepost,
   }));
-
-  console.log(singlepost);
 
   return (
     <>

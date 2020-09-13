@@ -36,9 +36,8 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
     loading: state.singletagreducer.loading,
     singletag: state.singletagreducer.singletag,
   }));
-  console.log(singletag);
+
   const onSubmit = (tag) => {
-    console.log(tag);
     action === "create"
       ? dispatch(Addtag(tag.title, tag.slug, tag.description, setModal))
       : dispatch(

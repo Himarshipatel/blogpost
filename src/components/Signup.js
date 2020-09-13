@@ -14,7 +14,7 @@ const schema = Yup.object().shape({
 
 const Signup = () => {
   const { register, control, errors, handleSubmit } = useForm({
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
   const history = useHistory();
   const dispatch = useDispatch();

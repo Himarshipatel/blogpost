@@ -3,7 +3,7 @@ import { Allcategory } from "../redux/allactions/categoriesactions/Allcategories
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Container } from "reactstrap";
 import Header from "./Navbar";
-const Categoriestag = (props) => {
+const Categoriestag = () => {
   const { loading, allcategory } = useSelector((state) => ({
     loading: state.Allcategoryreducer.loading,
     allcategory: state.Allcategoryreducer.allcategory,

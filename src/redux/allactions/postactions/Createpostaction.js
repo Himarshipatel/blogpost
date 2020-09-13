@@ -8,7 +8,6 @@ export const Addpost = (post, setModal) => {
       Authorization: `Bearer ${tokenn}`,
     },
   };
-  console.log(authtoken);
 
   return (dispatch) => {
     dispatch({ type: "ADD_POST_PENDING" });
@@ -23,7 +22,6 @@ export const Addpost = (post, setModal) => {
       )
 
       .then((res) => {
-        console.log(res);
         dispatch(Allpost());
         dispatch({
           type: "ADD_POST_SUCCESS",
@@ -34,7 +32,7 @@ export const Addpost = (post, setModal) => {
       })
       .catch((error) => {
         setModal(true);
-        console.log(error);
+
         toast.error(error.response.data.message, {
           position: "top-center",
           autoClose: 5000,

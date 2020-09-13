@@ -13,14 +13,10 @@ import {
   Col,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faSignOutAlt,
-  faUserCircle,
-  faTag,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { Link } from "react-router-dom";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -34,7 +30,7 @@ const Header = () => {
   const username = localStorage.getItem("username");
   const email = localStorage.getItem("email");
   const tokenn = localStorage.getItem("token");
-  console.log(tokenn);
+
   let history = useHistory();
   const logout = () => {
     const tokenn = localStorage.clear("token");
@@ -95,8 +91,6 @@ const Header = () => {
                     </Col>
                   </DropdownToggle>
 
-                  {/* <Col className="username"> {username}</Col> */}
-
                   <DropdownMenu className="dropdown">
                     <Row className="menubar">
                       <FontAwesomeIcon
@@ -122,11 +116,6 @@ const Header = () => {
                           title="logout"
                           className="logout"
                         >
-                          {/* <FontAwesomeIcon
-                          icon={faSignOutAlt}
-                          color="white"
-                          className="logouticon"
-                        /> */}
                           Logout
                         </Button>
                       </Col>
@@ -138,17 +127,6 @@ const Header = () => {
               )}
             </NavbarText>
           }
-          {/* {tokenn ? (
-            <Button onClick={logout} title="logout" className="loggut">
-              <FontAwesomeIcon
-                icon={faSignOutAlt}
-                color="white"
-                className="logouticon"
-              />
-            </Button>
-          ) : (
-            ""
-          )} */}
         </Collapse>
       </Navbar>
     </div>

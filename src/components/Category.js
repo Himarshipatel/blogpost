@@ -1,45 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
+
 import { Allcategory } from "../redux/allactions/categoriesactions/Allcategories.js";
 import { Deletecategory } from "../redux/allactions/categoriesactions/Deletecategory.js";
 import { Singlecategory } from "../redux/allactions/categoriesactions/Singlecategory.js";
 
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
-import {
-  Row,
-  Table,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Col,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText,
-} from "reactstrap";
+import { Row, Table, Button, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPaperPlane,
-  faSignOutAlt,
-  faUserCircle,
-  faPencilAlt,
-  faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Categorymodal from "./Categorymodal.js";
-import SweetAlert from "react-bootstrap-sweetalert";
-import { yupResolver } from "@hookform/resolvers";
-import * as Yup from "yup";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Header from "./Navbar";
 const Category = () => {
   const [modal, setModal] = useState(false);
@@ -51,7 +22,7 @@ const Category = () => {
     loading: state.Allcategoryreducer.loading,
     allcategory: state.Allcategoryreducer.allcategory,
   }));
-  console.log(allcategory);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Allcategory());
@@ -61,7 +32,7 @@ const Category = () => {
     dispatch(Deletecategory(id));
   };
   const tokenn = localStorage.getItem("token");
-  console.log(tokenn);
+
   return (
     <>
       {tokenn ? (

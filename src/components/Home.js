@@ -1,23 +1,6 @@
-import React, { useState, useEffect } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText,
-  Button,
-} from "reactstrap";
-import {
-  Card,
-  CardImg,
-  CardText,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-} from "reactstrap";
+import React, { useEffect } from "react";
+import { Button } from "reactstrap";
+import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
@@ -25,17 +8,13 @@ import { Link } from "react-router-dom";
 import { Allpost } from "../redux/allactions/postactions/Allpostaction.js";
 import Header from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faTag } from "@fortawesome/free-solid-svg-icons";
 
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Allpost());
   }, [dispatch]);
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-  const username = localStorage.getItem("username");
 
   const { loading, allpost } = useSelector((state) => ({
     loading: state.Allpostreducer.loading,
@@ -83,24 +62,12 @@ const Home = () => {
                         ))}
                       </Row>
 
-                      {/* {item.featured_media.map((i, index) => (
-                            <ul key={index}>
-                              <img
-                                src={
-                                  i.featured_media &&
-                                  `https://infblogdemo.herokuapp.com${i.url}`
-                                }
-                                alt="load"
-                              />
-                            </ul>
-                          ))} */}
-
-                      <img
+                      {/* <img
                         src={
                           item.featured_media &&
                           `https://infblogdemo.herokuapp.com${item.featured_media.url}`
                         }
-                      />
+                      /> */}
 
                       <CardText>
                         <Row>

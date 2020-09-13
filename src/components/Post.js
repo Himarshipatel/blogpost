@@ -1,50 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useForm, Controller } from "react-hook-form";
 
 import { Allpost } from "../redux/allactions/postactions/Allpostaction.js";
 import { Singlepost } from "../redux/allactions/postactions/Singlepostaction.js";
 import { Deletepost } from "../redux/allactions/postactions/Deletepostaction.js";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
-import {
-  Row,
-  Table,
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Col,
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  NavbarText,
-} from "reactstrap";
+import { Row, Table, Button, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPaperPlane,
-  faSignOutAlt,
-  faUserCircle,
-  faPencilAlt,
-  faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Postmodal from "./Postmodal.js";
-import SweetAlert from "react-bootstrap-sweetalert";
-import { yupResolver } from "@hookform/resolvers";
-import * as Yup from "yup";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Header from "./Navbar";
 
-const Posts = (props) => {
-  const { className } = props;
-
+const Posts = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -54,7 +22,7 @@ const Posts = (props) => {
     loading: state.Allpostreducer.loading,
     allpost: state.Allpostreducer.allpost,
   }));
-  console.log(allpost);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Allpost());
@@ -64,7 +32,7 @@ const Posts = (props) => {
     dispatch(Deletepost(id));
   };
   const tokenn = localStorage.getItem("token");
-  console.log(tokenn);
+
   return (
     <>
       {tokenn ? (

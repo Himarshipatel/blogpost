@@ -15,15 +15,12 @@ export const Allpost = () => {
       .get("https://infblogdemo.herokuapp.com/posts", authtoken)
 
       .then((res) => {
-        console.log(res);
         dispatch({
           type: "ALL_POST_SUCCESS",
           allpost: res.data,
         });
-        console.log(res.data);
       })
       .catch((error) => {
-        console.log(error);
         toast.error("error.response.data.error", {
           position: "top-center",
           autoClose: 5000,

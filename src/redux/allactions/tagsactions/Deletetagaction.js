@@ -2,9 +2,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Alltag } from "./Alltagsaction.js";
 import swal from "sweetalert";
-//import SweetAlert from "react-bootstrap-sweetalert";
+
 export const Deletetag = (id) => {
-  console.log(id);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -28,13 +27,8 @@ export const Deletetag = (id) => {
       .then((res) => {
         dispatch(Alltag());
         dispatch({ type: "DELETE_TAG_SUCCESS" });
-        // toast.success("successfully deleted", {
-        //   position: toast.POSITION.TOP_CENTER,
-        // });
+
         swal("Deleted!", "Your file has been deleted.", "success");
-        // if (res) {
-        //   swal("Deleted!");
-        // }
       })
       .catch((error) => {
         dispatch({

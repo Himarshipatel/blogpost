@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers";
 import { useForm, Controller } from "react-hook-form";
@@ -6,7 +6,6 @@ import * as yup from "yup";
 import Select from "react-select";
 import { Allcategory } from "../redux/allactions/categoriesactions/Allcategories.js";
 import { Alltag } from "../redux/allactions/tagsactions/Alltagsaction.js";
-import { signinUser } from "../redux/allactions/authaction/Loginaction.js";
 
 import {
   Button,
@@ -23,7 +22,6 @@ import {
 } from "reactstrap";
 import { Addpost } from "../redux/allactions/postactions/Createpostaction.js";
 import { Editpost } from "../redux/allactions/postactions/Editpostaction.js";
-///import { useEffect } from "react";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
@@ -44,20 +42,16 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
     allcategory: state.Allcategoryreducer.allcategory,
     alltag: state.Alltagreducer.alltag,
   }));
-  console.log(singlepost);
-  console.log(allcategory);
-  console.log(alltag);
 
   const userid = localStorage.getItem("id");
-  console.log(userid);
+
   const onSubmit = (post) => {
     const user = userid;
-    console.log(post);
+
     const createpost = { ...post, user };
     action === "create"
       ? dispatch(Addpost(createpost, setModal))
       : dispatch(Editpost(createpost, singlepost.id, setModal));
-    console.log(post.categories);
   };
   useEffect(() => {
     dispatch(Allcategory());

@@ -2,7 +2,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { Allcategory } from "./Allcategories.js";
 export const Editcategory = (title, slug, description, id, setModal) => {
-  console.log(title, slug, description, id);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {

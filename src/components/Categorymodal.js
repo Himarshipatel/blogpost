@@ -18,15 +18,15 @@ import {
 } from "reactstrap";
 import { Addcategory } from "../redux/allactions/categoriesactions/Createcategory.js";
 import { Editcategory } from "../redux/allactions/categoriesactions/Editcategory.js";
-// const formSchema = yup.object().shape({
-//   title: yup.string().required("*Title is Required"),
-//   slug: yup.string().required("*Slug is Required"),
-//   description: yup.string().required("*Description is Required"),
-// });
+const formSchema = yup.object().shape({
+  title: yup.string().required("*Title is Required"),
+  slug: yup.string().required("*Slug is Required"),
+  description: yup.string().required("*Description is Required"),
+});
 
 const Categorymodal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
-    //resolver: yupResolver(formSchema),
+    resolver: yupResolver(formSchema),
   });
 
   const dispatch = useDispatch();
@@ -35,9 +35,8 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
     loading: state.Singlecategory.loading,
     singlecategory: state.Singlecategory.singlecategory,
   }));
-  console.log(singlecategory);
+
   const onSubmit = (category) => {
-    console.log(category);
     action === "create"
       ? dispatch(
           Addcategory(
