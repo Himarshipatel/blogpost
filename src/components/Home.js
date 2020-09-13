@@ -42,7 +42,6 @@ const Home = () => {
     allpost: state.Allpostreducer.allpost,
   }));
 
-  const logout = () => {};
   return (
     <>
       <Header />
@@ -96,12 +95,12 @@ const Home = () => {
                             </ul>
                           ))} */}
 
-                      <img
+                      {/* <img
                         src={
                           item.featured_media &&
                           `https://infblogdemo.herokuapp.com${item.featured_media.url}`
                         }
-                      />
+                      /> */}
 
                       <CardText>
                         <Row>

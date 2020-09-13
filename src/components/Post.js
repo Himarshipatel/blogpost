@@ -39,6 +39,7 @@ import SweetAlert from "react-bootstrap-sweetalert";
 import { yupResolver } from "@hookform/resolvers";
 import * as Yup from "yup";
 import { Redirect, useHistory } from "react-router-dom";
+import Header from "./Navbar";
 
 const Posts = (props) => {
   const { className } = props;
@@ -63,6 +64,7 @@ const Posts = (props) => {
   };
   return (
     <>
+      <Header />
       <Col className="dashboard">
         <Button
           color="primary"
