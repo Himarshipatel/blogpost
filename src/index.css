@@ -130,10 +130,16 @@ code {
 }
 .usericon {
 }
-.username {
+.username_header {
   font-size: 20px;
   font-weight: bold;
   color: white;
+}
+.username {
+  font-size: 20px;
+  font-weight: bold;
+  color: teal;
+  margin-top: 17px;
 }
 .post_title {
   font-size: 40px;
@@ -155,7 +161,7 @@ code {
   display: block;
   display: -webkit-box;
   max-width: 100%;
-  height: 60px;
+  height: 63px;
   margin: 0 auto;
   font-size: 20px;
   font-weight: bold;
@@ -164,6 +170,14 @@ code {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.singlepost_content {
+  color: gray;
+
+  max-width: 100%;
+
+  font-size: 20px;
+  font-weight: bold;
 }
 .readmore {
   margin-top: 5px;

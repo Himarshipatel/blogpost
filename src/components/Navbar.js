@@ -79,7 +79,7 @@ const Header = () => {
               ) : (
                 <UncontrolledDropdown setActiveFromChild direction="down">
                   <DropdownToggle tag="a" className="nav-link">
-                    <Col className="username">
+                    <Col className="username_header">
                       <FontAwesomeIcon
                         icon={faUserCircle}
                         color="white"
