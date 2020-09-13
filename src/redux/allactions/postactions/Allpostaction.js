@@ -24,7 +24,7 @@ export const Allpost = () => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error(error.response.data.error, {
+        toast.error("error", {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,

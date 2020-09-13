@@ -1,8 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Allpost } from "./Allpostaction.js";
-export const Addpost = (title, slug, content, setModal) => {
-  console.log(title, slug, content);
+export const Addpost = (post, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -10,13 +9,16 @@ export const Addpost = (title, slug, content, setModal) => {
     },
   };
   console.log(authtoken);
+
   return (dispatch) => {
     dispatch({ type: "ADD_POST_PENDING" });
 
     axios
       .post(
         "https://infblogdemo.herokuapp.com/posts",
-        { title: title, slug: slug, content: content },
+
+        post,
+
         authtoken
       )
 
@@ -27,7 +29,7 @@ export const Addpost = (title, slug, content, setModal) => {
           type: "ADD_POST_SUCCESS",
           addpost: res.data,
         });
-        console.log(res.data);
+
         setModal(false);
       })
       .catch((error) => {

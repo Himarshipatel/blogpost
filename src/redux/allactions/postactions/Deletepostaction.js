@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Allpost } from "./Allpostaction.js";
-//import swal from "sweetalert";
+import swal from "sweetalert";
 //import SweetAlert from "react-bootstrap-sweetalert";
 export const Deletepost = (id) => {
   console.log(id);

@@ -41,7 +41,11 @@ const Post = () => {
                     top
                     width="100%"
                     height="300px"
-                    src="https://3xeqv237cwc86flf14kmen8d-wpengine.netdna-ssl.com/wp-content/uploads/2020/07/connected-technology.jpg"
+                    src={
+                      singlepost.featured_media &&
+                      `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
+                    }
+                    // src="https://3xeqv237cwc86flf14kmen8d-wpengine.netdna-ssl.com/wp-content/uploads/2020/07/connected-technology.jpg"
                     alt=""
                   />
 

@@ -86,7 +86,7 @@ const Posts = (props) => {
                       <th>Title</th>
                       <th>Slug</th>
                       <th>Content</th>
-
+                      <th>username</th>
                       <th>Categories</th>
                       <th>Tags</th>
                       <th>Created_At</th>
@@ -103,9 +103,11 @@ const Posts = (props) => {
                       )
                       .map((item, index) => (
                         <tr key={index}>
+                          <td>{item.id}</td>
                           <td>{item.title}</td>
                           <td>{item.slug}</td>
                           <td>{item.content}</td>
+                          <td> {item.user !== null && item.user.username}</td>
                           <td>
                             {item.categories.map((catagory) => (
                               <li>{catagory.title}</li>

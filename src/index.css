@@ -65,8 +65,16 @@ code {
   width: 50px;
   height: 50px;
 }
-.nav {
+.navbar {
+  /* position: fixed;
+  top: 0; */
+  width: 100%;
+  /* overflow: hidden; */
+
   background-color: teal;
+}
+.allpost {
+  background-color: lightgray;
 }
 .signinbut {
   margin-right: 10px;
@@ -77,5 +85,74 @@ code {
 }
 .adminname {
   margin-right: 10px;
+}
+
+.catagoryinline {
+  width: 50%;
+}
+.display_category {
+  display: inline-block;
+}
+.post {
+  padding-top: 30px;
+}
+.categorybutton {
+  width: 100px;
+  height: 32px;
+}
+.dispaly_post {
+  padding: 15px;
+}
+.display_tag {
+  margin-top: 10px;
+}
+.post_labell {
+  color: white;
+  font: bold;
+  font-size: 30px;
+  font-family: cursive;
+}
+.taginline {
+  width: 50%;
+}
+.date {
+  padding-left: 20px;
+  font-weight: bold;
+  color: gray;
+}
+.user {
+  width: 50px;
+  float: left;
+  margin-right: 20px;
+  margin-top: 10px;
+  margin-left: 20px;
+}
+.username {
+  font-size: 20px;
+  font-weight: bold;
+  color: teal;
+
+  width: 200px;
+  padding-top: 20px;
+  height: 60px;
+}
+.post_title {
+  font-size: 40px;
+  font-weight: bold;
+}
+.post_content {
+  font-weight: bold;
+  font-size: 20px;
+}
+.catag {
+  margin-bottom: 10px;
+}
+.main_tags {
+  height: 100vh;
+  background-color: lightgrey;
+}
+.main_tag {
+  height: 100vh;
+  background-color: lightgrey;
 }
 /* ------------Home.js end-------------------- */

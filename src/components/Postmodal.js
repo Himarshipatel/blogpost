@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { yupResolver } from "@hookform/resolvers";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
+import Select from "react-select";
+import { Allcategory } from "../redux/allactions/categoriesactions/Allcategories.js";
+import { Alltag } from "../redux/allactions/tagsactions/Alltagsaction.js";
+import { signinUser } from "../redux/allactions/authaction/Loginaction.js";
+
 import {
   Button,
   Modal,
@@ -18,6 +23,7 @@ import {
 } from "reactstrap";
 import { Addpost } from "../redux/allactions/postactions/Createpostaction.js";
 import { Editpost } from "../redux/allactions/postactions/Editpostaction.js";
+///import { useEffect } from "react";
 
 const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
@@ -32,19 +38,31 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
 
   const dispatch = useDispatch();
 
-  const { loading, singlepost } = useSelector((state) => ({
+  const { loading, singlepost, allcategory, alltag } = useSelector((state) => ({
     loading: state.Singlepostreducer.loading,
     singlepost: state.Singlepostreducer.singlepost,
+    allcategory: state.Allcategoryreducer.allcategory,
+    alltag: state.Alltagreducer.alltag,
   }));
   console.log(singlepost);
+  console.log(allcategory);
+  console.log(alltag);
+
+  const userid = localStorage.getItem("id");
+  console.log(userid);
   const onSubmit = (post) => {
+    const user = userid;
     console.log(post);
+    const createpost = { ...post, user };
     action === "create"
-      ? dispatch(Addpost(post.title, post.slug, post.content, setModal))
-      : dispatch(
-          Editpost(post.title, post.slug, post.content, singlepost.id, setModal)
-        );
+      ? dispatch(Addpost(createpost, setModal))
+      : dispatch(Editpost(createpost, singlepost.id, setModal));
+    console.log(post.categories);
   };
+  useEffect(() => {
+    dispatch(Allcategory());
+    dispatch(Alltag());
+  }, [dispatch]);
 
   return (
     <>
@@ -132,6 +150,87 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       <span className="text-danger">
                         {errors.title.message}
                       </span>
+                    )}
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4}>
+                  <Label>Categories</Label>
+                </Col>
+                <Col md={8}>
+                  <FormGroup>
+                    <Controller
+                      as={Select}
+                      options={
+                        allcategory !== null &&
+                        allcategory.map((item) => ({
+                          id: item.id,
+
+                          value: item.title,
+                          label: item.title,
+                        }))
+                      }
+                      control={control}
+                      name="categories"
+                      isMulti
+                      defaultValue={
+                        action === "create"
+                          ? ""
+                          : singlepost !== null &&
+                            singlepost.categories.map((item) => ({
+                              id: item.id,
+                              label: item.title,
+                              value: item.title,
+                            }))
+                      }
+                      ref={register}
+                      className={
+                        errors && errors.categories ? "is-invalid" : ""
+                      }
+                    />
+                    {errors && errors.categories && (
+                      <span className="text-danger">
+                        {errors.categories.message}
+                      </span>
+                    )}
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4}>
+                  <Label>Tags</Label>
+                </Col>
+                <Col md={8}>
+                  <FormGroup>
+                    <Controller
+                      as={Select}
+                      options={
+                        alltag !== null &&
+                        alltag.map((item) => ({
+                          id: item.id,
+                          label: item.title,
+                          value: item.title,
+                        }))
+                      }
+                      control={control}
+                      name="tags"
+                      isMulti
+                      defaultValue={
+                        action === "create"
+                          ? ""
+                          : singlepost !== null &&
+                            singlepost.tags.map((item) => ({
+                              id: item.id,
+                              label: item.title,
+                              value: item.title,
+                            }))
+                      }
+                      ref={register}
+                      className={errors && errors.tags ? "is-invalid" : ""}
+                    />
+                    {errors && errors.tags && (
+                      <span className="text-danger">{errors.tags.message}</span>
                     )}
                   </FormGroup>
                 </Col>

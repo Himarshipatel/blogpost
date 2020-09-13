@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Alltag } from "./Alltagsaction.js";
-//import swal from "sweetalert";
+import swal from "sweetalert";
 //import SweetAlert from "react-bootstrap-sweetalert";
 export const Deletetag = (id) => {
   console.log(id);
@@ -15,33 +15,23 @@ export const Deletetag = (id) => {
   return (dispatch) => {
     dispatch({ type: "DELETE_TAG_PENDING" });
 
-    axios
-      .delete(`https://infblogdemo.herokuapp.com/tags/${id}`, authtoken)
-      // swal({
-      //   title: "Are you sure?",
-      //   text: "It will permanently deleted !",
-      //   type: "warning",
-      //   showCancelButton: true,
-      //   confirmButtonColor: "#3085d6",
-      //   cancelButtonColor: "#d33",
-      //   confirmButtonText: "Yes, delete it!",
-      // })
-      // SweetAlert.swal({
-      //   title: "Are you sure?",
-      //   text: "Your will not be able to recover this imaginary file!",
-      //   type: "warning",
-      //   showCancelButton: true,
-      //   confirmButtonColor: "#DD6B55",
-      //   confirmButtonText: "Yes, delete it!",
-      //   closeOnConfirm: false,
-      // })
+    axios.delete(`https://infblogdemo.herokuapp.com/tags/${id}`, authtoken);
+    swal({
+      title: "Are you sure?",
+      text: "It will permanently deleted !",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    })
       .then((res) => {
         dispatch(Alltag());
         dispatch({ type: "DELETE_TAG_SUCCESS" });
         // toast.success("successfully deleted", {
         //   position: toast.POSITION.TOP_CENTER,
         // });
-        // swal("Deleted!", "Your file has been deleted.", "success");
+        swal("Deleted!", "Your file has been deleted.", "success");
         // if (res) {
         //   swal("Deleted!");
         // }
