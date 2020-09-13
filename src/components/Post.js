@@ -7,6 +7,7 @@ import { Deletepost } from "../redux/allactions/postactions/Deletepostaction.js"
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
 import {
+  Row,
   Table,
   Button,
   Modal,
@@ -66,15 +67,19 @@ const Posts = (props) => {
     <>
       <Header />
       <Col className="dashboard">
-        <Button
-          color="primary"
-          onClick={() => {
-            toggle();
-            setAction("create");
-          }}
-        >
-          Add Post
-        </Button>
+        <Row className="add_tag">
+          <Col>
+            <Button
+              color="primary"
+              onClick={() => {
+                toggle();
+                setAction("create");
+              }}
+            >
+              Add Post
+            </Button>
+          </Col>
+        </Row>
 
         <>
           {loading ? (
@@ -82,7 +87,7 @@ const Posts = (props) => {
           ) : (
             <>
               {allpost !== null && (
-                <Table bordered responsive className="tabell">
+                <Table bordered responsive className="post_tabel">
                   <thead className="tablehead">
                     <tr>
                       <th>Title</th>
@@ -105,7 +110,6 @@ const Posts = (props) => {
                       )
                       .map((item, index) => (
                         <tr key={index}>
-                          <td>{item.id}</td>
                           <td>{item.title}</td>
                           <td>{item.slug}</td>
                           <td>{item.content}</td>

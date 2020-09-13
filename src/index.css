@@ -94,13 +94,14 @@ code {
   display: inline-block;
 }
 .post {
-  padding-top: 30px;
+  padding-top: 15px;
 }
 .categorybutton {
   width: 100px;
   height: 32px;
 }
 .dispaly_post {
+  margin-top: 15px;
   padding: 15px;
 }
 .display_tag {
@@ -110,7 +111,7 @@ code {
   color: white;
   font: bold;
   font-size: 30px;
-  font-family: cursive;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 .taginline {
   width: 50%;
@@ -127,22 +128,45 @@ code {
   margin-top: 10px;
   margin-left: 20px;
 }
+.usericon {
+}
 .username {
   font-size: 20px;
   font-weight: bold;
-  color: teal;
-
-  width: 200px;
-  padding-top: 20px;
-  height: 60px;
+  color: white;
 }
 .post_title {
   font-size: 40px;
   font-weight: bold;
+  color: teal;
 }
 .post_content {
+  /* white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 1;
+  -webkit-line-clamp: 3;
   font-weight: bold;
   font-size: 20px;
+
+  height: 60px; */
+
+  color: gray;
+  display: block;
+  display: -webkit-box;
+  max-width: 100%;
+  height: 60px;
+  margin: 0 auto;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.readmore {
+  margin-top: 5px;
 }
 .catag {
   margin-bottom: 10px;
@@ -155,4 +179,34 @@ code {
   height: 100vh;
   background-color: lightgrey;
 }
+.usericon {
+}
+.logout {
+  margin-left: 25%;
+}
+.add_tag {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
 /* ------------Home.js end-------------------- */
+
+@media only screen and (max-device-width: 425px) {
+  .tabell {
+    font-size: 8px;
+    font-weight: bold;
+  }
+}
+
+@media only screen and (max-device-width: 375px) {
+  .tabell {
+    font-size: 6px;
+    font-weight: bold;
+  }
+}
+@media only screen and (max-device-width: 320px) {
+  .tabell {
+    font-size: 4px;
+    font-weight: bold;
+  }
+}

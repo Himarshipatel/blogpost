@@ -9,12 +9,19 @@ import {
   NavLink,
   NavbarText,
   Button,
+  Row,
+  Col,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { Redirect, useHistory } from "react-router-dom";
-
+import {
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -49,21 +56,7 @@ const Header = () => {
                 Home
               </NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/tag" className="text-white">
-                Tags
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/category" className="text-white">
-                Category
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/posts" className="text-white">
-                posts
-              </NavLink>
-            </NavItem>
+
             <NavItem>
               <NavLink href="/categories_tags" className="text-white">
                 catagories tag
@@ -84,17 +77,46 @@ const Header = () => {
                   </Button>
                 </Link>
               ) : (
-                <FontAwesomeIcon
-                  icon={faUserCircle}
-                  color="white"
-                  className="usericon"
-                />
-              )}
+                <UncontrolledDropdown setActiveFromChild direction="down">
+                  <DropdownToggle tag="a" className="nav-link">
+                    <Col className="username">
+                      <FontAwesomeIcon
+                        icon={faUserCircle}
+                        color="white"
+                        className="usericon"
+                      />
+                      {username}
+                    </Col>
+                  </DropdownToggle>
 
-              {username}
+                  {/* <Col className="username"> {username}</Col> */}
+
+                  <DropdownMenu>
+                    <DropdownItem href="/tag">Tags</DropdownItem>
+                    <DropdownItem href="/category">Category</DropdownItem>
+                    <DropdownItem href="/posts">Post</DropdownItem>
+                    {tokenn ? (
+                      <Button
+                        onClick={logout}
+                        title="logout"
+                        className="logout"
+                      >
+                        {/* <FontAwesomeIcon
+                          icon={faSignOutAlt}
+                          color="white"
+                          className="logouticon"
+                        /> */}
+                        logout
+                      </Button>
+                    ) : (
+                      ""
+                    )}
+                  </DropdownMenu>
+                </UncontrolledDropdown>
+              )}
             </NavbarText>
           }
-          {tokenn ? (
+          {/* {tokenn ? (
             <Button onClick={logout} title="logout" className="loggut">
               <FontAwesomeIcon
                 icon={faSignOutAlt}
@@ -104,7 +126,7 @@ const Header = () => {
             </Button>
           ) : (
             ""
-          )}
+          )} */}
         </Collapse>
       </Navbar>
     </div>

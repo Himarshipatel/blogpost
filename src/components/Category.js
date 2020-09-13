@@ -7,6 +7,7 @@ import { Singlecategory } from "../redux/allactions/categoriesactions/Singlecate
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
 import {
+  Row,
   Table,
   Button,
   Modal,
@@ -63,15 +64,19 @@ const Category = () => {
     <>
       <Header />
       <Col className="dashboard">
-        <Button
-          color="primary"
-          onClick={() => {
-            toggle();
-            setAction("create");
-          }}
-        >
-          Add Category
-        </Button>
+        <Row className="add_tag">
+          <Col>
+            <Button
+              color="primary"
+              onClick={() => {
+                toggle();
+                setAction("create");
+              }}
+            >
+              Add Category
+            </Button>
+          </Col>
+        </Row>
 
         <>
           {loading ? (

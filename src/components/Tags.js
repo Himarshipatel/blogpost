@@ -25,6 +25,7 @@ import {
   NavItem,
   NavLink,
   NavbarText,
+  Row,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -65,16 +66,19 @@ const Tags = (props) => {
     <>
       <Header />
       <Col className="dashboard">
-        <Button
-          color="primary"
-          onClick={() => {
-            toggle();
-            setAction("create");
-          }}
-        >
-          Add Tag
-        </Button>
-
+        <Row className="add_tag">
+          <Col>
+            <Button
+              color="primary"
+              onClick={() => {
+                toggle();
+                setAction("create");
+              }}
+            >
+              Add Tag
+            </Button>
+          </Col>
+        </Row>
         <>
           {loading ? (
             <Col className="load"> loading...</Col>

@@ -54,11 +54,11 @@ const Home = () => {
       />
 
       <Col className="allpost">
-        {/* <Col classname="post_labell">All Posts</Col> */}
         {loading ? (
           <Col className="load"> loading...</Col>
         ) : (
           <>
+            <Col className="post_labell">All Posts</Col>
             {allpost !== null && (
               <Col className="post">
                 {allpost
@@ -95,12 +95,12 @@ const Home = () => {
                             </ul>
                           ))} */}
 
-                      {/* <img
+                      <img
                         src={
                           item.featured_media &&
                           `https://infblogdemo.herokuapp.com${item.featured_media.url}`
                         }
-                      /> */}
+                      />
 
                       <CardText>
                         <Row>
@@ -136,7 +136,9 @@ const Home = () => {
                       </CardText>
 
                       <Link to={`${item.slug}/${item.id}`}>
-                        <Button color="primary">Read more</Button>
+                        <Button color="primary" className="readmore">
+                          Read more
+                        </Button>
                       </Link>
                     </Card>
                   ))}
