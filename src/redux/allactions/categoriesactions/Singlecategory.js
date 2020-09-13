@@ -25,15 +25,14 @@ export const Singlecategory = (id) => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("singletag error", {
-          position: "top-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+
+        error.response.data.message.map((error) =>
+          error.messages.map((item) =>
+            toast.error(item.message, {
+              position: toast.POSITION.TOP_CENTER,
+            })
+          )
+        );
       });
   };
 };

@@ -25,7 +25,7 @@ export const Singletag = (id) => {
       })
       .catch((error) => {
         console.log(error);
-        toast.error("singletag error", {
+        toast.error(error.response.data.message, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,

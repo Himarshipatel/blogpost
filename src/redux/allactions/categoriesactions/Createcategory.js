@@ -33,7 +33,7 @@ export const Addcategory = (title, slug, description, setModal) => {
       .catch((error) => {
         setModal(true);
         console.log(error);
-        toast.error(error.response.data.error, {
+        toast.error(error.response.data.message, {
           position: "top-center",
           autoClose: 5000,
           hideProgressBar: false,
