@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Allcategory } from "./Allcategories.js";
-export const Addcategory = (title, slug, description, setModal) => {
+export const Addcategory = (category, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -15,7 +15,8 @@ export const Addcategory = (title, slug, description, setModal) => {
     axios
       .post(
         "https://infblogdemo.herokuapp.com/categories",
-        { title: title, slug: slug, description: description },
+        category,
+
         authtoken
       )
 
@@ -25,7 +26,15 @@ export const Addcategory = (title, slug, description, setModal) => {
           type: "ADD_CATEGORY_SUCCESS",
           addcategory: res.data,
         });
-
+        toast.success("Create Category Success", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setModal(false);
       })
       .catch((error) => {

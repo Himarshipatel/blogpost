@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Alltag } from "./Alltagsaction.js";
-export const Addtag = (title, slug, description, setModal) => {
+export const Addtag = (tag, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -15,7 +15,8 @@ export const Addtag = (title, slug, description, setModal) => {
     axios
       .post(
         "https://infblogdemo.herokuapp.com/tags",
-        { title: title, slug: slug, description: description },
+        tag,
+
         authtoken
       )
 
@@ -25,7 +26,15 @@ export const Addtag = (title, slug, description, setModal) => {
           type: "ADD_TAG_SUCCESS",
           addtag: res.data,
         });
-
+        toast.success("Create Tag Success", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setModal(false);
       })
       .catch((error) => {

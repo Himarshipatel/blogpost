@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Allcategory } from "./Allcategories.js";
-export const Editcategory = (title, slug, description, id, setModal) => {
+export const Editcategory = (category, id, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -13,11 +13,8 @@ export const Editcategory = (title, slug, description, id, setModal) => {
     axios
       .put(
         `https://infblogdemo.herokuapp.com/categories/${id}`,
-        {
-          title: title,
-          slug: slug,
-          description: description,
-        },
+        category,
+
         authtoken
       )
 

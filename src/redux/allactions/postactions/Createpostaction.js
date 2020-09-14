@@ -27,7 +27,15 @@ export const Addpost = (post, setModal) => {
           type: "ADD_POST_SUCCESS",
           addpost: res.data,
         });
-
+        toast.success("Create Post Success", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
         setModal(false);
       })
       .catch((error) => {

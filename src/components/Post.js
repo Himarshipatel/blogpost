@@ -11,13 +11,13 @@ import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Postmodal from "./Postmodal.js";
 import { Redirect } from "react-router-dom";
 import Header from "./Navbar";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 const Posts = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
   const [action, setAction] = useState();
-
+  const [sweetalert, setAlert] = useState();
   const { loading, allpost } = useSelector((state) => ({
     loading: state.Allpostreducer.loading,
     allpost: state.Allpostreducer.allpost,
@@ -29,7 +29,28 @@ const Posts = () => {
   }, [dispatch]);
 
   const removehandle = (id) => {
-    dispatch(Deletepost(id));
+    const getAlert = () => (
+      <SweetAlert
+        warning
+        showCancel
+        confirmBtnText="Yes, delete it!"
+        confirmBtnBsStyle="danger"
+        title="Are you sure?"
+        onConfirm={() => {
+          dispatch(Deletepost(id));
+          hideAlert();
+        }}
+        onCancel={() => hideAlert()}
+        focusCancelBtn
+      >
+        You will not be able to recover this imaginary file!
+      </SweetAlert>
+    );
+    setAlert(getAlert());
+  };
+
+  const hideAlert = () => {
+    setAlert();
   };
   const tokenn = localStorage.getItem("token");
 
@@ -126,6 +147,7 @@ const Posts = () => {
                                     removehandle(item.id);
                                   }}
                                 />
+                                {sweetalert}
                               </td>
                             </tr>
                           ))}

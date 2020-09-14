@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Allcategory } from "../redux/allactions/categoriesactions/Allcategories.js";
 import { Deletecategory } from "../redux/allactions/categoriesactions/Deletecategory.js";
 import { Singlecategory } from "../redux/allactions/categoriesactions/Singlecategory.js";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
 import { Row, Table, Button, Col } from "reactstrap";
@@ -17,7 +17,7 @@ const Category = () => {
 
   const toggle = () => setModal(!modal);
   const [action, setAction] = useState();
-
+  const [sweetalert, setAlert] = useState();
   const { loading, allcategory } = useSelector((state) => ({
     loading: state.Allcategoryreducer.loading,
     allcategory: state.Allcategoryreducer.allcategory,
@@ -29,7 +29,28 @@ const Category = () => {
   }, [dispatch]);
 
   const removehandle = (id) => {
-    dispatch(Deletecategory(id));
+    const getAlert = () => (
+      <SweetAlert
+        warning
+        showCancel
+        confirmBtnText="Yes, delete it!"
+        confirmBtnBsStyle="danger"
+        title="Are you sure?"
+        onConfirm={() => {
+          dispatch(Deletecategory(id));
+          hideAlert();
+        }}
+        onCancel={() => hideAlert()}
+        focusCancelBtn
+      >
+        You will not be able to recover this imaginary file!
+      </SweetAlert>
+    );
+    setAlert(getAlert());
+  };
+
+  const hideAlert = () => {
+    setAlert();
   };
   const tokenn = localStorage.getItem("token");
 
@@ -110,6 +131,7 @@ const Category = () => {
                                   }}
                                   className="carticon"
                                 />
+                                {sweetalert}
                               </td>
                             </tr>
                           ))}

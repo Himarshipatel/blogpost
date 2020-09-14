@@ -19,9 +19,6 @@ export const Deletecategory = (id) => {
       .then((res) => {
         dispatch(Allcategory());
         dispatch({ type: "DELETE_CATEGORY_SUCCESS" });
-        toast.success("successfully deleted", {
-          position: toast.POSITION.TOP_CENTER,
-        });
       })
       .catch((error) => {
         toast.error(error.message, {

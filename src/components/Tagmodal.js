@@ -39,10 +39,8 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
 
   const onSubmit = (tag) => {
     action === "create"
-      ? dispatch(Addtag(tag.title, tag.slug, tag.description, setModal))
-      : dispatch(
-          Edittag(tag.title, tag.slug, tag.description, singletag.id, setModal)
-        );
+      ? dispatch(Addtag(tag, setModal))
+      : dispatch(Edittag(tag, singletag.id, setModal));
   };
 
   return (
@@ -57,11 +55,14 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
               <Row>
-                <Col md={12}>
+                <Col md={4}>
+                  <Label>Description</Label>
+                </Col>
+                <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
-                      type="text"
+                      type="textarea"
                       name="description"
                       defaultValue={
                         action === "create"
@@ -70,7 +71,6 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
                       }
                       control={control}
                       ref={register}
-                      placeholder="Description...."
                     />
                     {errors && errors.description && (
                       <span className="text-danger">
@@ -83,7 +83,7 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label>Tag Slug</Label>
+                  <Label>Slug</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -109,7 +109,7 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label> Tag Title</Label>
+                  <Label>Title</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -117,7 +117,6 @@ const Tagmodal = ({ modal, setModal, action, toggle }) => {
                       as={Input}
                       type="text"
                       name="title"
-                      placeholder="Enter Tag Title"
                       defaultValue=""
                       control={control}
                       ref={register}

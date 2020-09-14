@@ -9,7 +9,7 @@ import { Table, Button, Col, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Tagmodal from "./Tagmodal.js";
-
+import SweetAlert from "react-bootstrap-sweetalert";
 import { Redirect } from "react-router-dom";
 import Header from "./Navbar";
 const Tags = () => {
@@ -17,7 +17,7 @@ const Tags = () => {
 
   const toggle = () => setModal(!modal);
   const [action, setAction] = useState();
-
+  const [sweetalert, setAlert] = useState();
   const { loading, alltag } = useSelector((state) => ({
     loading: state.Alltagreducer.loading,
     alltag: state.Alltagreducer.alltag,
@@ -29,7 +29,28 @@ const Tags = () => {
   }, [dispatch]);
 
   const removehandle = (id) => {
-    dispatch(Deletetag(id));
+    const getAlert = () => (
+      <SweetAlert
+        warning
+        showCancel
+        confirmBtnText="Yes, delete it!"
+        confirmBtnBsStyle="danger"
+        title="Are you sure?"
+        onConfirm={() => {
+          dispatch(Deletetag(id));
+          hideAlert();
+        }}
+        onCancel={() => hideAlert()}
+        focusCancelBtn
+      >
+        You will not be able to recover this imaginary file!
+      </SweetAlert>
+    );
+    setAlert(getAlert());
+  };
+
+  const hideAlert = () => {
+    setAlert();
   };
   const tokenn = localStorage.getItem("token");
 
@@ -109,6 +130,7 @@ const Tags = () => {
                                     removehandle(item.id);
                                   }}
                                 />
+                                {sweetalert}
                               </td>
                             </tr>
                           ))}

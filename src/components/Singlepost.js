@@ -44,7 +44,6 @@ const Post = () => {
                       singlepost.featured_media &&
                       `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
                     }
-                    // src="https://3xeqv237cwc86flf14kmen8d-wpengine.netdna-ssl.com/wp-content/uploads/2020/07/connected-technology.jpg"
                     alt=""
                   />
                   <Row className="catagoryinline">

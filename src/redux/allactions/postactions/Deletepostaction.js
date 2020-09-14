@@ -20,9 +20,6 @@ export const Deletepost = (id) => {
       .then((res) => {
         dispatch(Allpost());
         dispatch({ type: "DELETE_POST_SUCCESS" });
-        toast.success("successfully deleted", {
-          position: toast.POSITION.TOP_CENTER,
-        });
       })
       .catch((error) => {
         dispatch({

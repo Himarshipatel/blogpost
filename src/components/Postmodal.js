@@ -70,11 +70,14 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
               <Row>
-                <Col md={12}>
+                <Col md={4}>
+                  <Label>Content</Label>
+                </Col>
+                <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
-                      type="text"
+                      type="textarea"
                       name="content"
                       defaultValue={
                         action === "create"
@@ -83,7 +86,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       }
                       control={control}
                       ref={register}
-                      placeholder="Content...."
                     />
                     {errors && errors.content && (
                       <span className="text-danger">
@@ -96,7 +98,7 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label>Post Slug</Label>
+                  <Label>Slug</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -122,7 +124,7 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label> Post Title</Label>
+                  <Label>Title</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -130,7 +132,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       as={Input}
                       type="text"
                       name="title"
-                      placeholder="Enter Tag Title"
                       defaultValue=""
                       control={control}
                       ref={register}

@@ -40,17 +40,15 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
     action === "create"
       ? dispatch(
           Addcategory(
-            category.title,
-            category.slug,
-            category.description,
+            category,
+
             setModal
           )
         )
       : dispatch(
           Editcategory(
-            category.title,
-            category.slug,
-            category.description,
+            category,
+
             singlecategory.id,
             setModal
           )
@@ -61,7 +59,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
     <>
       <Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>
-          {action === "create" ? "Category" : "Edit Category"}
+          {action === "create" ? "Create Category" : "Edit Category"}
         </ModalHeader>
         {loading ? (
           <div>Loading...</div>
@@ -69,7 +67,10 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
           <Form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
               <Row>
-                <Col md={12}>
+                <Col md={4}>
+                  <Label>Description</Label>
+                </Col>
+                <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
@@ -83,7 +84,6 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
                       }
                       control={control}
                       ref={register}
-                      placeholder="Description...."
                     />
                     {errors && errors.description && (
                       <span className="text-danger">
@@ -96,7 +96,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label>Tag Slug</Label>
+                  <Label>Slug</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -122,7 +122,7 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label> Tag Title</Label>
+                  <Label>Title</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
@@ -130,7 +130,6 @@ const Categorymodal = ({ modal, setModal, action, toggle }) => {
                       as={Input}
                       type="text"
                       name="title"
-                      placeholder="Enter Tag Title"
                       defaultValue=""
                       control={control}
                       ref={register}

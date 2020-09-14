@@ -1,7 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Alltag } from "./Alltagsaction.js";
-import swal from "sweetalert";
 
 export const Deletetag = (id) => {
   const tokenn = localStorage.getItem("token");
@@ -14,21 +13,12 @@ export const Deletetag = (id) => {
   return (dispatch) => {
     dispatch({ type: "DELETE_TAG_PENDING" });
 
-    axios.delete(`https://infblogdemo.herokuapp.com/tags/${id}`, authtoken);
-    swal({
-      title: "Are you sure?",
-      text: "It will permanently deleted !",
-      type: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    })
+    axios
+      .delete(`https://infblogdemo.herokuapp.com/tags/${id}`, authtoken)
+
       .then((res) => {
         dispatch(Alltag());
         dispatch({ type: "DELETE_TAG_SUCCESS" });
-
-        swal("Deleted!", "Your file has been deleted.", "success");
       })
       .catch((error) => {
         dispatch({

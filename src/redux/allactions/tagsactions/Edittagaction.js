@@ -1,8 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Alltag } from "./Alltagsaction.js";
-export const Edittag = (title, slug, description, id, setModal) => {
-  console.log(title, slug, description, id);
+export const Edittag = (tag, id, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -12,15 +11,7 @@ export const Edittag = (title, slug, description, id, setModal) => {
   return (dispatch) => {
     dispatch({ type: "EDIT_TAG_PENDING" });
     axios
-      .put(
-        `https://infblogdemo.herokuapp.com/tags/${id}`,
-        {
-          title: title,
-          slug: slug,
-          description: description,
-        },
-        authtoken
-      )
+      .put(`https://infblogdemo.herokuapp.com/tags/${id}`, tag, authtoken)
 
       .then((res) => {
         dispatch({
