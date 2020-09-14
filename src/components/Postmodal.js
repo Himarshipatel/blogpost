@@ -132,7 +132,6 @@ const Postmodal = ({ modal, setModal, action, toggle }) => {
                       as={Input}
                       type="text"
                       name="title"
-                      defaultValue=""
                       control={control}
                       ref={register}
                       defaultValue={
