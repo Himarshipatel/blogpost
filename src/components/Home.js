@@ -62,12 +62,13 @@ const Home = () => {
                         ))}
                       </Row>
 
-                      {/* <img
+                      <img
+                        height="350px"
                         src={
                           item.featured_media &&
                           `https://infblogdemo.herokuapp.com${item.featured_media.url}`
                         }
-                      /> */}
+                      />
 
                       <CardText>
                         <Row>

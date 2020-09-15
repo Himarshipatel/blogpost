@@ -39,13 +39,6 @@ const Post = () => {
             {singlepost !== null && (
               <Col>
                 <Card className="dispaly_post">
-                  <img
-                    src={
-                      singlepost.featured_media &&
-                      `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
-                    }
-                    alt=""
-                  />
                   <Row className="catagoryinline">
                     {singlepost.categories.map((catagory, index) => (
                       <ul key={index} className="display_category">
@@ -53,6 +46,14 @@ const Post = () => {
                       </ul>
                     ))}
                   </Row>
+                  <img
+                    height="350px"
+                    src={
+                      singlepost.featured_media &&
+                      `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
+                    }
+                    alt=""
+                  />
                   <Row>
                     {singlepost.tags.map((tags, index) => (
                       <ul key={index} className="display_tag">
