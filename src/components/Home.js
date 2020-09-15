@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button } from "reactstrap";
+import { Button, CardImg } from "reactstrap";
 import { Card, CardText, CardTitle, CardSubtitle } from "reactstrap";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
@@ -8,9 +8,10 @@ import { Link } from "react-router-dom";
 import { Allpost } from "../redux/allactions/postactions/Allpostaction.js";
 import Header from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTag } from "@fortawesome/free-solid-svg-icons";
+import { faTag, faCrown, faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const Home = () => {
+const Home = (props) => {
+  const { className } = props;
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Allpost());
@@ -50,46 +51,51 @@ const Home = () => {
                     <Card className="dispaly_post">
                       <Row className="catagoryinline">
                         {item.categories.map((catagory, index) => (
-                          <ul className="display_category" col text-left>
-                            <Button
-                              key={index}
-                              color="info"
-                              className="categorybutton"
-                            >
-                              {catagory.title}
-                            </Button>
-                          </ul>
+                          <Col
+                            key={index}
+                            className="categorybutton"
+                            size="sm"
+                            sm="auto"
+                          >
+                            {catagory.title}
+                          </Col>
                         ))}
                       </Row>
-
-                      <img
-                        height="350px"
-                        src={
-                          item.featured_media &&
-                          `https://infblogdemo.herokuapp.com${item.featured_media.url}`
-                        }
-                      />
-
+                      <Col>
+                        <CardImg
+                          src={
+                            item.featured_media &&
+                            `https://infblogdemo.herokuapp.com${item.featured_media.url}`
+                          }
+                          alt="image"
+                          className="post_image"
+                        />
+                      </Col>
                       <CardText>
                         <Row>
                           {item.tags.map((tags, index) => (
-                            <ul key={index} className="display_tag">
-                              <FontAwesomeIcon icon={faTag} />
+                            <Col key={index} className="display_tag" sm="auto">
+                              <FontAwesomeIcon
+                                icon={faTag}
+                                className="tag_icon"
+                              />
                               {tags.title}
-                            </ul>
+                            </Col>
                           ))}
                         </Row>
                       </CardText>
-                      <img
-                        src={
-                          item.featured_media &&
-                          `https://infblogdemo.herokuapp.com/${item.featured_media.url}`
-                        }
-                        alt=""
-                      />
-                      <Moment format="Do MMM YYYY" className="date text-left">
+                      {/* <Col>
+                        <img
+                          src={
+                            item.featured_media &&
+                            `https://infblogdemo.herokuapp.com/${item.featured_media.url}`
+                          }
+                          alt="load"
+                        />
+                      </Col> */}
+                      {/* <Moment format="Do MMM YYYY" className="date text-left">
                         {item.created_at}
-                      </Moment>
+                      </Moment> */}
 
                       <CardTitle>
                         <img
@@ -98,10 +104,21 @@ const Home = () => {
                           className="user"
                         />
                         <Col className="username text-left">
-                          {item.user && item.user.username}
+                          <Col className=" user_name text-left" sm="auto">
+                            <Col className="userr text-left">
+                              {item.user && item.user.username}
+                              <FontAwesomeIcon
+                                icon={faCrown}
+                                className="admin_icon"
+                              />
+                            </Col>
+                            <Col className="date text-left">
+                              <Moment format="MMM DD">{item.created_at}</Moment>
+                            </Col>
+                          </Col>
                         </Col>
                       </CardTitle>
-                      <CardSubtitle className="post_title">
+                      <CardSubtitle className="post_title text-left">
                         {item.title}
                       </CardSubtitle>
 
@@ -109,11 +126,14 @@ const Home = () => {
                         {item.content}
                       </CardText>
 
-                      <Link to={`${item.slug}/${item.id}`}>
-                        <Button color="primary" className="readmore">
-                          Read more
-                        </Button>
-                      </Link>
+                      <Col className="post_like">
+                        <Link to={`${item.slug}/${item.id}`}>
+                          <Button color="primary" className="readmore">
+                            Read more
+                          </Button>
+                        </Link>
+                        <FontAwesomeIcon icon={faHeart} className="like_icon" />
+                      </Col>
                     </Card>
                   ))}
               </Col>
