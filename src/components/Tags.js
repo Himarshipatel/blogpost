@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Tagmodal from "./Tagmodal.js";
 import SweetAlert from "react-bootstrap-sweetalert";
-import { Redirect } from "react-router-dom";
+
 import Header from "./Navbar";
 const Tags = () => {
   const [modal, setModal] = useState(false);
@@ -52,12 +52,9 @@ const Tags = () => {
   const hideAlert = () => {
     setAlert();
   };
-  const tokenn = localStorage.getItem("token");
 
   return (
     <>
-      {/* {tokenn ? (
-        <> */}
       <Header />
       <Col className="dashboard">
         <Row className="add_tag">
@@ -148,10 +145,6 @@ const Tags = () => {
           )}
         </>
       </Col>
-      {/* </>
-      ) : (
-        <Redirect to="/" />
-      )} */}
     </>
   );
 };

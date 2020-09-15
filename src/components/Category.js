@@ -10,7 +10,7 @@ import { Row, Table, Button, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Categorymodal from "./Categorymodal.js";
-import { Redirect } from "react-router-dom";
+
 import Header from "./Navbar";
 const Category = () => {
   const [modal, setModal] = useState(false);
@@ -52,12 +52,9 @@ const Category = () => {
   const hideAlert = () => {
     setAlert();
   };
-  const tokenn = localStorage.getItem("token");
 
   return (
     <>
-      {/* {tokenn ? (
-        <> */}
       <Header />
       <Col className="dashboard">
         <Row className="add_tag">
@@ -149,10 +146,6 @@ const Category = () => {
           )}
         </>
       </Col>
-      {/* </>
-      ) : (
-        <Redirect to="/" />
-      )} */}
     </>
   );
 };

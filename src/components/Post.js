@@ -9,7 +9,7 @@ import { Row, Table, Button, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Postmodal from "./Postmodal.js";
-import { Redirect } from "react-router-dom";
+
 import Header from "./Navbar";
 import SweetAlert from "react-bootstrap-sweetalert";
 const Posts = () => {
@@ -52,12 +52,9 @@ const Posts = () => {
   const hideAlert = () => {
     setAlert();
   };
-  const tokenn = localStorage.getItem("token");
 
   return (
     <>
-      {/* {tokenn ? (
-        <> */}
       <Header />
       <Col className="dashboard">
         <Row className="add_tag">
@@ -162,10 +159,6 @@ const Posts = () => {
           )}
         </>
       </Col>
-      {/* </>
-      ) : (
-        <Redirect to="/" />
-      )} */}
     </>
   );
 };
