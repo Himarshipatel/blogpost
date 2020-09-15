@@ -103,8 +103,6 @@
 .signinbut {
   margin-right: 10px;
   width: 120px;
-  background-color: white;
-  color: #0000ff;
 }
 .usericon {
   margin-right: 3px;
@@ -216,6 +214,9 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.tag_title {
+  color: #0b399e;
 }
 .singlepost_content {
   max-width: 100%;
