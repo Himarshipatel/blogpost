@@ -122,7 +122,6 @@
 }
 .categorybutton {
   width: 100px;
-  height: 32px;
 }
 .dispaly_post {
   margin-top: 15px;
@@ -152,8 +151,7 @@
   margin-top: 10px;
   margin-left: 20px;
 }
-.usericon {
-}
+
 .username_header {
   font-size: 20px;
   font-weight: bold;

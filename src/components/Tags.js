@@ -56,103 +56,102 @@ const Tags = () => {
 
   return (
     <>
-      {tokenn ? (
+      {/* {tokenn ? (
+        <> */}
+      <Header />
+      <Col className="dashboard">
+        <Row className="add_tag">
+          <Col>
+            <Button
+              color="primary"
+              onClick={() => {
+                toggle();
+                setAction("create");
+              }}
+            >
+              Add Tag
+            </Button>
+          </Col>
+        </Row>
         <>
-          <Header />
-          <Col className="dashboard">
-            <Row className="add_tag">
-              <Col>
-                <Button
-                  color="primary"
-                  onClick={() => {
-                    toggle();
-                    setAction("create");
-                  }}
-                >
-                  Add Tag
-                </Button>
-              </Col>
-            </Row>
+          {loading ? (
+            <Col className="load"> loading...</Col>
+          ) : (
             <>
-              {loading ? (
-                <Col className="load"> loading...</Col>
-              ) : (
-                <>
-                  {alltag !== null && (
-                    <Table bordered responsive className="tabell">
-                      <thead className="tablehead">
-                        <tr>
-                          <th>Title</th>
-                          <th>Slug</th>
-                          <th>Description</th>
-                          <th>Created_At</th>
-                          <th>Updated_At</th>
-                          <th>Actions</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {alltag
-                          .slice(0)
-                          .sort(
-                            (item, index) =>
-                              new Date(index.created_at) -
-                              new Date(item.created_at)
-                          )
-                          .map((item, index) => (
-                            <tr key={index}>
-                              <td>{item.title}</td>
-                              <td>{item.slug}</td>
-                              <td>{item.description}</td>
+              {alltag !== null && (
+                <Table bordered responsive className="tabell">
+                  <thead className="tablehead">
+                    <tr>
+                      <th>Title</th>
+                      <th>Slug</th>
+                      <th>Description</th>
+                      <th>Created_At</th>
+                      <th>Updated_At</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {alltag
+                      .slice(0)
+                      .sort(
+                        (item, index) =>
+                          new Date(index.created_at) - new Date(item.created_at)
+                      )
+                      .map((item, index) => (
+                        <tr key={index}>
+                          <td>{item.title}</td>
+                          <td>{item.slug}</td>
+                          <td>{item.description}</td>
 
-                              <td>
-                                <Moment format="Do MMM YY">
-                                  {item.created_at}
-                                </Moment>
-                              </td>
-                              <td>
-                                <Moment format="Do MMM YY">
-                                  {item.updated_at}
-                                </Moment>
-                              </td>
-                              <td>
-                                <FontAwesomeIcon
-                                  icon={faPencilAlt}
-                                  onClick={() => {
-                                    toggle();
-                                    setAction("edit");
-                                    dispatch(Singletag(item.id));
-                                  }}
-                                />
-                                <FontAwesomeIcon
-                                  icon={faTrashAlt}
-                                  className="carticon"
-                                  onClick={() => {
-                                    removehandle(item.id);
-                                  }}
-                                />
-                                {sweetalert}
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </Table>
-                  )}
-                </>
-              )}
-              {modal && (
-                <Tagmodal
-                  modal={modal}
-                  action={action}
-                  setModal={setModal}
-                  toggle={toggle}
-                />
+                          <td>
+                            <Moment format="Do MMM YY">
+                              {item.created_at}
+                            </Moment>
+                          </td>
+                          <td>
+                            <Moment format="Do MMM YY">
+                              {item.updated_at}
+                            </Moment>
+                          </td>
+                          <td>
+                            <FontAwesomeIcon
+                              icon={faPencilAlt}
+                              onClick={() => {
+                                toggle();
+                                setAction("edit");
+                                dispatch(Singletag(item.id));
+                              }}
+                            />
+                            <FontAwesomeIcon
+                              icon={faTrashAlt}
+                              className="carticon"
+                              onClick={() => {
+                                removehandle(item.id);
+                              }}
+                            />
+                            {sweetalert}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </Table>
               )}
             </>
-          </Col>
+          )}
+          {modal && (
+            <Tagmodal
+              modal={modal}
+              action={action}
+              setModal={setModal}
+              toggle={toggle}
+            />
+          )}
         </>
+      </Col>
+      {/* </>
       ) : (
         <Redirect to="/" />
-      )}
+      )} */}
     </>
   );
 };

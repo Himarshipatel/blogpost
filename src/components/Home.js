@@ -79,7 +79,13 @@ const Home = () => {
                           ))}
                         </Row>
                       </CardText>
-
+                      <img
+                        src={
+                          item.featured_media &&
+                          `https://infblogdemo.herokuapp.com/${item.featured_media.url}`
+                        }
+                        alt=""
+                      />
                       <Moment format="Do MMM YYYY" className="date text-left">
                         {item.created_at}
                       </Moment>

@@ -2,17 +2,17 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export const Alltag = () => {
-  const tokenn = localStorage.getItem("token");
-  const authtoken = {
-    headers: {
-      Authorization: `Bearer ${tokenn}`,
-    },
-  };
+  // const tokenn = localStorage.getItem("token");
+  // const authtoken = {
+  //   headers: {
+  //     Authorization: `Bearer ${tokenn}`,
+  //   },
+  // };
   return (dispatch) => {
     dispatch({ type: "ALL_TAG_PENDING" });
 
     axios
-      .get("https://infblogdemo.herokuapp.com/tags", authtoken)
+      .get("https://infblogdemo.herokuapp.com/tags")
 
       .then((res) => {
         dispatch({

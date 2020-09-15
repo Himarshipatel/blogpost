@@ -2,17 +2,17 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 export const Allpost = () => {
-  const tokenn = localStorage.getItem("token");
-  const authtoken = {
-    headers: {
-      Authorization: `Bearer ${tokenn}`,
-    },
-  };
+  // const tokenn = localStorage.getItem("token");
+  // const authtoken = {
+  //   headers: {
+  //     Authorization: `Bearer ${tokenn}`,
+  //   },
+  // };
   return (dispatch) => {
     dispatch({ type: "ALL_POST_PENDING" });
 
     axios
-      .get("https://infblogdemo.herokuapp.com/posts", authtoken)
+      .get("https://infblogdemo.herokuapp.com/posts")
 
       .then((res) => {
         dispatch({
