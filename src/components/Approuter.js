@@ -9,7 +9,7 @@ import Tags from "./Tags.js";
 import Category from "./Category.js";
 import Categoriestag from "./Categoriestag.js";
 import Tagtags from "./Tagtags.js";
-import Privaterouter from "./Privaterouter.js";
+import PrivateRoute from "./PrivateRoute.js";
 const Approuter = () => {
   return (
     <BrowserRouter>
@@ -22,9 +22,9 @@ const Approuter = () => {
 
           <Route path="/login" component={Login} />
 
-          <Privaterouter path="/category" component={Category} exact={true} />
-          <Privaterouter path="/tag" component={Tags} exact={true} />
-          <Privaterouter path="/posts" component={Posts} exact={true} />
+          <PrivateRoute path="/category" component={Category} exact={true} />
+          <PrivateRoute path="/tag" component={Tags} exact={true} />
+          <PrivateRoute path="/posts" component={Posts} exact={true} />
 
           <Route path="/:slug/:id" component={Post} />
 

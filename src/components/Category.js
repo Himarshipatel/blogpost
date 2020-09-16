@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Categorymodal from "./Categorymodal.js";
 
-import Header from "./Navbar";
+import Header from "./Header.js";
 const Category = () => {
   const [modal, setModal] = useState(false);
 

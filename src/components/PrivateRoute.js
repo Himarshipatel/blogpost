@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 
-const Privaterouter = ({ component: Component, path }) => {
+const PrivateRoute = ({ component: Component, path }) => {
   const tokenn = localStorage.getItem("token");
   return (
     <Route
@@ -13,4 +13,4 @@ const Privaterouter = ({ component: Component, path }) => {
   );
 };
 
-export default Privaterouter;
+export default PrivateRoute;

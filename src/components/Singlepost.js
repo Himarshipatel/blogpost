@@ -16,7 +16,7 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import Header from "./Navbar";
+import Header from "./Header.js";
 const Post = () => {
   const { id } = useParams();
   const dispatch = useDispatch();

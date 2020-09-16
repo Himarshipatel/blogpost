@@ -11,7 +11,7 @@ import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Tagmodal from "./Tagmodal.js";
 import SweetAlert from "react-bootstrap-sweetalert";
 
-import Header from "./Navbar";
+import Header from "./Header.js";
 const Tags = () => {
   const [modal, setModal] = useState(false);
 

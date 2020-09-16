@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Alltag } from "../redux/allactions/tagsactions/Alltagsaction.js";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Container } from "reactstrap";
-import Header from "./Navbar";
+import Header from "./Header.js";
 const Tagtags = () => {
   const { loading, alltag } = useSelector((state) => ({
     loading: state.Alltagreducer.loading,

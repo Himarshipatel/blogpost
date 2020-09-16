@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import Postmodal from "./Postmodal.js";
 
-import Header from "./Navbar";
+import Header from "./Header.js";
 import SweetAlert from "react-bootstrap-sweetalert";
 const Posts = () => {
   const [modal, setModal] = useState(false);

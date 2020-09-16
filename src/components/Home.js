@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
 import { Allpost } from "../redux/allactions/postactions/Allpostaction.js";
-import Header from "./Navbar";
+import Header from "./Header.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag, faCrown, faHeart } from "@fortawesome/free-solid-svg-icons";
 
