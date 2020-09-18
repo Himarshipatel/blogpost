@@ -50,18 +50,17 @@
   align-items: center;
   justify-content: center;
   background-image: url("http://www.allwhitebackground.com/images/6/Gradient-Background-Photos.jpg");
-  /* background-color: #1d4f6e; */
 }
 
 .form {
   margin: 0 auto;
-  /* background-color: #1d4f6e; */
+
   background-color: white;
   border: 1px solid lightgrey;
   padding: 30px;
   border-radius: 3px;
 }
-.signbutton {
+.sign_in {
   margin-top: 10px;
   margin-bottom: 15px;
   color: white;
@@ -70,14 +69,13 @@
   border-radius: 5px;
   background-color: #0000ff;
   height: 10%;
-  width: 40%;
 }
 .head {
   padding-bottom: 20px;
   font-size: 25px;
   font-weight: bold;
   margin-bottom: 20px;
-  /* color: white; */
+
   color: #0000ff;
   border-bottom: 1px solid lightgray;
 }
@@ -89,20 +87,18 @@
   width: 50px;
   height: 50px;
 }
-.navbar {
-  /* position: fixed;
-  top: 0; */
+.menulist {
+  font-weight: bold;
+}
+.menubar {
+  border-bottom: 1px solid lightgray;
   width: 100%;
-  /* overflow: hidden; */
-
-  background-color: black;
 }
 .allpost {
-  background-color: lightgray;
+  background-color: #e2e2e2;
 }
-.signinbut {
+.signin {
   margin-right: 10px;
-  width: 120px;
 }
 .usericon {
   margin-right: 3px;
@@ -166,7 +162,7 @@
 .username_header {
   font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: #0000ff;
 }
 .like_icon {
   margin-top: 15px;
@@ -184,31 +180,18 @@
   color: teal;
   margin-top: 17px;
 }
-.username {
-}
 .post_title {
   font-size: 40px;
   font-weight: bold;
   color: #0b399e;
 }
 .post_content {
-  /* white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  line-height: 1;
-  -webkit-line-clamp: 3;
-  font-weight: bold;
-  font-size: 20px;
-
-  height: 60px; */
-
   display: block;
   display: -webkit-box;
   max-width: 100%;
   height: 74 px;
   margin: 0 auto;
   font-size: 18px;
-
   line-height: 1.2;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
@@ -228,25 +211,27 @@
   margin-top: 15px;
 }
 .catag {
+  border-bottom: 1px solid lightgray;
+
   margin-bottom: 10px;
 }
 .main_tags {
   height: 100vh;
   background-color: lightgrey;
 }
-.main_tag {
+.main_catag {
   height: 100vh;
   background-color: lightgrey;
 }
-.usericon {
+.menu_list {
+  color: white;
 }
-.menubar {
+.menu_bar {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #5d89e9;
+  color: blue;
   padding: 10px;
-
   font-size: 15px;
 }
 .drop_menu {

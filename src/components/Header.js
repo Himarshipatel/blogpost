@@ -14,7 +14,6 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
-
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import {
@@ -23,6 +22,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
+import logo from "../images/logo.jpg";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,40 +41,40 @@ const Header = () => {
     }
   };
   return (
-    <div className="navbar">
-      <Navbar light expand="md">
+    <>
+      <Navbar light expand="md" className="menubar">
         <NavbarBrand>
-          <img
-            src="https://www.lifewire.com/thmb/VPHk1hVtwFOti3iQPueGU9LgHsQ=/768x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/Blogger.svg-57f268d63df78c690fe5d003.png"
-            alt=""
-            className="logo"
-          />
+          <img src={logo} alt="" className="logo" />
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
-              <NavLink href="/" className="text-white">
+              <NavLink href="/" title="home" className="menulist">
                 Home
               </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink href="/categories_tags" className="text-white">
-                catagories tag
+              <NavLink
+                href="/categories_tags"
+                title="categories"
+                className="menulist"
+              >
+                catagories
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/tag_tags" className="text-white">
+              <NavLink href="/tag_tags" title="tags" className="menulist">
                 Tags
               </NavLink>
             </NavItem>
           </Nav>
           {
-            <NavbarText className="adminname text-white">
+            <NavbarText className="adminname">
               {!tokenn ? (
                 <Link to="/login">
-                  <Button color="info" className="signinbut">
+                  <Button color="info" className="signin">
                     Sign In
                   </Button>
                 </Link>
@@ -84,7 +84,6 @@ const Header = () => {
                     <Col className="username_header">
                       <FontAwesomeIcon
                         icon={faUserCircle}
-                        color="white"
                         className="usericon"
                       />
                       {username}
@@ -92,7 +91,7 @@ const Header = () => {
                   </DropdownToggle>
 
                   <DropdownMenu className="dropdown">
-                    <Row className="menubar">
+                    <Row className="menu_bar">
                       <FontAwesomeIcon
                         icon={faUserCircle}
                         className="usericon"
@@ -129,7 +128,7 @@ const Header = () => {
           }
         </Collapse>
       </Navbar>
-    </div>
+    </>
   );
 };
 
