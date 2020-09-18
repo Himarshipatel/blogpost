@@ -11,7 +11,7 @@ export const allCategory = () => {
       .then((res) => {
         dispatch({
           type: "ALL_CATEGORY_SUCCESS",
-          allcategory: res.data,
+          categoriesData: res.data,
         });
       })
       .catch((error) => {
@@ -19,14 +19,12 @@ export const allCategory = () => {
           type: "ALL_CATEGORY_FAILURE",
           message: error.message,
         });
-        toast.error(error.response.data.message, {
-          position: toast.POSITION.TOP_CENTER,
-        });
       });
   };
 };
 
-export const Addcategory = (category, setModal) => {
+export const Addcategory = (data, setModal) => {
+  console.log(data);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -38,19 +36,14 @@ export const Addcategory = (category, setModal) => {
     dispatch({ type: "ADD_CATEGORY_PENDING" });
 
     axios
-      .post(
-        "https://infblogdemo.herokuapp.com/categories",
-        category,
-
-        authtoken
-      )
+      .post("https://infblogdemo.herokuapp.com/categories", data, authtoken)
 
       .then((res) => {
-        dispatch(allCategory());
         dispatch({
           type: "ADD_CATEGORY_SUCCESS",
           addcategory: res.data,
         });
+        dispatch(allCategory());
         toast.success("Create Category Success", {
           position: "top-center",
           autoClose: 5000,
@@ -67,8 +60,9 @@ export const Addcategory = (category, setModal) => {
           type: "ADD_CATEGORY_FAILURE",
           message: error.message,
         });
-        for (const data in error.response.data.data.errors) {
-          error.response.data.data.errors[data].map((error) =>
+
+        for (const a in error.response.data.data.errors) {
+          error.response.data.data.errors[a].map((error) =>
             toast.error(error, {
               position: toast.POSITION.TOP_CENTER,
             })
@@ -107,7 +101,8 @@ export const Deletecategory = (id) => {
   };
 };
 
-export const Editcategory = (category, id, setModal) => {
+export const updateCategory = (data, id, setModal) => {
+  console.log(data, id);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -119,7 +114,7 @@ export const Editcategory = (category, id, setModal) => {
     axios
       .put(
         `https://infblogdemo.herokuapp.com/categories/${id}`,
-        category,
+        data,
 
         authtoken
       )
@@ -127,7 +122,7 @@ export const Editcategory = (category, id, setModal) => {
       .then((res) => {
         dispatch({
           type: "EDIT_CATEGORY_SUCCESS",
-          editcategory: res.data,
+          // editcategory: res.data,
         });
         setModal(false);
         dispatch(allCategory());
@@ -137,7 +132,6 @@ export const Editcategory = (category, id, setModal) => {
       })
 
       .catch((error) => {
-        setModal(true);
         dispatch({
           type: "EDIT_CATEGORY_FAILURE",
           message: error.message,
@@ -169,7 +163,7 @@ export const Singlecategory = (id) => {
       .then((res) => {
         dispatch({
           type: "SINGLE_CATEGORY_SUCCESS",
-          singlecategory: res.data,
+          category: res.data,
         });
       })
       .catch((error) => {
@@ -177,13 +171,6 @@ export const Singlecategory = (id) => {
           type: "SINGLE_CATEGORY_FAILURE",
           message: error.message,
         });
-        error.response.data.message.map((error) =>
-          error.messages.map((item) =>
-            toast.error(item.message, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          )
-        );
       });
   };
 };

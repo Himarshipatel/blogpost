@@ -1,11 +1,19 @@
 const initialState = {
-  loading: false,
-  allcategory: null,
-  addcategory: null,
-  editcategory: null,
-  singlecategory: null,
-  error: false,
-  message: null,
+  createCategory: { loading: false, error: false, message: null },
+  allCategories: {
+    loading: false,
+    categoriesData: null,
+    error: false,
+    message: null,
+  },
+  getSingleCategory: {
+    loading: false,
+    category: null,
+    error: false,
+    message: null,
+  },
+  deleteCategory: { loading: false, error: false, message: null },
+  updateCategory: { loading: false, error: false, message: null },
 };
 
 const CategoriesReducers = (state = initialState, action) => {
@@ -13,57 +21,121 @@ const CategoriesReducers = (state = initialState, action) => {
     case "ALL_CATEGORY_PENDING":
       return {
         ...state,
-        allcategory: null,
-        loading: true,
+        allCategories: {
+          loading: true,
+          allcategory: null,
+          error: false,
+          message: null,
+        },
       };
     case "ALL_CATEGORY_SUCCESS":
       return {
         ...state,
-        loading: false,
-        allcategory: action.allcategory,
+        allCategories: {
+          loading: false,
+          categoriesData: action.categoriesData,
+          error: false,
+          message: null,
+        },
       };
     case "ALL_CATEGORY_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        allCategories: {
+          loading: false,
+          categoriesData: null,
+          error: true,
+          message: action.message,
+        },
+      };
     case "ADD_CATEGORY_PENDING":
       return {
         ...state,
-        addtag: null,
-        loading: true,
+        createCategory: { loading: false, error: false, message: null },
       };
     case "ADD_CATEGORY_SUCCESS":
       return {
         ...state,
-        loading: false,
-        addcategory: action.addcategory,
+        createCategory: { loading: false, error: false, message: null },
       };
     case "ADD_CATEGORY_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        createCategory: {
+          loading: false,
+          error: true,
+          message: action.message,
+        },
+      };
     case "DELETE_CATEGORY_PENDING":
-      return { ...state, loading: true };
+      return {
+        ...state,
+        deleteCategory: { loading: true, error: false, message: null },
+      };
 
     case "DELETE_CATEGORY_SUCCESS":
-      return { ...state, loading: false };
+      return {
+        ...state,
+        deleteCategory: { loading: false, error: false, message: null },
+      };
     case "DELETE_CATEGORY_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        deleteCategory: {
+          loading: false,
+          error: true,
+          message: action.message,
+        },
+      };
     case "EDIT_CATEGORY_PENDING":
-      return { ...state, loading: true, edittag: null };
-
+      return {
+        ...state,
+        updateCategory: { loading: true, error: false, message: null },
+      };
     case "EDIT_CATEGORY_SUCCESS":
-      return { ...state, loading: false, editcategory: action.editcategory };
-
+      return {
+        ...state,
+        updateCategory: { loading: false, error: false, message: null },
+      };
     case "EDIT_CATEGORY_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        updateCategory: {
+          loading: false,
+          error: true,
+          message: action.message,
+        },
+      };
     case "SINGLE_CATEGORY_PENDING":
-      return { ...state, loading: true, singlecategory: null };
-
+      return {
+        ...state,
+        getSingleCategory: {
+          loading: true,
+          category: null,
+          error: false,
+          message: null,
+        },
+      };
     case "SINGLE_CATEGORY_SUCCESS":
       return {
         ...state,
-        loading: false,
-        singlecategory: action.singlecategory,
+        getSingleCategory: {
+          loading: false,
+          category: action.category,
+          error: false,
+          message: null,
+        },
       };
     case "SINGLE_CATEGORY_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        getSingleCategory: {
+          loading: false,
+          category: null,
+          error: true,
+          message: action.message,
+        },
+      };
     default:
       return { ...state };
   }

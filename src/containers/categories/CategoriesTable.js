@@ -12,9 +12,9 @@ import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 const CategoriesTabel = ({ setAction, toggle }) => {
   const [sweetalert, setAlert] = useState();
-  const { loading, allcategory } = useSelector((state) => ({
-    loading: state.CategoriesReducers.loading,
-    allcategory: state.CategoriesReducers.allcategory,
+  const { loading, categoriesData } = useSelector((state) => ({
+    loading: state.CategoriesReducers.allCategories.loading,
+    categoriesData: state.CategoriesReducers.allCategories.categoriesData,
   }));
 
   const dispatch = useDispatch();
@@ -55,7 +55,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
             <Col className="load"> loading...</Col>
           ) : (
             <>
-              {allcategory !== null && (
+              {categoriesData !== null && (
                 <Table bordered responsive className="tabell">
                   <thead className="tablehead">
                     <tr>
@@ -68,7 +68,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allcategory
+                    {categoriesData
                       .slice(0)
                       .sort(
                         (item, index) =>

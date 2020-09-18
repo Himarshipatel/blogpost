@@ -17,7 +17,7 @@ import {
   FormGroup,
 } from "reactstrap";
 import { Addcategory } from "../../redux/actions";
-import { Editcategory } from "../../redux/actions";
+import { updateCategory } from "../../redux/actions";
 const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
@@ -31,15 +31,16 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
 
   const dispatch = useDispatch();
 
-  const { loading, singlecategory } = useSelector((state) => ({
-    loading: state.CategoriesReducers.loading,
-    singlecategory: state.CategoriesReducers.singlecategory,
+  const { loading, category } = useSelector((state) => ({
+    loading: state.CategoriesReducers.getSingleCategory.loading,
+    category: state.CategoriesReducers.getSingleCategory.category,
   }));
 
-  const onSubmit = (category) => {
+  const onSubmit = (data) => {
     action === "create"
-      ? dispatch(Addcategory(category, setModal))
-      : dispatch(Editcategory(category, singlecategory.id, setModal));
+      ? dispatch(Addcategory(data, setModal))
+      : dispatch(updateCategory(data, category.id, setModal));
+    console.log(category.id);
   };
 
   return (
@@ -68,7 +69,7 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null && singlecategory.title
+                          : category !== null && category.title
                       }
                     />
                     {errors && errors.title && (
@@ -94,7 +95,7 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null && singlecategory.slug
+                          : category !== null && category.slug
                       }
                     />
 
@@ -118,8 +119,7 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null &&
-                            singlecategory.description
+                          : category !== null && category.description
                       }
                       control={control}
                       ref={register}
