@@ -14,24 +14,22 @@ import AllTags from "../../containers/tags/AllTags.js";
 const Router = () => {
   return (
     <BrowserRouter>
-      <div>
-        <Switch>
-          <Route path="/tag_tags" component={AllTags} />
-          <Route path="/categories_tags" component={AllCategories} />
+      <Switch>
+        <Route path="/tag_tags" component={AllTags} />
+        <Route path="/categories_tags" component={AllCategories} />
 
-          <Route path="/register" component={Register} />
+        <Route path="/register" component={Register} />
 
-          <Route path="/login" component={Login} />
+        <Route path="/login" component={Login} />
 
-          <PrivateRoute path="/category" component={Categories} exact={true} />
-          <PrivateRoute path="/tag" component={Tags} exact={true} />
-          <PrivateRoute path="/posts" component={Posts} exact={true} />
+        <PrivateRoute path="/category" component={Categories} exact={true} />
+        <PrivateRoute path="/tag" component={Tags} exact={true} />
+        <PrivateRoute path="/posts" component={Posts} exact={true} />
 
-          <Route path="/:slug/:id" component={SinglePost} />
+        <Route path="/:slug/:id" component={SinglePost} />
 
-          <Route path="/" component={AllPosts} />
-        </Switch>
-      </div>
+        <Route path="/" component={AllPosts} />
+      </Switch>
     </BrowserRouter>
   );
 };

@@ -41,7 +41,7 @@ const Login = () => {
                   name="identifier"
                 />
                 {errors.identifier && (
-                  <div className="text-danger">{errors.identifier.message}</div>
+                  <p className="text-danger">{errors.identifier.message}</p>
                 )}
               </FormGroup>
 
@@ -56,7 +56,7 @@ const Login = () => {
                   defaultValue=""
                 />
                 {errors.password && (
-                  <div className="text-danger">{errors.password.message}</div>
+                  <p className="text-danger">{errors.password.message}</p>
                 )}
               </FormGroup>
 

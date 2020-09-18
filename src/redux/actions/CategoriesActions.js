@@ -67,8 +67,8 @@ export const Addcategory = (category, setModal) => {
           type: "ADD_CATEGORY_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
+        for (const data in error.response.data.data.errors) {
+          error.response.data.data.errors[data].map((error) =>
             toast.error(error, {
               position: toast.POSITION.TOP_CENTER,
             })

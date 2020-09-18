@@ -101,9 +101,15 @@ const Header = () => {
                     </Row>
 
                     <Col className="drop_menu">
-                      <DropdownItem href="/tag">Tags</DropdownItem>
-                      <DropdownItem href="/category">Category</DropdownItem>
-                      <DropdownItem href="/posts">Post</DropdownItem>
+                      <DropdownItem href="/tag" title="tags">
+                        Tags
+                      </DropdownItem>
+                      <DropdownItem href="/category" title="category">
+                        Category
+                      </DropdownItem>
+                      <DropdownItem href="/posts" title="post">
+                        Post
+                      </DropdownItem>
                     </Col>
 
                     {tokenn ? (

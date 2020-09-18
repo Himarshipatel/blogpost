@@ -49,7 +49,7 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
           {action === "create" ? "Create Tag" : "Edit Tag"}
         </ModalHeader>
         {loading ? (
-          <div>Loading...</div>
+          <Col>Loading...</Col>
         ) : (
           <Form onSubmit={handleSubmit(onSubmit)}>
             <ModalBody>
