@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Allcategory } from "../../redux/actions";
+import { allCategory } from "../../redux/actions";
 import { Deletecategory } from "../../redux/actions";
 import { Singlecategory } from "../../redux/actions";
 import SweetAlert from "react-bootstrap-sweetalert";
@@ -19,7 +19,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Allcategory());
+    dispatch(allCategory());
   }, [dispatch]);
 
   const removehandle = (id) => {

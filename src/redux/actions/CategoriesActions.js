@@ -1,7 +1,7 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const Allcategory = () => {
+export const allCategory = () => {
   return (dispatch) => {
     dispatch({ type: "ALL_CATEGORY_PENDING" });
 
@@ -46,7 +46,7 @@ export const Addcategory = (category, setModal) => {
       )
 
       .then((res) => {
-        dispatch(Allcategory());
+        dispatch(allCategory());
         dispatch({
           type: "ADD_CATEGORY_SUCCESS",
           addcategory: res.data,
@@ -92,7 +92,7 @@ export const Deletecategory = (id) => {
       .delete(`https://infblogdemo.herokuapp.com/categories/${id}`, authtoken)
 
       .then((res) => {
-        dispatch(Allcategory());
+        dispatch(allCategory());
         dispatch({ type: "DELETE_CATEGORY_SUCCESS" });
       })
       .catch((error) => {
@@ -130,7 +130,7 @@ export const Editcategory = (category, id, setModal) => {
           editcategory: res.data,
         });
         setModal(false);
-        dispatch(Allcategory());
+        dispatch(allCategory());
         toast.success("successfully Updated!!", {
           position: toast.POSITION.TOP_CENTER,
         });

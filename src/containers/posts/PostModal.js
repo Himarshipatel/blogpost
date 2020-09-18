@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers";
 import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import Select from "react-select";
-import { Allcategory } from "../../redux/actions";
+import { allCategory } from "../../redux/actions";
 import { Alltag } from "../../redux/actions";
 
 import {
@@ -54,7 +54,7 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
       : dispatch(Editpost(createpost, singlepost.id, setModal));
   };
   useEffect(() => {
-    dispatch(Allcategory());
+    dispatch(allCategory());
     dispatch(Alltag());
   }, [dispatch]);
 

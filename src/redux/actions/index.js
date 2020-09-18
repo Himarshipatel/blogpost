@@ -9,7 +9,7 @@ import {
 } from "./TagsActions.js";
 
 import {
-  Allcategory,
+  allCategory,
   Addcategory,
   Deletecategory,
   Editcategory,
@@ -30,7 +30,7 @@ export {
   Deletetag,
   Edittag,
   Singletag,
-  Allcategory,
+  allCategory,
   Addcategory,
   Deletecategory,
   Editcategory,

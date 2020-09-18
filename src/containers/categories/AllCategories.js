@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Allcategory } from "../../redux/actions";
+import { allCategory } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Container } from "reactstrap";
 import Header from "../../components/Header.js";
@@ -10,7 +10,7 @@ const AllCategories = () => {
   }));
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Allcategory());
+    dispatch(allCategory());
   }, [dispatch]);
 
   return (

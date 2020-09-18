@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Allcategory } from "../../redux/actions";
+import { allCategory } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { Row, Button, Col } from "reactstrap";
 import CategoryModal from "./CategoryModal.js";
@@ -12,7 +12,7 @@ const Categories = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Allcategory());
+    dispatch(allCategory());
   }, [dispatch]);
 
   return (
