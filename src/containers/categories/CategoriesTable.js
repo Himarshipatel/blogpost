@@ -16,7 +16,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
     loading: state.CategoriesReducers.allCategories.loading,
     categoriesData: state.CategoriesReducers.allCategories.categoriesData,
   }));
-
+  console.log(categoriesData);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allCategory());

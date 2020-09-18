@@ -31,15 +31,14 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
 
   const dispatch = useDispatch();
 
-  const { loading, singletag } = useSelector((state) => ({
-    loading: state.TagsReducers.loading,
-    singletag: state.TagsReducers.singletag,
+  const { loading, tag } = useSelector((state) => ({
+    loading: state.TagsReducers.getSingleTag.loading,
+    tag: state.TagsReducers.getSingleTag.tag,
   }));
-
-  const onSubmit = (tag) => {
+  const onSubmit = (tags) => {
     action === "create"
-      ? dispatch(Addtag(tag, setModal))
-      : dispatch(Edittag(tag, singletag.id, setModal));
+      ? dispatch(Addtag(tags, setModal))
+      : dispatch(Edittag(tags, tag.id, setModal));
   };
 
   return (
@@ -66,7 +65,7 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singletag !== null && singletag.description
+                          : tag !== null && tag.description
                       }
                       control={control}
                       ref={register}
@@ -88,9 +87,7 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
                       control={control}
                       ref={register}
                       defaultValue={
-                        action === "create"
-                          ? ""
-                          : singletag !== null && singletag.slug
+                        action === "create" ? "" : tag !== null && tag.slug
                       }
                     />
 
@@ -114,9 +111,7 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
                       control={control}
                       ref={register}
                       defaultValue={
-                        action === "create"
-                          ? ""
-                          : singletag !== null && singletag.title
+                        action === "create" ? "" : tag !== null && tag.title
                       }
                     />
                     {errors && errors.title && (

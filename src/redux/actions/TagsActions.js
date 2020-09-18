@@ -11,7 +11,7 @@ export const Alltag = () => {
       .then((res) => {
         dispatch({
           type: "ALL_TAG_SUCCESS",
-          alltag: res.data,
+          tagsData: res.data,
         });
       })
       .catch((error) => {
@@ -65,7 +65,7 @@ export const Deletetag = (id) => {
 };
 // ----------------edit------------
 
-export const Edittag = (tag, id, setModal) => {
+export const Edittag = (tags, id, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -75,7 +75,7 @@ export const Edittag = (tag, id, setModal) => {
   return (dispatch) => {
     dispatch({ type: "EDIT_TAG_PENDING" });
     axios
-      .put(`https://infblogdemo.herokuapp.com/tags/${id}`, tag, authtoken)
+      .put(`https://infblogdemo.herokuapp.com/tags/${id}`, tags, authtoken)
 
       .then((res) => {
         dispatch({
@@ -122,7 +122,7 @@ export const Singletag = (id) => {
       .then((res) => {
         dispatch({
           type: "SINGLE_TAG_SUCCESS",
-          singletag: res.data,
+          tag: res.data,
         });
       })
       .catch((error) => {
@@ -144,7 +144,7 @@ export const Singletag = (id) => {
 };
 
 // ==================
-export const Addtag = (tag, setModal) => {
+export const Addtag = (tags, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -158,7 +158,7 @@ export const Addtag = (tag, setModal) => {
     axios
       .post(
         "https://infblogdemo.herokuapp.com/tags",
-        tag,
+        tags,
 
         authtoken
       )
@@ -196,33 +196,33 @@ export const Addtag = (tag, setModal) => {
   };
 };
 
-export const Singlecategory = (id) => {
-  const tokenn = localStorage.getItem("token");
-  const authtoken = {
-    headers: {
-      Authorization: `Bearer ${tokenn}`,
-    },
-  };
-  return (dispatch) => {
-    dispatch({ type: "SINGLE_CATEGORY_PENDING" });
+// export const getSingleTag  = (id) => {
+//   const tokenn = localStorage.getItem("token");
+//   const authtoken = {
+//     headers: {
+//       Authorization: `Bearer ${tokenn}`,
+//     },
+//   };
+//   return (dispatch) => {
+//     dispatch({ type: "SINGLE_CATEGORY_PENDING" });
 
-    axios
-      .get(`https://infblogdemo.herokuapp.com/categories/${id}`, authtoken)
+//     axios
+//       .get(`https://infblogdemo.herokuapp.com/categories/${id}`, authtoken)
 
-      .then((res) => {
-        dispatch({
-          type: "SINGLE_CATEGORY_SUCCESS",
-          singlecategory: res.data,
-        });
-      })
-      .catch((error) => {
-        error.response.data.message.map((error) =>
-          error.messages.map((item) =>
-            toast.error(item.message, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          )
-        );
-      });
-  };
-};
+//       .then((res) => {
+//         dispatch({
+//           type: "SINGLE_CATEGORY_SUCCESS",
+//           tag: res.data,
+//         });
+//       })
+//       .catch((error) => {
+//         error.response.data.message.map((error) =>
+//           error.messages.map((item) =>
+//             toast.error(item.message, {
+//               position: toast.POSITION.TOP_CENTER,
+//             })
+//           )
+//         );
+//       });
+//   };
+// };

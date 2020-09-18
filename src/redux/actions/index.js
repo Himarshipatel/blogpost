@@ -20,7 +20,7 @@ import {
   Addpost,
   Deletepost,
   Editpost,
-  Singlepost,
+  getSinglePost,
 } from "./PostsActions.js";
 export {
   signinUser,
@@ -39,5 +39,5 @@ export {
   Addpost,
   Deletepost,
   Editpost,
-  Singlepost,
+  getSinglePost,
 };

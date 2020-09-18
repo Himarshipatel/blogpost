@@ -13,9 +13,10 @@ import SweetAlert from "react-bootstrap-sweetalert";
 
 const TagsTabel = ({ setAction, toggle }) => {
   const [sweetalert, setAlert] = useState();
-  const { loading, alltag } = useSelector((state) => ({
-    loading: state.TagsReducers.loading,
-    alltag: state.TagsReducers.alltag,
+
+  const { loading, tagsData } = useSelector((state) => ({
+    loading: state.TagsReducers.allTags.loading,
+    tagsData: state.TagsReducers.allTags.tagsData,
   }));
 
   const dispatch = useDispatch();
@@ -56,7 +57,7 @@ const TagsTabel = ({ setAction, toggle }) => {
             <Col className="load"> loading...</Col>
           ) : (
             <>
-              {alltag !== null && (
+              {tagsData !== null && (
                 <Table bordered responsive className="tabell">
                   <thead className="tablehead">
                     <tr>
@@ -69,7 +70,7 @@ const TagsTabel = ({ setAction, toggle }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {alltag
+                    {tagsData
                       .slice(0)
                       .sort(
                         (item, index) =>

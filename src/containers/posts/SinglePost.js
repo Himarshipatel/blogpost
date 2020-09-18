@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Col } from "reactstrap";
-import { Singlepost } from "../../redux/actions";
+import { getSinglePost } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import Moment from "react-moment";
 import { faTag, faCrown } from "@fortawesome/free-solid-svg-icons";
@@ -14,12 +14,12 @@ const SinglePost = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Singlepost(id));
+    dispatch(getSinglePost(id));
   }, [dispatch, id]);
 
-  const { loading, singlepost } = useSelector((state) => ({
-    loading: state.PostsReducers.loading,
-    singlepost: state.PostsReducers.singlepost,
+  const { loading, post } = useSelector((state) => ({
+    loading: state.PostsReducers.getSinglePost.loading,
+    post: state.PostsReducers.getSinglePost.post,
   }));
 
   return (
@@ -30,11 +30,11 @@ const SinglePost = () => {
           <Col className="load"> loading...</Col>
         ) : (
           <>
-            {singlepost !== null && (
+            {post !== null && (
               <Col>
                 <Card className="single_dispaly_post">
                   <Row className="catagoryinline">
-                    {singlepost.categories.map((catagory, index) => (
+                    {post.categories.map((catagory, index) => (
                       <Col
                         key={index}
                         className="categorybutton"
@@ -48,13 +48,13 @@ const SinglePost = () => {
                   <img
                     height="350px"
                     src={
-                      singlepost.featured_media &&
-                      `https://infblogdemo.herokuapp.com${singlepost.featured_media.url}`
+                      post.featured_media &&
+                      `https://infblogdemo.herokuapp.com${post.featured_media.url}`
                     }
                     alt=""
                   />
                   <Row>
-                    {singlepost.tags.map((tags, index) => (
+                    {post.tags.map((tags, index) => (
                       <Col key={index} className="display_tag" sm="auto">
                         <FontAwesomeIcon icon={faTag} className="tag_icon" />
                         {tags.title}
@@ -70,25 +70,23 @@ const SinglePost = () => {
                     <Col className="username text-left">
                       <Col className=" user_name text-left" sm="auto">
                         <Col className="userr text-left">
-                          {singlepost.user.username}
+                          {post.user.username}
                           <FontAwesomeIcon
                             icon={faCrown}
                             className="admin_icon"
                           />
                         </Col>
                         <Col className="date text-left">
-                          <Moment format="MMM DD">
-                            {singlepost.created_at}
-                          </Moment>
+                          <Moment format="MMM DD">{post.created_at}</Moment>
                         </Col>
                       </Col>
                     </Col>
                   </CardTitle>
                   <CardSubtitle className="post_title  text-left">
-                    {singlepost.title}
+                    {post.title}
                   </CardSubtitle>
                   <CardText className="singlepost_content">
-                    {singlepost.content}
+                    {post.content}
                   </CardText>
                 </Card>
               </Col>

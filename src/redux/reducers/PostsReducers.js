@@ -1,11 +1,16 @@
 const initialState = {
-  loading: false,
-  allpost: null,
-  addpost: null,
-  editpost: null,
-  singlepost: null,
-  error: false,
-  message: null,
+  // loading: false,
+  // allpost: null,
+  // addpost: null,
+  // editpost: null,
+  // singlepost: null,
+  // error: false,
+  // message: null,
+  createPost: { loading: false, error: false, message: null },
+  allPosts: { loading: false, posts: null, error: false, message: null },
+  getSinglePost: { loading: false, post: null, error: false, message: null },
+  deletePost: { loading: false, error: false, message: null },
+  updatePost: { loading: false, error: false, message: null },
 };
 
 const PostsReducers = (state = initialState, action) => {
@@ -13,61 +18,103 @@ const PostsReducers = (state = initialState, action) => {
     case "ALL_POST_PENDING":
       return {
         ...state,
-        allpost: null,
-        loading: true,
+        allPosts: { loading: true, posts: null, error: false, message: null },
       };
     case "ALL_POST_SUCCESS":
       return {
         ...state,
-        loading: false,
-        allpost: action.allpost,
+        allPosts: {
+          loading: false,
+          posts: action.posts,
+          error: false,
+          message: null,
+        },
       };
     case "ALL_POST_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        allPosts: {
+          loading: false,
+          posts: null,
+          error: true,
+          message: action.message,
+        },
+      };
     case "ADD_POST_PENDING":
       return {
         ...state,
-        addpost: null,
-        loading: true,
+        createPost: { loading: true, error: false, message: null },
       };
     case "ADD_POST_SUCCESS":
       return {
         ...state,
-        loading: false,
-        addpost: action.addpost,
+        createPost: { loading: false, error: false, message: null },
       };
     case "ADD_POST_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        createPost: { loading: false, error: true, message: action.message },
+      };
     case "DELETE_POST_PENDING":
-      return { ...state, loading: true };
-
+      return {
+        ...state,
+        deletePost: { loading: true, error: false, message: null },
+      };
     case "DELETE_POST_SUCCESS":
-      return { ...state, loading: false };
-
+      return {
+        ...state,
+        deletePost: { loading: false, error: false, message: null },
+      };
     case "DELETE_POST_FAILURE":
-      return { ...state, loading: false };
+      return {
+        ...state,
+        deletePost: { loading: false, error: true, message: action.message },
+      };
     case "EDIT_POST_PENDING":
-      return { ...state, loading: true, editpost: null };
-
+      return {
+        ...state,
+        updatePost: { loading: true, error: false, message: null },
+      };
     case "EDIT_POST_SUCCESS":
-      return { ...state, loading: false, editpost: action.editpost };
-
+      return {
+        ...state,
+        updatePost: { loading: false, error: false, message: null },
+      };
     case "EDIT_POST_FAILURE":
-      return { ...state, loading: false, error: true };
+      return {
+        ...state,
+        updatePost: { loading: false, error: true, message: action.message },
+      };
     case "SINGLE_POST_PENDING":
       return {
         ...state,
-        singlepost: null,
-        loading: true,
+        getSinglePost: {
+          loading: true,
+          post: null,
+          error: false,
+          message: null,
+        },
       };
     case "SINGLE_POST_SUCCESS":
       return {
         ...state,
-        loading: false,
-        singlepost: action.singlepost,
+        getSinglePost: {
+          loading: false,
+          post: action.post,
+          error: false,
+          message: null,
+        },
       };
     case "SINGLE_POST_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        getSinglePost: {
+          loading: false,
+          post: null,
+          error: true,
+          message: action.message,
+        },
+      };
     default:
       return { ...state };
   }

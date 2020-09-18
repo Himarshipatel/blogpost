@@ -11,7 +11,7 @@ export const Allpost = () => {
       .then((res) => {
         dispatch({
           type: "ALL_POST_SUCCESS",
-          allpost: res.data,
+          posts: res.data,
         });
       })
       .catch((error) => {
@@ -153,7 +153,7 @@ export const Editpost = (post, id, setModal) => {
   };
 };
 
-export const Singlepost = (id) => {
+export const getSinglePost = (id) => {
   return (dispatch) => {
     dispatch({ type: "SINGLE_POST_PENDING" });
 
@@ -161,7 +161,7 @@ export const Singlepost = (id) => {
       .get(`https://infblogdemo.herokuapp.com/posts/${id}`)
 
       .then((res) => {
-        dispatch({ type: "SINGLE_POST_SUCCESS", singlepost: res.data });
+        dispatch({ type: "SINGLE_POST_SUCCESS", post: res.data });
       })
       .catch((error) => {
         dispatch({

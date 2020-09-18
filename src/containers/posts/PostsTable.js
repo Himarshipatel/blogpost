@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Allpost } from "../../redux/actions";
-import { Singlepost } from "../../redux/actions";
+import { getSinglePost } from "../../redux/actions";
 import { Deletepost } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
@@ -11,11 +11,11 @@ import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import SweetAlert from "react-bootstrap-sweetalert";
 const PostsTabel = ({ setAction, toggle }) => {
   const [sweetalert, setAlert] = useState();
-  const { loading, allpost } = useSelector((state) => ({
-    loading: state.PostsReducers.loading,
-    allpost: state.PostsReducers.allpost,
-  }));
 
+  const { loading, posts } = useSelector((state) => ({
+    loading: state.PostsReducers.allPosts.loading,
+    posts: state.PostsReducers.allPosts.posts,
+  }));
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Allpost());
@@ -54,7 +54,7 @@ const PostsTabel = ({ setAction, toggle }) => {
             <Col className="load"> loading...</Col>
           ) : (
             <>
-              {allpost !== null && (
+              {posts !== null && (
                 <Table bordered responsive className="post_tabel">
                   <thead className="tablehead">
                     <tr>
@@ -70,7 +70,7 @@ const PostsTabel = ({ setAction, toggle }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {allpost
+                    {posts
                       .slice(0)
                       .sort(
                         (item, index) =>
@@ -108,7 +108,7 @@ const PostsTabel = ({ setAction, toggle }) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(Singlepost(item.id));
+                                dispatch(getSinglePost(item.id));
                               }}
                             />
                             <FontAwesomeIcon

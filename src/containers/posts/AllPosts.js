@@ -17,11 +17,10 @@ const Home = () => {
     dispatch(Allpost());
   }, [dispatch]);
 
-  const { loading, allpost } = useSelector((state) => ({
-    loading: state.PostsReducers.loading,
-    allpost: state.PostsReducers.allpost,
+  const { loading, posts } = useSelector((state) => ({
+    loading: state.PostsReducers.allPosts.loading,
+    posts: state.PostsReducers.allPosts.posts,
   }));
-
   return (
     <>
       <Header />
@@ -34,9 +33,9 @@ const Home = () => {
         ) : (
           <>
             <Col className="post_labell">All Posts</Col>
-            {allpost !== null && (
+            {posts !== null && (
               <Col className="post">
-                {allpost
+                {posts
                   .slice(0)
                   .sort(
                     (item, index) =>

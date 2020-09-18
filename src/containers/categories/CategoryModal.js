@@ -40,7 +40,6 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
     action === "create"
       ? dispatch(Addcategory(data, setModal))
       : dispatch(updateCategory(data, category.id, setModal));
-    console.log(category.id);
   };
 
   return (

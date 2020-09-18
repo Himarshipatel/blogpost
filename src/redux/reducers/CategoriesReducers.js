@@ -23,7 +23,7 @@ const CategoriesReducers = (state = initialState, action) => {
         ...state,
         allCategories: {
           loading: true,
-          allcategory: null,
+          categoriesData: null,
           error: false,
           message: null,
         },

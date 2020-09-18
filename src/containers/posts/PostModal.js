@@ -36,22 +36,22 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
 
   const dispatch = useDispatch();
 
-  const { loading, singlepost, allcategory, alltag } = useSelector((state) => ({
-    loading: state.PostsReducers.loading,
-    singlepost: state.PostsReducers.singlepost,
-    allcategory: state.CategoriesReducers.allcategory,
-    alltag: state.TagsReducers.alltag,
+  const { loading, post, categoriesData, tagsData } = useSelector((state) => ({
+    loading: state.PostsReducers.getSinglePost.loading,
+    post: state.PostsReducers.getSinglePost.post,
+    categoriesData: state.CategoriesReducers.allCategories.categoriesData,
+    tagsData: state.TagsReducers.allTags.tagsData,
   }));
-
+  console.log(categoriesData);
   const userid = localStorage.getItem("id");
 
-  const onSubmit = (post) => {
+  const onSubmit = (create) => {
     const user = userid;
 
-    const createpost = { ...post, user };
+    const createpost = { ...create, user };
     action === "create"
       ? dispatch(Addpost(createpost, setModal))
-      : dispatch(Editpost(createpost, singlepost.id, setModal));
+      : dispatch(Editpost(createpost, post.id, setModal));
   };
   useEffect(() => {
     dispatch(allCategory());
@@ -80,9 +80,7 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       type="textarea"
                       name="content"
                       defaultValue={
-                        action === "create"
-                          ? ""
-                          : singlepost !== null && singlepost.content
+                        action === "create" ? "" : post !== null && post.content
                       }
                       control={control}
                       ref={register}
@@ -109,9 +107,7 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       control={control}
                       ref={register}
                       defaultValue={
-                        action === "create"
-                          ? ""
-                          : singlepost !== null && singlepost.slug
+                        action === "create" ? "" : post !== null && post.slug
                       }
                     />
 
@@ -135,9 +131,7 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       control={control}
                       ref={register}
                       defaultValue={
-                        action === "create"
-                          ? ""
-                          : singlepost !== null && singlepost.title
+                        action === "create" ? "" : post !== null && post.title
                       }
                     />
                     {errors && errors.title && (
@@ -157,8 +151,8 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                     <Controller
                       as={Select}
                       options={
-                        allcategory !== null &&
-                        allcategory.map((item) => ({
+                        categoriesData !== null &&
+                        categoriesData.map((item) => ({
                           id: item.id,
 
                           value: item.title,
@@ -171,8 +165,8 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlepost !== null &&
-                            singlepost.categories.map((item) => ({
+                          : post !== null &&
+                            post.tags.map((item) => ({
                               id: item.id,
                               label: item.title,
                               value: item.title,
@@ -200,8 +194,8 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                     <Controller
                       as={Select}
                       options={
-                        alltag !== null &&
-                        alltag.map((item) => ({
+                        tagsData !== null &&
+                        tagsData.map((item) => ({
                           id: item.id,
                           label: item.title,
                           value: item.title,
@@ -213,8 +207,8 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlepost !== null &&
-                            singlepost.tags.map((item) => ({
+                          : post !== null &&
+                            post.tags.map((item) => ({
                               id: item.id,
                               label: item.title,
                               value: item.title,

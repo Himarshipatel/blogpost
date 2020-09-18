@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Container } from "reactstrap";
 import Header from "../../components/Header.js";
 const AllTags = () => {
-  const { loading, alltag } = useSelector((state) => ({
-    loading: state.TagsReducers.loading,
-    alltag: state.TagsReducers.alltag,
+  const { loading, tagsData } = useSelector((state) => ({
+    loading: state.TagsReducers.allTags.loading,
+    tagsData: state.TagsReducers.allTags.tagsData,
   }));
 
   const dispatch = useDispatch();
@@ -24,9 +24,9 @@ const AllTags = () => {
           <Col className="load"> loading...</Col>
         ) : (
           <>
-            {alltag !== null && (
+            {tagsData !== null && (
               <Row>
-                {alltag
+                {tagsData
                   .slice(0)
                   .sort(
                     (item, index) =>
