@@ -35,7 +35,9 @@ const Posts = () => {
             </Button>
           </Col>
         </Row>
-        <PostsTabel setAction={setAction} toggle={toggle} />
+        <Row>
+          <PostsTabel setAction={setAction} toggle={toggle} />
+        </Row>
         {modal && (
           <PostModal
             modal={modal}

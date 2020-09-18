@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { Alltag } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { Button, Col, Row } from "reactstrap";
@@ -8,15 +7,12 @@ import TagsTabel from "./TagsTable.js";
 import Header from "../../components/Header.js";
 const Tags = () => {
   const [modal, setModal] = useState(false);
-
   const toggle = () => setModal(!modal);
   const [action, setAction] = useState();
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(Alltag());
   }, [dispatch]);
-
   return (
     <>
       <Header />
@@ -34,7 +30,9 @@ const Tags = () => {
             </Button>
           </Col>
         </Row>
-        <TagsTabel setAction={setAction} toggle={toggle} />
+        <Row>
+          <TagsTabel setAction={setAction} toggle={toggle} />
+        </Row>
         {modal && (
           <TagModal
             modal={modal}

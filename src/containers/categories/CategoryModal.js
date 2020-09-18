@@ -21,6 +21,7 @@ import { Editcategory } from "../../redux/actions";
 const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
+  description: yup.string().required("*Description is Required"),
 });
 
 const CategoryModal = ({ modal, setModal, action, toggle }) => {
@@ -37,21 +38,8 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
 
   const onSubmit = (category) => {
     action === "create"
-      ? dispatch(
-          Addcategory(
-            category,
-
-            setModal
-          )
-        )
-      : dispatch(
-          Editcategory(
-            category,
-
-            singlecategory.id,
-            setModal
-          )
-        );
+      ? dispatch(Addcategory(category, setModal))
+      : dispatch(Editcategory(category, singlecategory.id, setModal));
   };
 
   return (
@@ -67,27 +55,30 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
             <ModalBody>
               <Row>
                 <Col md={4}>
-                  <Label>Description</Label>
+                  <Label>Title</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
                       type="text"
-                      name="description"
+                      name="title"
+                      control={control}
+                      ref={register}
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null &&
-                            singlecategory.description
+                          : singlecategory !== null && singlecategory.title
                       }
-                      control={control}
-                      ref={register}
                     />
+                    {errors && errors.title && (
+                      <span className="text-danger">
+                        {errors.title.message}
+                      </span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>
-
               <Row>
                 <Col md={4}>
                   <Label>Slug</Label>
@@ -116,27 +107,23 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label>Title</Label>
+                  <Label>Description</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
                       type="text"
-                      name="title"
-                      control={control}
-                      ref={register}
+                      name="description"
                       defaultValue={
                         action === "create"
                           ? ""
-                          : singlecategory !== null && singlecategory.title
+                          : singlecategory !== null &&
+                            singlecategory.description
                       }
+                      control={control}
+                      ref={register}
                     />
-                    {errors && errors.title && (
-                      <span className="text-danger">
-                        {errors.title.message}
-                      </span>
-                    )}
                   </FormGroup>
                 </Col>
               </Row>

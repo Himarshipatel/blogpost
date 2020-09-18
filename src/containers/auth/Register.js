@@ -6,17 +6,17 @@ import * as Yup from "yup";
 import { signupUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-// const schema = Yup.object().shape({
-//   username: Yup.string().required("Name is a required field"),
-//   password: Yup.string()
-//     .min(8, "password must be 8 character")
-//     .required("Password is a required field"),
-//   email: Yup.string().email().required("email is a required field"),
-// });
+const schema = Yup.object().shape({
+  username: Yup.string().required("Name is a required field"),
+  password: Yup.string()
+    .min(8, "password must be 8 character")
+    .required("Password is a required field"),
+  email: Yup.string().email().required("email is a required field"),
+});
 
 const Register = () => {
   const { register, control, errors, handleSubmit } = useForm({
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
   const history = useHistory();
   const dispatch = useDispatch();

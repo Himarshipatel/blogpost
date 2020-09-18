@@ -6,14 +6,11 @@ import { Singlecategory } from "../../redux/actions";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
-import { Row, Table, Button, Col } from "reactstrap";
+import { Table, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import CategoryModal from "./CategoryModal.js";
 
 const CategoriesTabel = ({ setAction, toggle }) => {
-  const [modal, setModal] = useState(false);
-
   const [sweetalert, setAlert] = useState();
   const { loading, allcategory } = useSelector((state) => ({
     loading: state.CategoriesReducers.loading,

@@ -32,8 +32,9 @@ const Categories = () => {
             </Button>
           </Col>
         </Row>
-        <CategoriesTabel setAction={setAction} toggle={toggle} />
-
+        <Row>
+          <CategoriesTabel setAction={setAction} toggle={toggle} />
+        </Row>
         {modal && (
           <CategoryModal
             modal={modal}

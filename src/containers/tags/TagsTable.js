@@ -5,10 +5,10 @@ import { Singletag } from "../../redux/actions";
 import { Deletetag } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
-import { Table, Button, Col, Row } from "reactstrap";
+import { Table, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import TagModal from "./TagModal.js";
+
 import SweetAlert from "react-bootstrap-sweetalert";
 
 const TagsTabel = ({ setAction, toggle }) => {

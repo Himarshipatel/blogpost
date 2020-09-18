@@ -5,7 +5,7 @@ import { Singlepost } from "../../redux/actions";
 import { Deletepost } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
-import { Row, Table, Button, Col } from "reactstrap";
+import { Table, Col } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import SweetAlert from "react-bootstrap-sweetalert";
