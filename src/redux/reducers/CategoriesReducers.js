@@ -2,18 +2,18 @@ const initialState = {
   createCategory: { loading: false, error: false, message: null },
   allCategories: {
     loading: false,
-    categoriesData: null,
+    allCategories: null,
     error: false,
     message: null,
   },
-  getSingleCategory: {
+  singleCategory: {
     loading: false,
     category: null,
     error: false,
     message: null,
   },
   deleteCategory: { loading: false, error: false, message: null },
-  updateCategory: { loading: false, error: false, message: null },
+  editCategory: { loading: false, error: false, message: null },
 };
 
 const CategoriesReducers = (state = initialState, action) => {
@@ -23,7 +23,7 @@ const CategoriesReducers = (state = initialState, action) => {
         ...state,
         allCategories: {
           loading: true,
-          categoriesData: null,
+          allCategories: null,
           error: false,
           message: null,
         },
@@ -33,7 +33,7 @@ const CategoriesReducers = (state = initialState, action) => {
         ...state,
         allCategories: {
           loading: false,
-          categoriesData: action.categoriesData,
+          allCategories: action.allCategories,
           error: false,
           message: null,
         },
@@ -43,7 +43,7 @@ const CategoriesReducers = (state = initialState, action) => {
         ...state,
         allCategories: {
           loading: false,
-          categoriesData: null,
+          allCategories: null,
           error: true,
           message: action.message,
         },
@@ -90,17 +90,17 @@ const CategoriesReducers = (state = initialState, action) => {
     case "EDIT_CATEGORY_PENDING":
       return {
         ...state,
-        updateCategory: { loading: true, error: false, message: null },
+        editCategory: { loading: true, error: false, message: null },
       };
     case "EDIT_CATEGORY_SUCCESS":
       return {
         ...state,
-        updateCategory: { loading: false, error: false, message: null },
+        editCategory: { loading: false, error: false, message: null },
       };
     case "EDIT_CATEGORY_FAILURE":
       return {
         ...state,
-        updateCategory: {
+        editCategory: {
           loading: false,
           error: true,
           message: action.message,
@@ -109,7 +109,7 @@ const CategoriesReducers = (state = initialState, action) => {
     case "SINGLE_CATEGORY_PENDING":
       return {
         ...state,
-        getSingleCategory: {
+        singleCategory: {
           loading: true,
           category: null,
           error: false,
@@ -119,7 +119,7 @@ const CategoriesReducers = (state = initialState, action) => {
     case "SINGLE_CATEGORY_SUCCESS":
       return {
         ...state,
-        getSingleCategory: {
+        singleCategory: {
           loading: false,
           category: action.category,
           error: false,
@@ -129,7 +129,7 @@ const CategoriesReducers = (state = initialState, action) => {
     case "SINGLE_CATEGORY_FAILURE":
       return {
         ...state,
-        getSingleCategory: {
+        singleCategory: {
           loading: false,
           category: null,
           error: true,

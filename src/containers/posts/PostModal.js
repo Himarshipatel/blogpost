@@ -36,10 +36,10 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
 
   const dispatch = useDispatch();
 
-  const { loading, post, categoriesData, tagsData } = useSelector((state) => ({
+  const { loading, post, allCategories, tagsData } = useSelector((state) => ({
     loading: state.PostsReducers.getSinglePost.loading,
     post: state.PostsReducers.getSinglePost.post,
-    categoriesData: state.CategoriesReducers.allCategories.categoriesData,
+    allCategories: state.CategoriesReducers.allCategories.allCategories,
     tagsData: state.TagsReducers.allTags.tagsData,
   }));
 
@@ -151,8 +151,8 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                     <Controller
                       as={Select}
                       options={
-                        categoriesData !== null &&
-                        categoriesData.map((item) => ({
+                        allCategories !== null &&
+                        allCategories.map((item) => ({
                           id: item.id,
 
                           value: item.title,

@@ -84,12 +84,12 @@ const PostsTabel = ({ setAction, toggle }) => {
                           <td> {item.user !== null && item.user.username}</td>
                           <td>
                             {item.categories.map((catagory) => (
-                              <li>{catagory.title}</li>
+                              <ul>{catagory.title}</ul>
                             ))}
                           </td>
                           <td>
                             {item.tags.map((tag) => (
-                              <li>{tag.title}</li>
+                              <ul>{tag.title}</ul>
                             ))}
                           </td>
                           <td>

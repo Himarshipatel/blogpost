@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Container } from "reactstrap";
 import Header from "../../components/Header.js";
 const AllCategories = () => {
-  const { loading, categoriesData } = useSelector((state) => ({
+  const { loading, allCategories } = useSelector((state) => ({
     loading: state.CategoriesReducers.allCategories.loading,
-    categoriesData: state.CategoriesReducers.allCategories.categoriesData,
+    allCategories: state.CategoriesReducers.allCategories.allCategories,
   }));
 
   const dispatch = useDispatch();
@@ -24,9 +24,9 @@ const AllCategories = () => {
           <Col className="load"> loading...</Col>
         ) : (
           <>
-            {categoriesData !== null && (
+            {allCategories !== null && (
               <Row>
-                {categoriesData
+                {allCategories
                   .slice(0)
                   .sort(
                     (item, index) =>

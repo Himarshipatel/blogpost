@@ -12,7 +12,7 @@ import {
   allCategory,
   Addcategory,
   Deletecategory,
-  updateCategory,
+  editCategory,
   Singlecategory,
 } from "./CategoriesActions.js";
 import {
@@ -33,7 +33,7 @@ export {
   allCategory,
   Addcategory,
   Deletecategory,
-  updateCategory,
+  editCategory,
   Singlecategory,
   Allpost,
   Addpost,

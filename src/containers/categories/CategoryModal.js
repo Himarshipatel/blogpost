@@ -17,7 +17,7 @@ import {
   FormGroup,
 } from "reactstrap";
 import { Addcategory } from "../../redux/actions";
-import { updateCategory } from "../../redux/actions";
+import { editCategory } from "../../redux/actions";
 const formSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
@@ -32,14 +32,14 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
   const dispatch = useDispatch();
 
   const { loading, category } = useSelector((state) => ({
-    loading: state.CategoriesReducers.getSingleCategory.loading,
-    category: state.CategoriesReducers.getSingleCategory.category,
+    loading: state.CategoriesReducers.singleCategory.loading,
+    category: state.CategoriesReducers.singleCategory.category,
   }));
 
   const onSubmit = (data) => {
     action === "create"
       ? dispatch(Addcategory(data, setModal))
-      : dispatch(updateCategory(data, category.id, setModal));
+      : dispatch(editCategory(data, category.id, setModal));
   };
 
   return (

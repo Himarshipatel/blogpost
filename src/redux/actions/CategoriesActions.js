@@ -11,7 +11,7 @@ export const allCategory = () => {
       .then((res) => {
         dispatch({
           type: "ALL_CATEGORY_SUCCESS",
-          categoriesData: res.data,
+          allCategories: res.data,
         });
       })
       .catch((error) => {
@@ -100,7 +100,7 @@ export const Deletecategory = (id) => {
   };
 };
 
-export const updateCategory = (data, id, setModal) => {
+export const editCategory = (data, id, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
