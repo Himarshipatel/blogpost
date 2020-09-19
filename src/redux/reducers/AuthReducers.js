@@ -1,8 +1,8 @@
 const initialState = {
   login: null,
-  register: null,
   message: null,
   error: false,
+  signup: { loading: false, error: false, message: null },
 };
 
 const AuthReducers = (state = initialState, action) => {
@@ -22,15 +22,18 @@ const AuthReducers = (state = initialState, action) => {
     case "SIGN_UP_PENDING":
       return {
         ...state,
-        register: null,
+        signup: { loading: true },
       };
     case "SIGN_UP_SUCCESS":
       return {
         ...state,
-        register: action.register,
+        signup: { loading: false },
       };
     case "SIGN_UP_FAILURE":
-      return { ...state, loading: false, error: true, message: action.message };
+      return {
+        ...state,
+        signup: { loading: false, error: false, message: null },
+      };
     default:
       return { ...state };
   }

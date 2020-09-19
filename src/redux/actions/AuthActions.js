@@ -61,7 +61,7 @@ export const signupUser = ({ username, password, email, history }) => {
       })
 
       .then((res) => {
-        dispatch({ type: "SIGN_UP_SUCCESS", register: res.data.user });
+        dispatch({ type: "SIGN_UP_SUCCESS" });
 
         toast.success("SignUp Success", {
           position: "top-center",
