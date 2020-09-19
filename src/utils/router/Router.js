@@ -1,16 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import Login from "../../containers/auth/Login.js";
-import Register from "../../containers/auth/Register.js";
-
-import SinglePost from "../../containers/posts/SinglePost.js";
-import Posts from "../../containers/posts/Posts.js";
-import AllPosts from "../../containers/posts/AllPosts.js";
-import Tags from "../../containers/tags/Tags.js";
-import Categories from "../../containers/categories/Categories.js";
 import PrivateRoute from "../../components/PrivateRoute.js";
-import AllCategories from "../../containers/categories/AllCategories.js";
-import AllTags from "../../containers/tags/AllTags.js";
+import {
+  Login,
+  Register,
+  SinglePost,
+  Posts,
+  AllPosts,
+  Tags,
+  Categories,
+  AllCategories,
+  AllTags,
+} from "../../containers";
 const Router = () => {
   return (
     <BrowserRouter>

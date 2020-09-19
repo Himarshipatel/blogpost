@@ -64,6 +64,7 @@ const SinglePost = () => {
                   </Row>
                   <Col>
                     <img
+                      width="100%"
                       height="350px"
                       src={
                         post.featured_media &&
