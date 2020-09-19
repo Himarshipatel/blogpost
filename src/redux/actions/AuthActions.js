@@ -47,7 +47,6 @@ export const signinUser = ({ identifier, password, history }) => {
       });
   };
 };
-// ------------register-----------
 
 export const signupUser = ({ username, password, email, history }) => {
   return (dispatch) => {

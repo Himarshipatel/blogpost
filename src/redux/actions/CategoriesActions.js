@@ -120,7 +120,6 @@ export const editCategory = (data, id, setModal) => {
       .then((res) => {
         dispatch({
           type: "EDIT_CATEGORY_SUCCESS",
-          // editcategory: res.data,
         });
         setModal(false);
         dispatch(allCategory());

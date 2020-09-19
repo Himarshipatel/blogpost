@@ -23,8 +23,6 @@ export const Alltag = () => {
   };
 };
 
-// ------------deleteaction---------
-
 export const Deletetag = (id) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
@@ -54,7 +52,6 @@ export const Deletetag = (id) => {
       });
   };
 };
-// ----------------edit------------
 
 export const Edittag = (tags, id, setModal) => {
   const tokenn = localStorage.getItem("token");
@@ -95,7 +92,6 @@ export const Edittag = (tags, id, setModal) => {
       });
   };
 };
-// --------------singletag------------
 
 export const Singletag = (id) => {
   const tokenn = localStorage.getItem("token");
@@ -134,7 +130,6 @@ export const Singletag = (id) => {
   };
 };
 
-// ==================
 export const Addtag = (tags, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
@@ -186,34 +181,3 @@ export const Addtag = (tags, setModal) => {
       });
   };
 };
-
-// export const getSingleTag  = (id) => {
-//   const tokenn = localStorage.getItem("token");
-//   const authtoken = {
-//     headers: {
-//       Authorization: `Bearer ${tokenn}`,
-//     },
-//   };
-//   return (dispatch) => {
-//     dispatch({ type: "SINGLE_CATEGORY_PENDING" });
-
-//     axios
-//       .get(`https://infblogdemo.herokuapp.com/categories/${id}`, authtoken)
-
-//       .then((res) => {
-//         dispatch({
-//           type: "SINGLE_CATEGORY_SUCCESS",
-//           tag: res.data,
-//         });
-//       })
-//       .catch((error) => {
-//         error.response.data.message.map((error) =>
-//           error.messages.map((item) =>
-//             toast.error(item.message, {
-//               position: toast.POSITION.TOP_CENTER,
-//             })
-//           )
-//         );
-//       });
-//   };
-// };

@@ -1,11 +1,4 @@
 const initialState = {
-  // loading: false,
-  // alltag: null,
-  // addtag: null,
-  // edittag: null,
-  // singletag: null,
-  // error: false,
-  // message: null,
   createTag: { loading: false, error: false, message: null },
   allTags: { loading: false, tagsData: null, error: false, message: null },
   getSingleTag: { loading: false, tag: null, error: false, message: null },

@@ -1,11 +1,4 @@
 const initialState = {
-  // loading: false,
-  // allpost: null,
-  // addpost: null,
-  // editpost: null,
-  // singlepost: null,
-  // error: false,
-  // message: null,
   createPost: { loading: false, error: false, message: null },
   allPosts: { loading: false, posts: null, error: false, message: null },
   getSinglePost: { loading: false, post: null, error: false, message: null },

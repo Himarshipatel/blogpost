@@ -47,7 +47,7 @@ const Home = () => {
                         {item.categories.map((catagory, index) => (
                           <Col
                             key={index}
-                            className="categorybutton"
+                            className="category_title"
                             size="sm"
                             sm="auto"
                           >

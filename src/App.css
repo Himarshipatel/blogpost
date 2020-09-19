@@ -106,16 +106,17 @@
 .adminname {
   margin-right: 10px;
 }
-
 .catagoryinline {
   margin-bottom: 10px;
   padding-left: 15px;
-  width: 50%;
+  width: 60%;
 }
 .post {
   padding-top: 15px;
 }
-.categorybutton {
+.category_title {
+  margin-block-end: 2px;
+
   margin-inline-end: 15px;
   color: white;
   border-radius: 5px;
@@ -131,6 +132,10 @@
   margin-bottom: 15px;
 }
 .display_tag {
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+
   margin-top: 10px;
 }
 .tag_icon {
