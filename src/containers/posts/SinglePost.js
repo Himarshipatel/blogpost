@@ -45,14 +45,16 @@ const SinglePost = () => {
                       </Col>
                     ))}
                   </Row>
-                  <img
-                    height="350px"
-                    src={
-                      post.featured_media &&
-                      `https://infblogdemo.herokuapp.com${post.featured_media.url}`
-                    }
-                    alt=""
-                  />
+                  <Col>
+                    <img
+                      height="350px"
+                      src={
+                        post.featured_media &&
+                        `https://infblogdemo.herokuapp.com${post.featured_media.url}`
+                      }
+                      alt="load"
+                    />
+                  </Col>
                   <Row>
                     {post.tags.map((tags, index) => (
                       <Col key={index} className="display_tag" sm="auto">

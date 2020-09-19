@@ -42,7 +42,7 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
     categoriesData: state.CategoriesReducers.allCategories.categoriesData,
     tagsData: state.TagsReducers.allTags.tagsData,
   }));
-  console.log(categoriesData);
+
   const userid = localStorage.getItem("id");
 
   const onSubmit = (create) => {

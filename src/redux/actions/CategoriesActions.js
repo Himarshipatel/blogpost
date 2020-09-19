@@ -24,7 +24,6 @@ export const allCategory = () => {
 };
 
 export const Addcategory = (data, setModal) => {
-  console.log(data);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -102,7 +101,6 @@ export const Deletecategory = (id) => {
 };
 
 export const updateCategory = (data, id, setModal) => {
-  console.log(data, id);
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
