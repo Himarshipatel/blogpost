@@ -17,16 +17,16 @@ import {
   FormGroup,
 } from "reactstrap";
 import { Addtag } from "../../redux/actions";
-import { Edittag } from "../../redux/actions";
+import { editTag } from "../../redux/actions";
 
-const formSchema = yup.object().shape({
+const tagSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
 });
 
 const TagModal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(tagSchema),
   });
 
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
   const onSubmit = (tags) => {
     action === "create"
       ? dispatch(Addtag(tags, setModal))
-      : dispatch(Edittag(tags, tag.id, setModal));
+      : dispatch(editTag(tags, tag.id, setModal));
   };
 
   return (

@@ -16,9 +16,9 @@ import {
   Col,
   FormGroup,
 } from "reactstrap";
-import { Addcategory } from "../../redux/actions";
+import { addCategory } from "../../redux/actions";
 import { editCategory } from "../../redux/actions";
-const formSchema = yup.object().shape({
+const categorySchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
   description: yup.string().required("*Description is Required"),
@@ -26,7 +26,7 @@ const formSchema = yup.object().shape({
 
 const CategoryModal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(categorySchema),
   });
 
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
 
   const onSubmit = (data) => {
     action === "create"
-      ? dispatch(Addcategory(data, setModal))
+      ? dispatch(addCategory(data, setModal))
       : dispatch(editCategory(data, category.id, setModal));
   };
 
@@ -55,27 +55,22 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
             <ModalBody>
               <Row>
                 <Col md={4}>
-                  <Label>Title</Label>
+                  <Label>Description</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
-                      type="text"
-                      name="title"
-                      control={control}
-                      ref={register}
+                      type="textarea"
+                      name="description"
                       defaultValue={
                         action === "create"
                           ? ""
-                          : category !== null && category.title
+                          : category !== null && category.description
                       }
+                      control={control}
+                      ref={register}
                     />
-                    {errors && errors.title && (
-                      <span className="text-danger">
-                        {errors.title.message}
-                      </span>
-                    )}
                   </FormGroup>
                 </Col>
               </Row>
@@ -107,22 +102,27 @@ const CategoryModal = ({ modal, setModal, action, toggle }) => {
 
               <Row>
                 <Col md={4}>
-                  <Label>Description</Label>
+                  <Label>Title</Label>
                 </Col>
                 <Col md={8}>
                   <FormGroup>
                     <Controller
                       as={Input}
                       type="text"
-                      name="description"
+                      name="title"
+                      control={control}
+                      ref={register}
                       defaultValue={
                         action === "create"
                           ? ""
-                          : category !== null && category.description
+                          : category !== null && category.title
                       }
-                      control={control}
-                      ref={register}
                     />
+                    {errors && errors.title && (
+                      <span className="text-danger">
+                        {errors.title.message}
+                      </span>
+                    )}
                   </FormGroup>
                 </Col>
               </Row>

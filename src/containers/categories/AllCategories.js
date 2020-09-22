@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { allCategory } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Container } from "reactstrap";
-import Header from "../../components/Header.js";
+import Layout from "../../components/Layout";
+
 const AllCategories = () => {
   const { loading, allCategories } = useSelector((state) => ({
     loading: state.CategoriesReducers.allCategories.loading,
@@ -15,11 +16,8 @@ const AllCategories = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Col className="catag">
-        <Header></Header>
-      </Col>
-      <Container>
+    <Layout>
+      <Container className="category-list">
         {loading ? (
           <Col className="load"> loading...</Col>
         ) : (
@@ -42,7 +40,7 @@ const AllCategories = () => {
           </>
         )}
       </Container>
-    </>
+    </Layout>
   );
 };
 

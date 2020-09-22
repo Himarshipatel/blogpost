@@ -97,6 +97,12 @@
 .allpost {
   background-color: #e2e2e2;
 }
+.category-list {
+  margin-top: 10px;
+}
+.tag-list {
+  margin-top: 10px;
+}
 .signin {
   margin-right: 10px;
 }
@@ -114,7 +120,7 @@
 .post {
   padding-top: 15px;
 }
-.category_title {
+.category-title {
   margin-block-end: 2px;
 
   margin-inline-end: 15px;
@@ -122,26 +128,25 @@
   border-radius: 5px;
   background-color: #0b399e;
 }
-.dispaly_post {
+.dispaly-post {
   margin-top: 15px;
   padding: 15px;
 }
-.single_dispaly_post {
+.singledispaly-post {
   margin-top: 15px;
   padding: 15px;
   margin-bottom: 15px;
 }
-.display_tag {
-  display: flex;
+.display-tag {
   justify-content: left;
   align-items: flex-start;
 
   margin-top: 10px;
 }
-.tag_icon {
+.tagicon {
   padding-right: 2px;
 }
-.post_labell {
+.post-labell {
   color: white;
   font: bold;
   font-size: 30px;
@@ -153,7 +158,7 @@
 .date {
   font-size: 13px;
 }
-.admin_icon {
+.admin-icon {
   font-size: 13px;
   margin-left: 5px;
 }
@@ -164,49 +169,38 @@
   margin-top: 10px;
 }
 
-.username_header {
+.username-header {
   font-size: 20px;
   font-weight: bold;
   color: #0000ff;
 }
-.like_icon {
+.like-icon {
   margin-top: 15px;
   background-color: white;
   float: right;
   color: #dc3c29;
 }
-.post_like {
+.post-like {
   margin-top: 15px;
   border-top: 1px solid lightgray;
 }
 .userr {
   font-size: 20px;
-
   color: teal;
-  margin-top: 17px;
+  margin-top: 10px;
 }
-.post_title {
+.post-title {
   font-size: 40px;
   font-weight: bold;
   color: #0b399e;
 }
-.post_content {
-  display: block;
-  display: -webkit-box;
-  max-width: 100%;
-  height: 74 px;
-  margin: 0 auto;
+.post-content {
   font-size: 18px;
-  line-height: 1.2;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
-.tag_title {
+.tag-title {
   color: #0b399e;
 }
-.singlepost_content {
+.singlepost-content {
   max-width: 100%;
 
   font-size: 18px;
@@ -224,14 +218,7 @@
   height: 100vh;
   background-color: lightgrey;
 }
-.main_catag {
-  height: 100vh;
-  background-color: lightgrey;
-}
-.menu_list {
-  color: white;
-}
-.menu_bar {
+.menu {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -239,7 +226,7 @@
   padding: 10px;
   font-size: 15px;
 }
-.drop_menu {
+.drop-menu {
   border-top: 1px solid lightgray;
 }
 .dropdown {
@@ -250,11 +237,11 @@
   margin-left: 10px;
   text-align: center;
 }
-.logout_dis {
+.logout-dis {
   border-top: 1px solid lightgrey;
 }
 
-.add_tag {
+.add-tag {
   margin-top: 10px;
   margin-bottom: 10px;
   text-align: left;

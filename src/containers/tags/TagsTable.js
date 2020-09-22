@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import { Alltag } from "../../redux/actions";
+import { allTag } from "../../redux/actions";
 import { Singletag } from "../../redux/actions";
-import { Deletetag } from "../../redux/actions";
+import { deleteTag } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
 import { Table, Col } from "reactstrap";
@@ -21,7 +21,7 @@ const TagsTabel = ({ setAction, toggle }) => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Alltag());
+    dispatch(allTag());
   }, [dispatch]);
 
   const removehandle = (id) => {
@@ -33,7 +33,7 @@ const TagsTabel = ({ setAction, toggle }) => {
         confirmBtnBsStyle="danger"
         title="Are you sure?"
         onConfirm={() => {
-          dispatch(Deletetag(id));
+          dispatch(deleteTag(id));
           hideAlert();
         }}
         onCancel={() => hideAlert()}

@@ -6,7 +6,7 @@ import * as Yup from "yup";
 import { signupUser } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-const formSchema = Yup.object().shape({
+const registerSchema = Yup.object().shape({
   username: Yup.string().required("Name is a required field"),
   password: Yup.string()
     .min(8, "password must be 8 character")
@@ -16,12 +16,12 @@ const formSchema = Yup.object().shape({
 
 const Register = () => {
   const { register, control, errors, handleSubmit } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(registerSchema),
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const onSubmit = ({ username, password, email }) => {
-    dispatch(signupUser({ username, password, email, history }));
+  const onSubmit = (data) => {
+    dispatch(signupUser({ data, history }));
   };
 
   return (

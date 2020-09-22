@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import * as yup from "yup";
 import Select from "react-select";
 import { allCategory } from "../../redux/actions";
-import { Alltag } from "../../redux/actions";
+import { allTag } from "../../redux/actions";
 
 import {
   Button,
@@ -20,10 +20,10 @@ import {
   Col,
   FormGroup,
 } from "reactstrap";
-import { Addpost } from "../../redux/actions";
-import { Editpost } from "../../redux/actions";
+import { addPost } from "../../redux/actions";
+import { editPost } from "../../redux/actions";
 
-const formSchema = yup.object().shape({
+const postSchema = yup.object().shape({
   title: yup.string().required("*Title is Required"),
   slug: yup.string().required("*Slug is Required"),
   content: yup.string().required("*Content is Required"),
@@ -31,7 +31,7 @@ const formSchema = yup.object().shape({
 
 const PostModal = ({ modal, setModal, action, toggle }) => {
   const { control, register, handleSubmit, errors } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(postSchema),
   });
 
   const dispatch = useDispatch();
@@ -50,12 +50,12 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
 
     const createpost = { ...create, user };
     action === "create"
-      ? dispatch(Addpost(createpost, setModal))
-      : dispatch(Editpost(createpost, post.id, setModal));
+      ? dispatch(addPost(createpost, setModal))
+      : dispatch(editPost(createpost, post.id, setModal));
   };
   useEffect(() => {
     dispatch(allCategory());
-    dispatch(Alltag());
+    dispatch(allTag());
   }, [dispatch]);
 
   return (
@@ -154,7 +154,6 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                         allCategories !== null &&
                         allCategories.map((item) => ({
                           id: item.id,
-
                           value: item.title,
                           label: item.title,
                         }))
@@ -166,7 +165,7 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                         action === "create"
                           ? ""
                           : post !== null &&
-                            post.tags.map((item) => ({
+                            post.categories.map((item) => ({
                               id: item.id,
                               label: item.title,
                               value: item.title,

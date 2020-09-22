@@ -69,4 +69,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### Deployment
 
-This section has moved here: https://blogpost-7byel2zkz.vercel.app/
+This section has moved here: https://blogpost-ff8pz7jer.vercel.app/

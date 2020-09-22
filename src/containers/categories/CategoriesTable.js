@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 import { allCategory } from "../../redux/actions";
-import { Deletecategory } from "../../redux/actions";
-import { Singlecategory } from "../../redux/actions";
+import { deleteCategory } from "../../redux/actions";
+import { singleCategory } from "../../redux/actions";
 import SweetAlert from "react-bootstrap-sweetalert";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
@@ -31,7 +31,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
         confirmBtnBsStyle="danger"
         title="Are you sure?"
         onConfirm={() => {
-          dispatch(Deletecategory(id));
+          dispatch(deleteCategory(id));
           hideAlert();
         }}
         onCancel={() => hideAlert()}
@@ -96,7 +96,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(Singlecategory(item.id));
+                                dispatch(singleCategory(item.id));
                               }}
                             />
                             <FontAwesomeIcon

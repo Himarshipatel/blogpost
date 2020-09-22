@@ -9,19 +9,19 @@ import { useDispatch } from "react-redux";
 import { signinUser } from "../../redux/actions";
 import logo from "../../images/logo.jpg";
 
-const formSchema = Yup.object().shape({
+const loginSchema = Yup.object().shape({
   identifier: Yup.string().required("*Username is a required field"),
   password: Yup.string().required("*Password is a required field"),
 });
 
 const Login = () => {
   const { register, control, errors, handleSubmit } = useForm({
-    resolver: yupResolver(formSchema),
+    resolver: yupResolver(loginSchema),
   });
   const history = useHistory();
   const dispatch = useDispatch();
-  const onSubmit = ({ identifier, password }) => {
-    dispatch(signinUser({ identifier, password, history }));
+  const onSubmit = (data) => {
+    dispatch(signinUser({ data, history }));
   };
 
   return (

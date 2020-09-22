@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { Row, Button, Col } from "reactstrap";
 import CategoryModal from "./CategoryModal.js";
 import CategoriesTabel from "./CategoriesTable";
-import Header from "../../components/Header.js";
+import Layout from "../../components/Layout";
 const Categories = () => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
@@ -16,10 +16,9 @@ const Categories = () => {
   }, [dispatch]);
 
   return (
-    <>
-      <Header />
+    <Layout>
       <Col className="dashboard">
-        <Row className="add_tag">
+        <Row className="add-tag">
           <Col>
             <Button
               color="primary"
@@ -44,7 +43,7 @@ const Categories = () => {
           />
         )}
       </Col>
-    </>
+    </Layout>
   );
 };
 

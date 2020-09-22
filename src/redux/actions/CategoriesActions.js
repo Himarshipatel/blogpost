@@ -1,12 +1,13 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { config } from "../../common";
 
 export const allCategory = () => {
   return (dispatch) => {
     dispatch({ type: "ALL_CATEGORY_PENDING" });
 
     axios
-      .get("https://infblogdemo.herokuapp.com/categories")
+      .get(`${config.apiUrl}/categories`)
 
       .then((res) => {
         dispatch({
@@ -23,7 +24,7 @@ export const allCategory = () => {
   };
 };
 
-export const Addcategory = (data, setModal) => {
+export const addCategory = (data, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -35,7 +36,7 @@ export const Addcategory = (data, setModal) => {
     dispatch({ type: "ADD_CATEGORY_PENDING" });
 
     axios
-      .post("https://infblogdemo.herokuapp.com/categories", data, authtoken)
+      .post(`${config.apiUrl}/categories`, data, authtoken)
 
       .then((res) => {
         dispatch({
@@ -70,7 +71,7 @@ export const Addcategory = (data, setModal) => {
       });
   };
 };
-export const Deletecategory = (id) => {
+export const deleteCategory = (id) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -82,7 +83,7 @@ export const Deletecategory = (id) => {
     dispatch({ type: "DELETE_CATEGORY_PENDING" });
 
     axios
-      .delete(`https://infblogdemo.herokuapp.com/categories/${id}`, authtoken)
+      .delete(`${config.apiUrl}/categories/${id}`, authtoken)
 
       .then((res) => {
         dispatch(allCategory());
@@ -111,7 +112,7 @@ export const editCategory = (data, id, setModal) => {
     dispatch({ type: "EDIT_CATEGORY_PENDING" });
     axios
       .put(
-        `https://infblogdemo.herokuapp.com/categories/${id}`,
+        `${config.apiUrl}/categories/${id}`,
         data,
 
         authtoken
@@ -144,7 +145,7 @@ export const editCategory = (data, id, setModal) => {
   };
 };
 
-export const Singlecategory = (id) => {
+export const singleCategory = (id) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -155,7 +156,7 @@ export const Singlecategory = (id) => {
     dispatch({ type: "SINGLE_CATEGORY_PENDING" });
 
     axios
-      .get(`https://infblogdemo.herokuapp.com/categories/${id}`, authtoken)
+      .get(`${config.apiUrl}/categories/${id}`, authtoken)
 
       .then((res) => {
         dispatch({

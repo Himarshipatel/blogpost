@@ -5,16 +5,18 @@ import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
 import { Col, Row } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Allpost } from "../../redux/actions";
-import Header from "../../components/Header.js";
+import { allPost } from "../../redux/actions";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTag, faCrown, faHeart } from "@fortawesome/free-solid-svg-icons";
 import banner from "../../images/homebanner.jpg";
 import user_profile from "../../images/user_profile.png";
+import blogPost from "../../images/blogpost.png";
+import Layout from "../../components/Layout";
 const Home = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Allpost());
+    dispatch(allPost());
   }, [dispatch]);
 
   const { loading, posts } = useSelector((state) => ({
@@ -22,9 +24,7 @@ const Home = () => {
     posts: state.PostsReducers.allPosts.posts,
   }));
   return (
-    <>
-      <Header />
-
+    <Layout>
       <img width="100%" height="380px" src={banner} alt=" " />
 
       <Col className="allpost">
@@ -32,7 +32,7 @@ const Home = () => {
           <Col className="load"> loading...</Col>
         ) : (
           <>
-            <Col className="post_labell">All Posts</Col>
+            <Col className="post-labell">All Posts</Col>
             {posts !== null && (
               <Col className="post">
                 {posts
@@ -42,12 +42,12 @@ const Home = () => {
                       new Date(index.created_at) - new Date(item.created_at)
                   )
                   .map((item, index) => (
-                    <Card className="dispaly_post">
+                    <Card className="dispaly-post">
                       <Row className="catagoryinline">
                         {item.categories.map((catagory, index) => (
                           <Col
                             key={index}
-                            className="category_title"
+                            className="category-title"
                             size="sm"
                             sm="auto"
                           >
@@ -55,23 +55,26 @@ const Home = () => {
                           </Col>
                         ))}
                       </Row>
-                      <Col>
-                        <CardImg
-                          src={
-                            item.featured_media &&
-                            `https://infblogdemo.herokuapp.com${item.featured_media.url}`
-                          }
-                          alt="image"
-                          className="post_image"
-                        />
-                      </Col>
+                      <Row>
+                        <Col>
+                          <CardImg
+                            src={
+                              item.featured_media
+                                ? `https://infblogdemo.herokuapp.com${item.featured_media.url}`
+                                : blogPost
+                            }
+                            alt="image"
+                            className="post_image"
+                          />
+                        </Col>
+                      </Row>
                       <CardText>
                         <Row>
                           {item.tags.map((tags, index) => (
-                            <Col key={index} className="display_tag" sm="auto">
+                            <Col key={index} className="display-tag" sm="auto">
                               <FontAwesomeIcon
                                 icon={faTag}
-                                className="tag_icon"
+                                className="tagicon"
                               />
                               {tags.title}
                             </Col>
@@ -82,36 +85,44 @@ const Home = () => {
                       <CardTitle>
                         <img src={user_profile} alt="" className="user" />
                         <Col className="username text-left">
-                          <Col className=" user_name text-left" sm="auto">
+                          <Col
+                            className=" user_name text-left"
+                            size="sm"
+                            sm="auto"
+                          >
                             <Col className="userr text-left">
                               {item.user && item.user.username}
                               <FontAwesomeIcon
                                 icon={faCrown}
-                                className="admin_icon"
+                                className="admin-icon"
                               />
                             </Col>
-                            <Col className="date text-left">
+                            <Col className="date text-left" size="sm" sm="auto">
                               <Moment format="MMM DD">{item.created_at}</Moment>
                             </Col>
                           </Col>
                         </Col>
                       </CardTitle>
-                      <CardSubtitle className="post_title text-left">
+                      <CardSubtitle className="post-title text-left">
                         {item.title}
                       </CardSubtitle>
 
-                      <CardText className="post_content">
-                        {item.content}
+                      <CardText className="post-content">
+                        {item.content.substring(0, 300) + "..."}
                       </CardText>
-
-                      <Col className="post_like">
-                        <Link to={`${item.slug}/${item.id}`}>
-                          <Button color="primary" className="readmore">
-                            Read more
-                          </Button>
-                        </Link>
-                        <FontAwesomeIcon icon={faHeart} className="like_icon" />
-                      </Col>
+                      <Row>
+                        <Col className="post-like">
+                          <Link to={`${item.slug}/${item.id}`}>
+                            <Button color="primary" className="readmore">
+                              Read more
+                            </Button>
+                          </Link>
+                          <FontAwesomeIcon
+                            icon={faHeart}
+                            className="like-icon"
+                          />
+                        </Col>
+                      </Row>
                     </Card>
                   ))}
               </Col>
@@ -119,7 +130,7 @@ const Home = () => {
           </>
         )}
       </Col>
-    </>
+    </Layout>
   );
 };
 

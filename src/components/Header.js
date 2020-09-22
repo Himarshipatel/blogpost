@@ -81,7 +81,7 @@ const Header = () => {
               ) : (
                 <UncontrolledDropdown setActiveFromChild direction="down">
                   <DropdownToggle tag="a" className="nav-link">
-                    <Col className="username_header">
+                    <Col className="username-header">
                       <FontAwesomeIcon
                         icon={faUserCircle}
                         className="usericon"
@@ -91,7 +91,7 @@ const Header = () => {
                   </DropdownToggle>
 
                   <DropdownMenu className="dropdown">
-                    <Row className="menu_bar">
+                    <Row className="menu">
                       <FontAwesomeIcon
                         icon={faUserCircle}
                         className="usericon"
@@ -100,7 +100,7 @@ const Header = () => {
                       {email}
                     </Row>
 
-                    <Col className="drop_menu">
+                    <Col className="drop-menu">
                       <DropdownItem href="/tag" title="tags">
                         Tags
                       </DropdownItem>
@@ -113,7 +113,7 @@ const Header = () => {
                     </Col>
 
                     {tokenn ? (
-                      <Col className="logout_dis">
+                      <Col className="logout-dis">
                         <Button
                           outline
                           color="link"

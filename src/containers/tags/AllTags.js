@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Alltag } from "../../redux/actions";
+import { allTag } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Row, Col, Button, Container } from "reactstrap";
-import Header from "../../components/Header.js";
+import Layout from "../../components/Layout";
 const AllTags = () => {
   const { loading, tagsData } = useSelector((state) => ({
     loading: state.TagsReducers.allTags.loading,
@@ -11,15 +11,12 @@ const AllTags = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Alltag());
+    dispatch(allTag());
   }, [dispatch]);
 
   return (
-    <>
-      <Col className="catag">
-        <Header></Header>
-      </Col>
-      <Container>
+    <Layout>
+      <Container className="tag-list">
         {loading ? (
           <Col className="load"> loading...</Col>
         ) : (
@@ -42,7 +39,7 @@ const AllTags = () => {
           </>
         )}
       </Container>
-    </>
+    </Layout>
   );
 };
 

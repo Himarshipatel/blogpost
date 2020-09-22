@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { Allpost } from "../../redux/actions";
+import { allPost } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { Row, Button, Col } from "reactstrap";
 import PostModal from "./PostModal.js";
 import PostsTabel from "./PostsTable.js";
-import Header from "../../components/Header.js";
-
+import Layout from "../../components/Layout";
 const Posts = () => {
   const [modal, setModal] = useState(false);
 
@@ -15,14 +14,13 @@ const Posts = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Allpost());
+    dispatch(allPost());
   }, [dispatch]);
 
   return (
-    <>
-      <Header />
+    <Layout>
       <Col className="dashboard">
-        <Row className="add_tag">
+        <Row className="add-tag">
           <Col>
             <Button
               color="primary"
@@ -47,7 +45,7 @@ const Posts = () => {
           />
         )}
       </Col>
-    </>
+    </Layout>
   );
 };
 

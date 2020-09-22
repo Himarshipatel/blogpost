@@ -1,43 +1,43 @@
 import { signupUser, signinUser } from "./AuthActions.js";
 
 import {
-  Alltag,
+  allTag,
   Addtag,
-  Deletetag,
-  Edittag,
+  deleteTag,
+  editTag,
   Singletag,
 } from "./TagsActions.js";
 
 import {
   allCategory,
-  Addcategory,
-  Deletecategory,
+  addCategory,
+  deleteCategory,
   editCategory,
-  Singlecategory,
+  singleCategory,
 } from "./CategoriesActions.js";
 import {
-  Allpost,
-  Addpost,
-  Deletepost,
-  Editpost,
+  allPost,
+  addPost,
+  deletePost,
+  editPost,
   getSinglePost,
 } from "./PostsActions.js";
 export {
   signinUser,
   signupUser,
-  Alltag,
+  allTag,
   Addtag,
-  Deletetag,
-  Edittag,
+  deleteTag,
+  editTag,
   Singletag,
   allCategory,
-  Addcategory,
-  Deletecategory,
+  addCategory,
+  deleteCategory,
   editCategory,
-  Singlecategory,
-  Allpost,
-  Addpost,
-  Deletepost,
-  Editpost,
+  singleCategory,
+  allPost,
+  addPost,
+  deletePost,
+  editPost,
   getSinglePost,
 };

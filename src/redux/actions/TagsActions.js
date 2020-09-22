@@ -1,12 +1,13 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { config } from "../../common";
 
-export const Alltag = () => {
+export const allTag = () => {
   return (dispatch) => {
     dispatch({ type: "ALL_TAG_PENDING" });
 
     axios
-      .get("https://infblogdemo.herokuapp.com/tags")
+      .get(`${config.apiUrl}/tags`)
 
       .then((res) => {
         dispatch({
@@ -23,7 +24,7 @@ export const Alltag = () => {
   };
 };
 
-export const Deletetag = (id) => {
+export const deleteTag = (id) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -35,10 +36,10 @@ export const Deletetag = (id) => {
     dispatch({ type: "DELETE_TAG_PENDING" });
 
     axios
-      .delete(`https://infblogdemo.herokuapp.com/tags/${id}`, authtoken)
+      .delete(`${config.apiUrl}/tags/${id}`, authtoken)
 
       .then((res) => {
-        dispatch(Alltag());
+        dispatch(allTag());
         dispatch({ type: "DELETE_TAG_SUCCESS" });
       })
       .catch((error) => {
@@ -53,7 +54,7 @@ export const Deletetag = (id) => {
   };
 };
 
-export const Edittag = (tags, id, setModal) => {
+export const editTag = (tags, id, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -63,7 +64,7 @@ export const Edittag = (tags, id, setModal) => {
   return (dispatch) => {
     dispatch({ type: "EDIT_TAG_PENDING" });
     axios
-      .put(`https://infblogdemo.herokuapp.com/tags/${id}`, tags, authtoken)
+      .put(`${config.apiUrl}/tags/${id}`, tags, authtoken)
 
       .then((res) => {
         dispatch({
@@ -71,7 +72,7 @@ export const Edittag = (tags, id, setModal) => {
           edittag: res.data,
         });
         setModal(false);
-        dispatch(Alltag());
+        dispatch(allTag());
         toast.success("successfully Updated!!", {
           position: toast.POSITION.TOP_CENTER,
         });
@@ -104,7 +105,7 @@ export const Singletag = (id) => {
     dispatch({ type: "SINGLE_TAG_PENDING" });
 
     axios
-      .get(`https://infblogdemo.herokuapp.com/tags/${id}`, authtoken)
+      .get(`${config.apiUrl}/tags/${id}`, authtoken)
 
       .then((res) => {
         dispatch({
@@ -143,14 +144,14 @@ export const Addtag = (tags, setModal) => {
 
     axios
       .post(
-        "https://infblogdemo.herokuapp.com/tags",
+        `${config.apiUrl}/tags`,
         tags,
 
         authtoken
       )
 
       .then((res) => {
-        dispatch(Alltag());
+        dispatch(allTag());
         dispatch({
           type: "ADD_TAG_SUCCESS",
           addtag: res.data,

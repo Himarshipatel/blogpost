@@ -1,15 +1,12 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-
-export const signinUser = ({ identifier, password, history }) => {
+import { config } from "../../common";
+export const signinUser = ({ data, history }) => {
   return (dispatch) => {
     dispatch({ type: "SIGN_IN_PENDING" });
 
     axios
-      .post("https://infblogdemo.herokuapp.com/auth/local", {
-        identifier,
-        password,
-      })
+      .post(`${config.apiUrl}/auth/local`, data)
 
       .then((res) => {
         localStorage.setItem("id", res.data.user.id);
@@ -48,16 +45,12 @@ export const signinUser = ({ identifier, password, history }) => {
   };
 };
 
-export const signupUser = ({ username, password, email, history }) => {
+export const signupUser = ({ data, history }) => {
   return (dispatch) => {
     dispatch({ type: "SIGN_UP_PENDING" });
 
     axios
-      .post("https://infblogdemo.herokuapp.com/auth/local/register", {
-        username,
-        password,
-        email,
-      })
+      .post(`${config.apiUrl}/auth/local/register`, data)
 
       .then((res) => {
         dispatch({ type: "SIGN_UP_SUCCESS" });

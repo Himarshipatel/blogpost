@@ -1,12 +1,13 @@
 import axios from "axios";
 import { toast } from "react-toastify";
+import { config } from "../../common";
 
-export const Allpost = () => {
+export const allPost = () => {
   return (dispatch) => {
     dispatch({ type: "ALL_POST_PENDING" });
 
     axios
-      .get("https://infblogdemo.herokuapp.com/posts")
+      .get(`${config.apiUrl}/posts`)
 
       .then((res) => {
         dispatch({
@@ -22,7 +23,7 @@ export const Allpost = () => {
       });
   };
 };
-export const Addpost = (post, setModal) => {
+export const addPost = (post, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -35,7 +36,7 @@ export const Addpost = (post, setModal) => {
 
     axios
       .post(
-        "https://infblogdemo.herokuapp.com/posts",
+        `${config.apiUrl}/posts`,
 
         post,
 
@@ -43,7 +44,7 @@ export const Addpost = (post, setModal) => {
       )
 
       .then((res) => {
-        dispatch(Allpost());
+        dispatch(allPost());
         dispatch({
           type: "ADD_POST_SUCCESS",
           addpost: res.data,
@@ -75,7 +76,7 @@ export const Addpost = (post, setModal) => {
   };
 };
 
-export const Deletepost = (id) => {
+export const deletePost = (id) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -87,10 +88,10 @@ export const Deletepost = (id) => {
     dispatch({ type: "DELETE_POST_PENDING" });
 
     axios
-      .delete(`https://infblogdemo.herokuapp.com/posts/${id}`, authtoken)
+      .delete(`${config.apiUrl}/posts/${id}`, authtoken)
 
       .then((res) => {
-        dispatch(Allpost());
+        dispatch(allPost());
         dispatch({ type: "DELETE_POST_SUCCESS" });
       })
       .catch((error) => {
@@ -104,7 +105,7 @@ export const Deletepost = (id) => {
       });
   };
 };
-export const Editpost = (post, id, setModal) => {
+export const editPost = (post, id, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -114,7 +115,7 @@ export const Editpost = (post, id, setModal) => {
   return (dispatch) => {
     dispatch({ type: "EDIT_POST_PENDING" });
     axios
-      .put(`https://infblogdemo.herokuapp.com/posts/${id}`, post, authtoken)
+      .put(`${config.apiUrl}/posts/${id}`, post, authtoken)
 
       .then((res) => {
         dispatch({
@@ -122,7 +123,7 @@ export const Editpost = (post, id, setModal) => {
           editpost: res.data,
         });
         setModal(false);
-        dispatch(Allpost());
+        dispatch(allPost());
         toast.success("successfully Updated!!", {
           position: toast.POSITION.TOP_CENTER,
         });
@@ -149,7 +150,7 @@ export const getSinglePost = (id) => {
     dispatch({ type: "SINGLE_POST_PENDING" });
 
     axios
-      .get(`https://infblogdemo.herokuapp.com/posts/${id}`)
+      .get(`${config.apiUrl}/posts/${id}`)
 
       .then((res) => {
         dispatch({ type: "SINGLE_POST_SUCCESS", post: res.data });

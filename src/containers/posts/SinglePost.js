@@ -5,11 +5,11 @@ import { getSinglePost } from "../../redux/actions";
 import { useParams } from "react-router-dom";
 import Moment from "react-moment";
 import { faTag, faCrown } from "@fortawesome/free-solid-svg-icons";
-
 import { Card, CardText, CardTitle, CardSubtitle, Row } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Header from "../../components/Header.js";
+import blogPost from "../../images/blogpost.png";
 import user_profile from "../../images/user_profile.png";
+import Layout from "../../components/Layout";
 const SinglePost = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -23,8 +23,7 @@ const SinglePost = () => {
   }));
 
   return (
-    <>
-      <Header />
+    <Layout>
       <Col>
         {loading ? (
           <Col className="load"> loading...</Col>
@@ -32,7 +31,7 @@ const SinglePost = () => {
           <>
             {post !== null && (
               <Col>
-                <Card className="single_dispaly_post">
+                <Card className="singledispaly-post">
                   <CardTitle>
                     <img src={user_profile} alt="" className="user" />
                     <Col className="username text-left">
@@ -41,7 +40,7 @@ const SinglePost = () => {
                           {post.user.username}
                           <FontAwesomeIcon
                             icon={faCrown}
-                            className="admin_icon"
+                            className="admin-icon"
                           />
                         </Col>
                         <Col className="date text-left">
@@ -54,7 +53,7 @@ const SinglePost = () => {
                     {post.categories.map((catagory, index) => (
                       <Col
                         key={index}
-                        className="category_title"
+                        className="category-title"
                         size="sm"
                         sm="auto"
                       >
@@ -62,30 +61,33 @@ const SinglePost = () => {
                       </Col>
                     ))}
                   </Row>
-                  <Col>
-                    <img
-                      width="100%"
-                      height="350px"
-                      src={
-                        post.featured_media &&
-                        `https://infblogdemo.herokuapp.com${post.featured_media.url}`
-                      }
-                      alt="load"
-                    />
-                  </Col>
+                  <Row>
+                    <Col>
+                      <img
+                        width="100%"
+                        height="350px"
+                        src={
+                          post.featured_media
+                            ? `https://infblogdemo.herokuapp.com${post.featured_media.url}`
+                            : blogPost
+                        }
+                        alt="load"
+                      />
+                    </Col>
+                  </Row>
                   <Row>
                     {post.tags.map((tags, index) => (
-                      <Col key={index} className="display_tag" sm="auto">
+                      <Col key={index} className="display-tag" sm="auto">
                         <FontAwesomeIcon icon={faTag} className="tag_icon" />
                         {tags.title}
                       </Col>
                     ))}
                   </Row>
 
-                  <CardSubtitle className="post_title  text-left">
+                  <CardSubtitle className="post-title  text-left">
                     {post.title}
                   </CardSubtitle>
-                  <CardText className="singlepost_content">
+                  <CardText className="singlepost-content">
                     {post.content}
                   </CardText>
                 </Card>
@@ -94,7 +96,7 @@ const SinglePost = () => {
           </>
         )}
       </Col>
-    </>
+    </Layout>
   );
 };
 

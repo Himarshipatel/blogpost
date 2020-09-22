@@ -1,23 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { Alltag } from "../../redux/actions";
+import { allTag } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { Button, Col, Row } from "reactstrap";
 import TagModal from "./TagModal.js";
 import TagsTabel from "./TagsTable.js";
-import Header from "../../components/Header.js";
+import Layout from "../../components/Layout";
 const Tags = () => {
   const [modal, setModal] = useState(false);
   const toggle = () => setModal(!modal);
   const [action, setAction] = useState();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Alltag());
+    dispatch(allTag());
   }, [dispatch]);
   return (
-    <>
-      <Header />
+    <Layout>
       <Col className="dashboard">
-        <Row className="add_tag">
+        <Row className="add-tag">
           <Col>
             <Button
               color="primary"
@@ -42,7 +41,7 @@ const Tags = () => {
           />
         )}
       </Col>
-    </>
+    </Layout>
   );
 };
 

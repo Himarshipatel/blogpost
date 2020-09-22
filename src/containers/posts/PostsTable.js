@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-import { Allpost } from "../../redux/actions";
+import { allPost } from "../../redux/actions";
 import { getSinglePost } from "../../redux/actions";
-import { Deletepost } from "../../redux/actions";
+import { deletePost } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
 import { Table, Col } from "reactstrap";
@@ -18,7 +18,7 @@ const PostsTabel = ({ setAction, toggle }) => {
   }));
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(Allpost());
+    dispatch(allPost());
   }, [dispatch]);
 
   const removehandle = (id) => {
@@ -30,7 +30,7 @@ const PostsTabel = ({ setAction, toggle }) => {
         confirmBtnBsStyle="danger"
         title="Are you sure?"
         onConfirm={() => {
-          dispatch(Deletepost(id));
+          dispatch(deletePost(id));
           hideAlert();
         }}
         onCancel={() => hideAlert()}
