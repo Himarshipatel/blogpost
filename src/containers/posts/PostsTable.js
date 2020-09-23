@@ -105,6 +105,7 @@ const PostsTabel = ({ setAction, toggle }) => {
                           <td>
                             <FontAwesomeIcon
                               icon={faPencilAlt}
+                              className="editpost-icon"
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
@@ -113,7 +114,7 @@ const PostsTabel = ({ setAction, toggle }) => {
                             />
                             <FontAwesomeIcon
                               icon={faTrashAlt}
-                              className="carticon"
+                              className="deletepost-icon"
                               onClick={() => {
                                 removehandle(item.id);
                               }}

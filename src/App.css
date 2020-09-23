@@ -205,6 +205,20 @@
 
   font-size: 18px;
 }
+.edit-icon {
+  margin-right: 10px;
+  color: blue;
+}
+.delete-icon {
+  color: #ea2b18;
+}
+.editpost-icon {
+  margin-right: 5px;
+  color: blue;
+}
+.deletepost-icon {
+  color: #ea2b18;
+}
 .readmore {
   float: left;
   margin-top: 15px;

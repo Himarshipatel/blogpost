@@ -93,6 +93,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
                           <td>
                             <FontAwesomeIcon
                               icon={faPencilAlt}
+                              className="edit-icon"
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
@@ -100,11 +101,11 @@ const CategoriesTabel = ({ setAction, toggle }) => {
                               }}
                             />
                             <FontAwesomeIcon
+                              className="delete-icon"
                               icon={faTrashAlt}
                               onClick={() => {
                                 removehandle(item.id);
                               }}
-                              className="carticon"
                             />
                             {sweetalert}
                           </td>

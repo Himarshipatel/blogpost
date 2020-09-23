@@ -95,6 +95,7 @@ const TagsTabel = ({ setAction, toggle }) => {
                           <td>
                             <FontAwesomeIcon
                               icon={faPencilAlt}
+                              className="edit-icon"
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
@@ -103,7 +104,7 @@ const TagsTabel = ({ setAction, toggle }) => {
                             />
                             <FontAwesomeIcon
                               icon={faTrashAlt}
-                              className="carticon"
+                              className="delete-icon"
                               onClick={() => {
                                 removehandle(item.id);
                               }}
