@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { config } from "../../common";
+import { config, errorHandel } from "../../common";
 
 export const allPost = () => {
   return (dispatch) => {
@@ -65,13 +65,7 @@ export const addPost = (post, setModal) => {
           type: "ADD_POST_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };
@@ -134,13 +128,7 @@ export const editPost = (post, id, setModal) => {
           type: "EDIT_POST_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };

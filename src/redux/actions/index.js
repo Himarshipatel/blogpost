@@ -2,10 +2,10 @@ import { signupUser, signinUser } from "./AuthActions.js";
 
 import {
   allTag,
-  Addtag,
+  addTag,
   deleteTag,
   editTag,
-  Singletag,
+  singleTag,
 } from "./TagsActions.js";
 
 import {
@@ -26,10 +26,10 @@ export {
   signinUser,
   signupUser,
   allTag,
-  Addtag,
+  addTag,
   deleteTag,
   editTag,
-  Singletag,
+  singleTag,
   allCategory,
   addCategory,
   deleteCategory,

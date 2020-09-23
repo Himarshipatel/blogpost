@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { config } from "../../common";
+import { config, errorHandel } from "../../common";
 
 export const allTag = () => {
   return (dispatch) => {
@@ -83,18 +83,12 @@ export const editTag = (tags, id, setModal) => {
           type: "EDIT_TAG_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };
 
-export const Singletag = (id) => {
+export const singleTag = (id) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -131,7 +125,7 @@ export const Singletag = (id) => {
   };
 };
 
-export const Addtag = (tags, setModal) => {
+export const addTag = (tags, setModal) => {
   const tokenn = localStorage.getItem("token");
   const authtoken = {
     headers: {
@@ -172,13 +166,7 @@ export const Addtag = (tags, setModal) => {
           type: "ADD_TAG_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };

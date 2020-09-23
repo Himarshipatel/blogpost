@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { allTag } from "../../redux/actions";
-import { Singletag } from "../../redux/actions";
+import { singleTag } from "../../redux/actions";
 import { deleteTag } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import Moment from "react-moment";
@@ -98,7 +98,7 @@ const TagsTabel = ({ setAction, toggle }) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(Singletag(item.id));
+                                dispatch(singleTag(item.id));
                               }}
                             />
                             <FontAwesomeIcon

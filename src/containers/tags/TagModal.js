@@ -16,7 +16,7 @@ import {
   Col,
   FormGroup,
 } from "reactstrap";
-import { Addtag } from "../../redux/actions";
+import { addTag } from "../../redux/actions";
 import { editTag } from "../../redux/actions";
 
 const tagSchema = yup.object().shape({
@@ -37,7 +37,7 @@ const TagModal = ({ modal, setModal, action, toggle }) => {
   }));
   const onSubmit = (tags) => {
     action === "create"
-      ? dispatch(Addtag(tags, setModal))
+      ? dispatch(addTag(tags, setModal))
       : dispatch(editTag(tags, tag.id, setModal));
   };
 

@@ -150,14 +150,17 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                   <FormGroup>
                     <Controller
                       as={Select}
-                      options={
-                        allCategories !== null &&
-                        allCategories.map((item) => ({
-                          id: item.id,
-                          value: item.title,
-                          label: item.title,
-                        }))
-                      }
+                      options={allCategories}
+                      getOptionLabel={(option) => option.title}
+                      getOptionValue={(option) => option.title}
+                      // options={
+                      //   allCategories !== null &&
+                      //   allCategories.map((item) => ({
+                      //     id: item.id,
+                      //     value: item.title,
+                      //     label: item.title,
+                      //   }))
+                      // }
                       control={control}
                       name="categories"
                       isMulti
@@ -192,14 +195,17 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                   <FormGroup>
                     <Controller
                       as={Select}
-                      options={
-                        tagsData !== null &&
-                        tagsData.map((item) => ({
-                          id: item.id,
-                          label: item.title,
-                          value: item.title,
-                        }))
-                      }
+                      options={tagsData}
+                      getOptionLabel={(option) => option.label}
+                      getOptionValue={(option) => option.value}
+                      // options={
+                      //   tagsData !== null &&
+                      //   tagsData.map((item) => ({
+                      //     id: item.id,
+                      //     label: item.title,
+                      //     value: item.title,
+                      //   }))
+                      // }
                       control={control}
                       name="tags"
                       isMulti

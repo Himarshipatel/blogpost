@@ -1,6 +1,6 @@
 import axios from "axios";
 import { toast } from "react-toastify";
-import { config } from "../../common";
+import { config, errorHandel } from "../../common";
 
 export const allCategory = () => {
   return (dispatch) => {
@@ -60,14 +60,7 @@ export const addCategory = (data, setModal) => {
           type: "ADD_CATEGORY_FAILURE",
           message: error.message,
         });
-
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };
@@ -134,13 +127,7 @@ export const editCategory = (data, id, setModal) => {
           type: "EDIT_CATEGORY_FAILURE",
           message: error.message,
         });
-        for (const a in error.response.data.data.errors) {
-          error.response.data.data.errors[a].map((error) =>
-            toast.error(error, {
-              position: toast.POSITION.TOP_CENTER,
-            })
-          );
-        }
+        errorHandel(error);
       });
   };
 };

@@ -1,3 +1,3 @@
 import config from "./config";
-
-export { config };
+import errorHandel from "./Error";
+export { config, errorHandel };
