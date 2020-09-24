@@ -23,7 +23,9 @@ const TagsTabel = ({ setAction, toggle }) => {
   useEffect(() => {
     dispatch(allTag());
   }, [dispatch]);
-
+  const editHandel = (id) => {
+    dispatch(singleTag(id));
+  };
   const removehandle = (id) => {
     const getAlert = () => (
       <SweetAlert
@@ -99,7 +101,7 @@ const TagsTabel = ({ setAction, toggle }) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(singleTag(item.id));
+                                editHandel(item.id);
                               }}
                             />
                             <FontAwesomeIcon

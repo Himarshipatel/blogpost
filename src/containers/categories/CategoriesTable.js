@@ -21,7 +21,9 @@ const CategoriesTabel = ({ setAction, toggle }) => {
   useEffect(() => {
     dispatch(allCategory());
   }, [dispatch]);
-
+  const editHandel = (id) => {
+    dispatch(singleCategory(id));
+  };
   const removehandle = (id) => {
     const getAlert = () => (
       <SweetAlert
@@ -97,7 +99,7 @@ const CategoriesTabel = ({ setAction, toggle }) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(singleCategory(item.id));
+                                editHandel(item.id);
                               }}
                             />
                             <FontAwesomeIcon

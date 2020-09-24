@@ -20,7 +20,9 @@ const PostsTabel = ({ setAction, toggle }) => {
   useEffect(() => {
     dispatch(allPost());
   }, [dispatch]);
-
+  const editHandel = (id) => {
+    dispatch(getSinglePost(id));
+  };
   const removehandle = (id) => {
     const getAlert = () => (
       <SweetAlert
@@ -110,7 +112,7 @@ const PostsTabel = ({ setAction, toggle }) => {
                               onClick={() => {
                                 toggle();
                                 setAction("edit");
-                                dispatch(getSinglePost(item.id));
+                                editHandel(item.id);
                               }}
                             />
                             <FontAwesomeIcon
