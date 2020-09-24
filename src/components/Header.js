@@ -101,13 +101,13 @@ const Header = () => {
                     </Row>
 
                     <Col className="drop-menu">
-                      <DropdownItem href="/tag" title="tags">
+                      <DropdownItem href="/admin/tag" title="tags">
                         Tags
                       </DropdownItem>
-                      <DropdownItem href="/category" title="category">
+                      <DropdownItem href="/admin/category" title="category">
                         Category
                       </DropdownItem>
-                      <DropdownItem href="/posts" title="post">
+                      <DropdownItem href="/admin/posts" title="post">
                         Post
                       </DropdownItem>
                     </Col>

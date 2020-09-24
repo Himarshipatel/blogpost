@@ -232,6 +232,9 @@
   height: 100vh;
   background-color: lightgrey;
 }
+.sweetalertt {
+  background-color: blueviolet;
+}
 .menu {
   display: flex;
   align-items: center;
@@ -239,6 +242,7 @@
   color: blue;
   padding: 10px;
   font-size: 15px;
+  margin-bottom: 5px;
 }
 .drop-menu {
   border-top: 1px solid lightgray;

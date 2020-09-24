@@ -153,26 +153,13 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                       options={allCategories}
                       getOptionLabel={(option) => option.title}
                       getOptionValue={(option) => option.title}
-                      // options={
-                      //   allCategories !== null &&
-                      //   allCategories.map((item) => ({
-                      //     id: item.id,
-                      //     value: item.title,
-                      //     label: item.title,
-                      //   }))
-                      // }
                       control={control}
                       name="categories"
                       isMulti
                       defaultValue={
                         action === "create"
                           ? ""
-                          : post !== null &&
-                            post.categories.map((item) => ({
-                              id: item.id,
-                              label: item.title,
-                              value: item.title,
-                            }))
+                          : post !== null && post.categories
                       }
                       ref={register}
                       className={
@@ -196,28 +183,13 @@ const PostModal = ({ modal, setModal, action, toggle }) => {
                     <Controller
                       as={Select}
                       options={tagsData}
-                      getOptionLabel={(option) => option.label}
-                      getOptionValue={(option) => option.value}
-                      // options={
-                      //   tagsData !== null &&
-                      //   tagsData.map((item) => ({
-                      //     id: item.id,
-                      //     label: item.title,
-                      //     value: item.title,
-                      //   }))
-                      // }
+                      getOptionLabel={(option) => option.title}
+                      getOptionValue={(option) => option.title}
                       control={control}
                       name="tags"
                       isMulti
                       defaultValue={
-                        action === "create"
-                          ? ""
-                          : post !== null &&
-                            post.tags.map((item) => ({
-                              id: item.id,
-                              label: item.title,
-                              value: item.title,
-                            }))
+                        action === "create" ? "" : post !== null && post.tags
                       }
                       ref={register}
                       className={errors && errors.tags ? "is-invalid" : ""}

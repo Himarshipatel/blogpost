@@ -23,9 +23,13 @@ const Router = () => {
 
         <Route path="/login" component={Login} />
 
-        <PrivateRoute path="/category" component={Categories} exact={true} />
-        <PrivateRoute path="/tag" component={Tags} exact={true} />
-        <PrivateRoute path="/posts" component={Posts} exact={true} />
+        <PrivateRoute
+          path="/admin/category"
+          component={Categories}
+          exact={true}
+        />
+        <PrivateRoute path="/admin/tag" component={Tags} exact={true} />
+        <PrivateRoute path="/admin/posts" component={Posts} exact={true} />
 
         <Route path="/:slug/:id" component={SinglePost} />
 

@@ -24,6 +24,7 @@ const PostsTabel = ({ setAction, toggle }) => {
   const removehandle = (id) => {
     const getAlert = () => (
       <SweetAlert
+        className="sweetalertt"
         warning
         showCancel
         confirmBtnText="Yes, delete it!"
