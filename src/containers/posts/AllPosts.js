@@ -12,8 +12,25 @@ import { faTag, faCrown, faHeart } from "@fortawesome/free-solid-svg-icons";
 import banner from "../../images/homebanner.jpg";
 import user_profile from "../../images/user_profile.png";
 import blogPost from "../../images/blogpost.png";
+import travelPost from "../../images/travel.png";
+import betterposts from "../../images/write-better-posts.webp";
 import Layout from "../../components/Layout";
+import SwiftSlider from "react-swift-slider";
 const Home = () => {
+  const data = [
+    {
+      id: "1",
+      src: banner,
+    },
+    {
+      id: "2",
+      src: betterposts,
+    },
+    {
+      id: "3",
+      src: travelPost,
+    },
+  ];
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(allPost());
@@ -25,7 +42,8 @@ const Home = () => {
   }));
   return (
     <Layout>
-      <img width="100%" height="380px" src={banner} alt=" " />
+      <SwiftSlider data={data} className="ban" showDots={false} />
+      {/* <img width="100%" height="380px" src={banner} alt=" " /> */}
 
       <Col className="allpost">
         {loading ? (

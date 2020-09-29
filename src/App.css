@@ -283,3 +283,6 @@
 .post_image {
   height: 350px;
 }
+.ban {
+  color: lightgrey;
+}
